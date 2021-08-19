@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<title>{{ page.title }}</title>
-			<!-- link to main stylesheet -->
-			<link rel="stylesheet" type="text/css" href="/css/main.css">
-		</head>
-		<body>
-			<div class ="sidenav">
-	        		<a href="/">Home</a>
-	        		<a href="/blog/">Blog</a>
-                    <a href="/books/">Books</a>
-					<a href="/articles/">Articles</a>
-			</div>
-			<div class="container">
-			{{ content }}
-			
-			</div><!-- /.container -->
-			<footer>
-	    		<ul>
-	        		<li><a href="https://www.linkedin.com/in/andres-crucetta/">linkedin</a></li>
-					<li><a href="mailto:andres.crucetta@hey.com">email</a></li>
-	        		<li><a href="https://github.com/acrucetta">github.com/acrucetta</a></li>
-				</ul>
-			</footer>
-		</body>
-	</html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <!-- link to main stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <a class="nav-link active" aria-current="page" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/blog">Blog</a>
+	  <a class="nav-link" href="/projects">Projects</a>
+    </nav>
+    <div class="container">{{ content }}</div>
+    <!-- /.container -->
+    <footer>
+      <ul>
+        <li>
+          <a href="https://www.linkedin.com/in/andres-crucetta/">linkedin</a>
+        </li>
+        <li><a href="mailto:andres.crucetta@hey.com">email</a></li>
+        <li><a href="https://github.com/acrucetta">github.com/acrucetta</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
