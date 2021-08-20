@@ -1,0 +1,49 @@
+---
+title: "Chicago COVID Re-opening Web App"
+layout: post
+date: 2020-05-11
+---
+## About the project
+
+This project was born out of my desire to track Chicago's re-opening stages. In April, the city released an opening plan with five phases that detailed the specific metrics Chicago needed to meet to proceed to the next stage.
+
+I've developed a dashboard with Flask, Plotly, and Python that captures data from the Chicago Open Data project and outputs the current state for the city in a simple way.
+
+The four charts I've selected are:
+- Daily New Cases
+- Daily New Deaths
+- COVID Patients in ICU Beds
+- COVID Patients in Ventilator
+
+After these graphs, I've outlined a list of the reopening stages from Stay at Home (Phase 1), to Reopening the City (Phase 5)
+
+## Project Demo
+
+<img src="https://media.giphy.com/media/UqwoqfMAmZiV8vG6ea/giphy.gif" width="500" height="300" />
+
+### Built With
+
+* Bootstrap
+* Flask
+* Plotly
+* HTML/CSS
+* Python
+
+<!-- GETTING STARTED -->
+## Getting Started
+To get a local copy up and running follow these simple steps.
+
+### Installation
+ 
+1. Clone the repo
+```sh
+git clone https://github.com/acrucetta/chicago_COVID_app.git
+```
+2. Install Environment
+```sh
+source .venv/bin/activate
+```
+3. Run the application in your local server
+```sh
+python myapp.py
+```

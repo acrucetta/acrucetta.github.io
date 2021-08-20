@@ -1,0 +1,51 @@
+I"u<h2 id="about-the-project">About the project</h2>
+
+<p>This project was born out of my desire to track Chicago’s re-opening stages. In April, the city released an opening plan with five phases that detailed the specific metrics Chicago needed to meet to proceed to the next stage.</p>
+
+<p>I’ve developed a dashboard with Flask, Plotly, and Python that captures data from the Chicago Open Data project and outputs the current state for the city in a simple way.</p>
+
+<p>The four charts I’ve selected are:</p>
+<ul>
+  <li>Daily New Cases</li>
+  <li>Daily New Deaths</li>
+  <li>COVID Patients in ICU Beds</li>
+  <li>COVID Patients in Ventilator</li>
+</ul>
+
+<p>After these graphs, I’ve outlined a list of the reopening stages from Stay at Home (Phase 1), to Reopening the City (Phase 5)</p>
+
+<h2 id="project-demo">Project Demo</h2>
+
+<p><img src="https://media.giphy.com/media/UqwoqfMAmZiV8vG6ea/giphy.gif" width="500" height="300" /></p>
+
+<h3 id="built-with">Built With</h3>
+
+<ul>
+  <li>Bootstrap</li>
+  <li>Flask</li>
+  <li>Plotly</li>
+  <li>HTML/CSS</li>
+  <li>Python</li>
+</ul>
+
+<!-- GETTING STARTED -->
+<h2 id="getting-started">Getting Started</h2>
+<p>To get a local copy up and running follow these simple steps.</p>
+
+<h3 id="installation">Installation</h3>
+
+<ol>
+  <li>Clone the repo
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/acrucetta/chicago_COVID_app.git
+</code></pre></div>    </div>
+  </li>
+  <li>Install Environment
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> .venv/bin/activate
+</code></pre></div>    </div>
+  </li>
+  <li>Run the application in your local server
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python myapp.py
+</code></pre></div>    </div>
+  </li>
+</ol>
+:ET

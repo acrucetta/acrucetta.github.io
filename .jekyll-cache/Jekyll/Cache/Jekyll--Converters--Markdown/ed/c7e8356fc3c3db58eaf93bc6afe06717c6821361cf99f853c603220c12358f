@@ -1,0 +1,40 @@
+I"3<h2 id="context">Context</h2>
+<p>Since 2008, guests and hosts have used Airbnb to travel in a more unique, personalized way. As part of the Airbnb Inside initiative, this dataset describes the listing activity of homestays in Boston, MA.</p>
+
+<p>I’ve chosen this dataset to understand which areas in Boston are better for tourists and what makes a highly rated Airbnb host. Using Pyhon (numpy, pandas, sklearn, and seaborn) I produced results for these questions and published them in a Medium article <a href="https://medium.com/@andrescrucetta/this-data-will-make-you-rethink-how-you-airbnb-in-boston-dff227e80732?sk=46bf35cad3f539b96ce596f70fae5d5e">This data will make you rethink how you Airbnb in Boston</a>.</p>
+
+<hr />
+<h2 id="content">Content</h2>
+
+<p>The following Airbnb activity is included in this Boston dataset:</p>
+<ul>
+  <li>Listings, including full descriptions and average review score</li>
+  <li>Reviews, including unique id for each reviewer and detailed comments</li>
+  <li>Calendar, including listing id and the price and availability for that day</li>
+</ul>
+
+<hr />
+
+<h2 id="business-understanding">Business Understanding</h2>
+
+<p>Focuses on understanding the project objectives and requirements from a business perspective, and then converting this knowledge into a data mining problem definition and a preliminary plan.</p>
+
+<p>I chose the Boston Airbnb Dataset to understand:</p>
+
+<p><strong>What areas are the most expensive and busy areas to stay in Boston?</strong></p>
+<ol>
+  <li>Are certain neighborhoods more expensive than others, and by how much?</li>
+  <li>Are certain neighborhoods busier at different times of the year?</li>
+</ol>
+
+<p><strong>What makes a great host?</strong></p>
+<ol>
+  <li>How do comments vary depending on the rating quartiles?</li>
+  <li>What rating features make a super host?</li>
+  <li>What features correlate with higher ratings?</li>
+</ol>
+
+<h3 id="acknowledgement">Acknowledgement</h3>
+<p>This dataset is part of Airbnb Inside, and the original source <a href="http://insideairbnb.com/get-the-data.html">can be found here</a>.</p>
+
+:ET
