@@ -1,0 +1,214 @@
+I"�'<h3 id="table-of-contents">Table of Contents</h3>
+
+<ul>
+  <li><a href="#1-project-overview">1. Project Overview</a></li>
+  <li><a href="#2-project-components">2. Project Components</a>
+    <ul>
+      <li><a href="#21-etl-pipeline">2.1. ETL Pipeline</a></li>
+      <li><a href="#22-ml-pipeline">2.2. ML Pipeline</a></li>
+      <li><a href="#23-flask-web-app">2.3. Flask Web App</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-running">3. Running</a>
+    <ul>
+      <li><a href="#31-data-cleaning">3.1. Data Cleaning</a></li>
+      <li><a href="#32-training-classifier">3.2. Training Classifier</a></li>
+      <li><a href="#33-starting-the-web-app">3.3. Starting the web app</a></li>
+    </ul>
+  </li>
+  <li><a href="#4-conclusion">4. Conclusion</a></li>
+  <li><a href="#5-files">5. Files</a></li>
+  <li><a href="#6-software-requirements">6. Software Requirements</a></li>
+  <li><a href="#7-licensing-authors-acknowledgements">7. Licensing, Authors, Acknowledgements<a name="licensing"></a></a></li>
+</ul>
+
+<hr />
+
+<p><a id="overview"></a></p>
+
+<h2 id="1-project-overview">1. Project Overview</h2>
+
+<p>In this project, I’ll apply data engineering to analyze disaster data from <a href="https://www.figure-eight.com/" target="_blank">Figure Eight</a> to build a model for an API that classifies disaster messages.</p>
+
+<p><em>data</em> directory contains a data set which are real messages that were sent during disaster events. I will be creating a machine learning pipeline to categorize these events so that appropriate disaster relief agency can be reached out for help.</p>
+
+<p>This project will include a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also display visualizations of the data.</p>
+
+<p><a href="#eg">Here</a> are a few screenshots of the web app.</p>
+
+<p><a id="components"></a></p>
+
+<h2 id="2-project-components">2. Project Components</h2>
+
+<p>There are three components of this project:</p>
+
+<p><a id="etl_pipeline"></a></p>
+
+<h3 id="21-etl-pipeline">2.1. ETL Pipeline</h3>
+
+<p>File <em>data/process_data.py</em> contains data cleaning pipeline that:</p>
+
+<ul>
+  <li>Loads the <code class="language-plaintext highlighter-rouge">messages</code> and <code class="language-plaintext highlighter-rouge">categories</code> dataset</li>
+  <li>Merges the two datasets</li>
+  <li>Cleans the data</li>
+  <li>Stores it in a <strong>SQLite database</strong></li>
+</ul>
+
+<p><a id="ml_pipeline"></a></p>
+
+<h3 id="22-ml-pipeline">2.2. ML Pipeline</h3>
+
+<p>File <em>models/train_classifier.py</em> contains machine learning pipeline that:</p>
+
+<ul>
+  <li>Loads data from the <strong>SQLite database</strong></li>
+  <li>Splits the data into training and testing sets</li>
+  <li>Builds a text processing and machine learning pipeline</li>
+  <li>Trains and tunes a model using GridSearchCV</li>
+  <li>Outputs result on the test set</li>
+  <li>Exports the final model as a pickle file</li>
+</ul>
+
+<p><a id="flask"></a></p>
+
+<h3 id="23-flask-web-app">2.3. Flask Web App</h3>
+
+<p><a id="eg"></a></p>
+
+<p>Running <a href="#com">this command</a> <strong>from app directory</strong> will start the web app where users can enter their query, i.e., a request message sent during a natural disaster, e.g. <em>“Please, we need tents and water. We are in Silo, Thank you!”</em>.</p>
+
+<p><strong><em>Screenshot 1</em></strong></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/master.jpg" alt="Screenshot" /></p>
+
+<p>What the app will do is that it will classify the text message into categories so that appropriate relief agency can be reached out for help.</p>
+
+<p><strong><em>Screenshot 2</em></strong></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/res.jpg" class="blogimages" alt="Screenshot" /></p>
+
+<p><a id="run"></a></p>
+
+<h2 id="3-running">3. Running</h2>
+
+<p>There are three steps to get up and runnning with the web app if you want to start from ETL process.</p>
+
+<p><a id="cleaning"></a></p>
+
+<h3 id="31-data-cleaning">3.1. Data Cleaning</h3>
+
+<p><strong>Go to the project directory</strong> and the run the following command:</p>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">python</span> <span class="kd">data</span><span class="na">/process</span>_data.py <span class="kd">data</span><span class="na">/disaster</span>_messages.csv <span class="kd">data</span><span class="na">/disaster</span>_categories.csv <span class="kd">data</span><span class="na">/DisasterResponse</span>.db
+</code></pre></div></div>
+
+<p>The first two arguments are input data and the third argument is the SQLite Database in which we want to save the cleaned data. The ETL pipeline is in <em>process_data.py</em>.</p>
+
+<p><em>DisasterResponse.db</em> already exists in <em>data</em> folder but the above command will still run and replace the file with same information.</p>
+
+<p><strong><em>Screenshot 3</em></strong></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/process_data.jpg" class="blogimages" alt="Screenshot" /></p>
+
+<p><a id="training"></a></p>
+
+<h3 id="32-training-classifier">3.2. Training Classifier</h3>
+
+<p>After the data cleaning process, run this command <strong>from the project directory</strong>:</p>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">python</span> <span class="kd">models</span><span class="na">/train</span>_classifier.py <span class="kd">data</span><span class="na">/DisasterResponse</span>.db <span class="kd">models</span><span class="na">/classifier</span>.pkl
+</code></pre></div></div>
+
+<p>This will use cleaned data to train the model, improve the model with grid search and saved the model to a pickle file (<em>classifer.pkl</em>).</p>
+
+<p><em>classifier.pkl</em> already exists but the above command will still run and replace the file will same information.</p>
+
+<p><em><strong>Screenshot 4</strong></em></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/train_classifier_1.jpg" class="blogimages" alt="Screenshot" /></p>
+
+<p>It took me around <strong>4 minutes</strong> to train the classifier with grid search.</p>
+
+<p>When the models is saved, it will look something like this.</p>
+
+<p><a id="acc"></a></p>
+
+<p><strong><em>Screenshot 5</em></strong></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/train_classifier_2.jpg" class="blogimages" alt="Screenshot" /></p>
+
+<p><a id="starting"></a></p>
+
+<h3 id="33-starting-the-web-app">3.3. Starting the web app</h3>
+
+<p>Now that we have cleaned the data and trained our model. Now it’s time to see the prediction in a user friendly way.</p>
+
+<p><strong>Go the app directory</strong> and run the following command:</p>
+
+<p><a id="com"></a></p>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">python</span> <span class="nb">run</span>.py
+</code></pre></div></div>
+
+<p>This will start the web app and will direct you to a URL where you can enter messages and get classification results for it.</p>
+
+<p><strong><em>Screenshot 6</em></strong></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/genre.jpg" class="blogimages" alt="Screenshot" /></p>
+
+<p><a id="conclusion"></a></p>
+
+<h2 id="4-conclusion">4. Conclusion</h2>
+
+<p>Some information about training data set as seen on the main page of the web app.</p>
+
+<p><strong><em>Screenshot 7</em></strong></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/genre.jpg" class="blogimages" alt="Screenshot" /></p>
+
+<p><strong><em>Screenshot 8</em></strong></p>
+
+<p><img src="https://raw.githubusercontent.com/acrucetta/old_website/gh-pages/assets/img-screenshots/dist.jpg" class="blogimages" alt="Screenshot" /></p>
+
+<p>As we can see the data is highly imbalanced. Though the accuracy metric is <a href="#acc">high</a> (you will see the exact value after the model is trained by grid search, it is ~0.94), it has a poor value for recall (~0.6). So, take appropriate measures when using this model for decision-making process at a larger scale or in a production environment.</p>
+
+<p><a id="files"></a></p>
+
+<h2 id="5-files">5. Files</h2>
+
+<pre>
+.
+├── app
+│   ├── run.py------------------------# FLASK FILE THAT RUNS APP
+│   ├── static
+│   │   └── favicon.ico---------------# FAVICON FOR THE WEB APP
+│   └── templates
+│       ├── go.html-------------------# CLASSIFICATION RESULT PAGE OF WEB APP
+│       └── master.html---------------# MAIN PAGE OF WEB APP
+├── data
+│   ├── DisasterResponse.db-----------# DATABASE TO SAVE CLEANED DATA TO
+│   ├── disaster_categories.csv-------# DATA TO PROCESS
+│   ├── disaster_messages.csv---------# DATA TO PROCESS
+│   └── process_data.py---------------# PERFORMS ETL PROCESS
+├── images-------------------------------# PLOTS FOR USE IN README AND THE WEB APP
+├── models
+│   └── train_classifier.py-----------# PERFORMS CLASSIFICATION TASK
+
+</pre>
+
+<p><a id="sw"></a></p>
+
+<h2 id="6-software-requirements">6. Software Requirements</h2>
+
+<p>This project uses <strong>Python 3.6.6</strong> and the necessary libraries are mentioned in <em>requirements.txt</em>.
+The standard libraries which are not mentioned in <em>requirements.txt</em> are <em>collections</em>, <em>json</em>, <em>operator</em>, <em>pickle</em>, <em>pprint</em>, <em>re</em>, <em>sys</em>, <em>time</em> and <em>warnings</em>.</p>
+
+<p><a id="credits"></a></p>
+
+<h2 id="7-licensing-authors-acknowledgements">7. Licensing, Authors, Acknowledgements<a name="licensing"></a></h2>
+<ul>
+  <li>Author: Andres Crucetta</li>
+  <li>Acknowledgements: Udacity, @sanjeevai for README.md inspiration</li>
+</ul>
+:ET
