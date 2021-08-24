@@ -38,6 +38,11 @@ h1 {
 h2 {
   font-family: "Helvetica", "Sans-Serif";
 }
+h3 {
+  font-size: 1em;
+  font-family: "Helvetica", "Sans-Serif";
+}
+
 ul {
   font-family: "Helvetica", "Sans-Serif";
   color: rgb(73, 73, 73);
@@ -65,6 +70,26 @@ ul.posts li {
 .blogimages {
   width: 400;
   height: 200px;
+}
+
+/* Animations */
+
+.emoji::after {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.wave::after {
+  content: '✋';
+  --emoji: '👋';
+  animation-name: twoFrames;
+  animation-duration: 1s;
+}
+
+@keyframes twoFrames {
+  50% {
+      content: var(--emoji);
+  }
 }
 
 /* Responsive Web Development */
@@ -119,4 +144,4 @@ and (min-width : 1224px) {
 
 /* Large screens ----------- */
 @media only screen 
-and (min-width : 1824px) {
+and (min-width : 1824px) {}
