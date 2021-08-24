@@ -2,6 +2,7 @@
 title: "How Crime is Affecting Chicago's Future Generations"
 layout: post
 date: 2020-08-05
+tag: 'data exploration'
 ---
 [Read the Medium article here](https://medium.com/@andrescrucetta/how-crime-is-affecting-chicagos-future-generations-2cd48355ed14)
 

@@ -2,6 +2,7 @@
 title: "Disaster Response Pipeline ⛑️"
 layout: post
 date: 2020-07-20
+tag: 'data engineering'
 ---
 ### Table of Contents
 
