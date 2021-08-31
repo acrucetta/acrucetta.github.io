@@ -1,3 +1,4 @@
+# Education
 ### Degrees
 * BSc, Mechanical Engineering, Texas A&M University (2019)
 * MS, Computation Analysis and Public Policy, University of Chicago (2022)
