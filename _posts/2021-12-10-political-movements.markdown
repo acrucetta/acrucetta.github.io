@@ -158,7 +158,10 @@ The data in the API goes back to 1891 but we look at the years from 2010-2020.**
 Reddit is a social media platform that has become popular in recent years. It is useful for our analysis because many of the users engage with Reddit for obtaining news.
 
 **Figure 1**: Proportion of members using social media for news
-![keyword totals](charts/social-media-news.png)
+
+<div>
+<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/social-media-news.png" width="500"/>
+</div>
 
 Data from Reddit is available through their [API](https://www.reddit.com/dev/api/), but we used a Python implementation called [PRAW](https://praw.readthedocs.io/en/stable/). The API has many features including searching for the newest posts or the “hottest[^1]” posts. It also allows querying all of Reddit or just specific subreddits[^2]. The query response object includes information about the submission such as author, title, time, and date. The API has limitations as it does not permit searching over specific time windows and can only fetch 100 posts per query.
 
