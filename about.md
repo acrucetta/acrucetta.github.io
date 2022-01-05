@@ -11,11 +11,17 @@ Before my masters I worked at PwC helping hospitals run more efficiently with an
 In my free time, I enjoy cooking Italian food, playing the piano, playing tennis, and cycling.
 
 ## Programming
-*   Python (Advanced)
-*   SQL (Advanced)
-*   R (Proficient)
-*   HTML / CSS (Proficient)
-*   Javascript (Familiar)
+*   Python (numpy, sklearn, pandas)
+*   SQL 
+*  PySpark 
+*  Dask
+*   R 
+*   Javascript
+* CUDA | Numba
+*   HTML & CSS
+
+## Cloud Computing
+* AWS (AWS Lambda, S3, Kinesis)
 
 ## Tools & Frameworks
 *   Scrum and Kanban
@@ -23,10 +29,3 @@ In my free time, I enjoy cooking Italian food, playing the piano, playing tennis
 *   Git
 *   Tableau
 *   Figma
-
-## Projects
-
-*   [Chicago COVID Dashboard](https://github.com/acrucetta/chicago_COVID_app)
-*   [NLP Predictive Pipeline for Disaster Response](https://github.com/acrucetta/disaster_response_pipeline)
-*   [GIS Analysis of Crime in Chicago](https://github.com/acrucetta/adverse_childhood_exp_chicago)
-*   [Analysis of the Airbnb Boston Market](https://github.com/acrucetta/airbnb_boston)
