@@ -13,7 +13,6 @@ category: project
 author: andrescrucetta
 externalLink: false
 ---
-# **Missing Data in ML Projects**
 ## Testing and comparing the accuracy of different methods
 
 Data in the real world is not clean. Missing values can occur and how you deal with them can impact the accuracy of the findings. Therefore, we plan to look into different methods to handle missing values ranging from simple to complex. We are going to compare the different methods and see which method most accurately and consistently predicts the true value. We will focus on Missing Not at Random. We hypothesize that Singular Value Thresholding and Expectation Maximization with Bootstrapping will perform best.

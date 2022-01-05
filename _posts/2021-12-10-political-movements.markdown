@@ -13,8 +13,6 @@ category: project
 author: andrescrucetta
 externalLink: false
 ---
-## Tracking Social and Political Movements
-
 Authors: Shashank Bharadwaj, Andrés Crucetta Nieto, and Beau Smit
 
 ## Social Science Question
@@ -160,7 +158,7 @@ Reddit is a social media platform that has become popular in recent years. It is
 **Figure 1**: Proportion of members using social media for news
 
 <div>
-<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/social-media-news.png" width="500"/>
+<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/social-media-news.png?raw=true" width="500"/>
 </div>
 
 Data from Reddit is available through their [API](https://www.reddit.com/dev/api/), but we used a Python implementation called [PRAW](https://praw.readthedocs.io/en/stable/). The API has many features including searching for the newest posts or the “hottest[^1]” posts. It also allows querying all of Reddit or just specific subreddits[^2]. The query response object includes information about the submission such as author, title, time, and date. The API has limitations as it does not permit searching over specific time windows and can only fetch 100 posts per query.
@@ -183,11 +181,17 @@ We use Amazon EMR with PySpark to run our script to both hit the NYT API and pro
 
 For each document returned in the JSON, our code checks the abstract, snippet, and lead paragraph to see if it includes any of our key terms:
 
-               **if** (any(x **in** abstract **for** x **in** key_terms) **or** any(x **in** snippet **for** x **in** key_terms) **or** any(x **in** lead_para **for** x **in** key_terms)):
+     **if** (any(x **in** abstract 
+     **for** x **in** key_terms) 
+     **or** any(x **in** snippet 
+     **for** x **in** key_terms) **or** 
+     any(x **in** lead_para **for** x 
+     **in** key_terms)):
 
-                    p_cnt **+=** 1
+          p_cnt **+=** 1
 
-                    abstracts**.**append([doc['abstract']])
+          abstracts**.
+          **append([doc['abstract']])
 
 If so, we count one mention and save the abstract of the article for use with PySpark NLP.
 
@@ -208,7 +212,9 @@ This dataset proved useful for identifying movements that were commonly written 
 As seen in the chart below, socialism peaked during the 1960’s facing a decline thereafter, while nationalism and progressivism have been on the rise since the 1990’s. 
 
 **Figure 2:** Number of Times a Movement Occurred in Google Books
-![alt text](https://github.com/lsc4ss-a21/final-project-politicalmovements/blob/main/charts/GoogleBooks.PNG)
+<div>
+<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/GoogleBooks.PNG?raw=true" width="500"/>
+</div>
 
 **The New York Times**
 
@@ -216,8 +222,9 @@ Below are a couple of charts generated from the count data from the New York Tim
 
 
 **Figure 3:** Mentions in NYT Articles By Movement
-
-![alt text](https://github.com/lsc4ss-a21/final-project-politicalmovements/blob/main/charts/NYT_Chart1.png)
+<div>
+<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/NYT_Chart1.png?raw=true" width="500"/>
+</div>
 
 We can see that Conservatism and Liberalism are the most mentioned movements, but the mentions of Conservatism have dropped over time while the mentions for Liberalism have stayed relatively steady. We cannot tell as much about some of the less-mentioned movements, so we remove the top two and plot again to be able to see them better.
 
@@ -233,7 +240,9 @@ Here we can see some interesting trends - we can see, for example, that Communis
 With the NER data, we were interested to see which people were associated with each political movement and if it matched our expectations. The table below shows a sample of the most mentioned lemmas for selected movements (as examples):
 
 **Table 2:** People Associated with each Movement using Named Entity Recognition
-![alt text](https://github.com/lsc4ss-a21/final-project-politicalmovements/blob/main/charts/NYT_NER.PNG)
+<div>
+<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/NYT_NER.PNG?raw=true" width="500"/>
+</div>
 
 We can see names that align with the movements across the spectrum, from Belarus dictator Aleksandr Lukashenko under Authoritarianism, to Xi Jinping under Communism, Bernie Sanders under Progressivism, and Marjorie Taylor Greene associated with QAnon. This indicates that the model output aligns with our expectations.
 
@@ -242,8 +251,9 @@ We can see names that align with the movements across the spectrum, from Belarus
 The Kinesis stream outputs the number of all mentions for each political movement summed across all subreddits searched. For the following example, we use Lambda to query 100 of the most recent posts from subreddits r/World News, r/Politics, r/Progressive, r/Conservative, and several others. Figure 5 shows the output from the consumer.py file.
 
 **Figure 5:** Reddit streaming output
-
-![streaming output](charts/streaming_output.PNG)
+<div>
+<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/streaming_output.PNG?raw=true" width="500"/>
+</div>
 
 For the particular time this stream was run, Libertarianism and Conservatism were the most discussed topics. For a breakdown by number of mentions per subreddit, please see Appendix 3. The number of mentions do not change very quickly because each subreddit has few submissions per minute. Thus, streaming may not be required for this application. However, it may be useful to run this application every 30 minutes or so and then save the results into a database. Eventually, we could look back at the trend and we would have theoretically accounted for every submission that ever posted to each subreddit. Ultimately, this application can be a useful resource for pinpointing when certain movements gain traction and for how long they dominate the headlines.
 
@@ -311,8 +321,9 @@ Example Output:
 ```
 
 **Appendix 3:** Reddit Movement hits broken down by subreddit
-
-![keyword totals](charts/keyword_totals.PNG)
+<div>
+<img src="https://github.com/acrucetta/acrucetta.github.io/blob/main/assets/images/keyword_totals.PNG?raw=true" width="500"/>
+</div>
 
 Even though Libertarian is the most frequently referenced term, all references came from the r/Libertarian subreddit. Interestingly, the conservatism movement is discussed in many different subreddits.
 
