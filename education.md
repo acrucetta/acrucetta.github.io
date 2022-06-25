@@ -6,6 +6,8 @@
 ### Favorite Courses
 
 **Computer Science**
+- Parallel Programming
+- Mobile Development
 - Computer Science with Applications 1 & 2
 - Databases for Public Policy 
 - Machine Learning for Public Policy 
