@@ -3,6 +3,7 @@ title: "Recommendation Engine with IBM Studio"
 layout: post
 date: 2020-06-10
 tag: 'machine learning'
+category: 'project'
 ---
 **Introduction**
 

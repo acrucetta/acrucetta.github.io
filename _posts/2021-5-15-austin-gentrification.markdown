@@ -3,6 +3,7 @@ title: "An Analysis of Gentrification in Austin, TX"
 layout: post
 date: 2020-05-11
 tag: 'machine learning'
+category: 'project'
 ---
 [Github Link](https://github.com/acrucetta/austin_gentrification)
 
