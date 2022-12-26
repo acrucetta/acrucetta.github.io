@@ -6,15 +6,41 @@ title: Blog
 <head>
     <link rel="stylesheet" type="text/css" href="../css/articles.css" />
 </head>
+
 <!-- Grab articles from the _articles folder -->
 {% assign articles = site.articles | sort: 'date' | reverse %}
-<!-- Loop through the articles -->
+
+<!-- Create a list of years for the articles -->
+{% capture years %}
 {% for article in articles %}
-    <div class="article">
-        <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
-        <p class="meta">{{ article.date | date_to_string }}</p>
-        <div class="article-content">
-            {{ article.content }}
-        </div>
-    </div>
+    {{ article.date | date: "%Y" }}
+{% endfor %}
+{% endcapture %}
+
+<!-- Remove duplicates from the list of years -->
+{% assign years = years | split: ' ' | uniq %}
+
+<!-- Add a dynamic filter to select the article type -->
+<label for="article-type-filter">Article type:</label>
+<select id="article-type-filter">
+    <option value="all">All</option>
+    {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+    {% endfor %}
+</select>
+
+<!-- Loop through the years and display the articles for each year -->
+{% for year in years %}
+    <h1>{{ year }}</h1>
+    {% for article in articles %}
+        {% if article.date | date: "%Y" == year %}
+            <div class="article">
+                <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+                <p class="meta">{{ article.date | date_to_string }}</p>
+                <div class="article-content">
+                    {{ article.content }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endfor %}
