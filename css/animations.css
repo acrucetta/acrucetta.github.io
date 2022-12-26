@@ -1,0 +1,13 @@
+/* Animations */
+
+.emoji::after {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.wave::after {
+  content: "✋";
+  --emoji: "👋";
+  animation-name: twoFrames;
+  animation-duration: 1s;
+}
