@@ -3,7 +3,7 @@ title: "Disaster Response Pipeline ⛑️"
 layout: post
 date: 2020-07-20
 tag: 'data engineering'
-type: 'project'
+category: 'project'
 ---
 ### Table of Contents
 

@@ -12,7 +12,6 @@ description: "Missing data in Machine Learning projects."
 category: project
 author: andrescrucetta
 externalLink: false
-type: 'project'
 ---
 ## Testing and comparing the accuracy of different methods
 
