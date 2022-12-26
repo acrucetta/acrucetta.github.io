@@ -1,8 +1,23 @@
+/* Use a responsive layout */
+.container {
+  display: grid;  /* Use a responsive grid system */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Set the number and widths of the columns */
+  grid-gap: 20px;  /* Add some space between the grid items */
+}
+
+/* Use responsive fonts */
+html {
+  font-size: 62.5%;  /* Set the base font size to 10px */
+}
+
 body {
   font-family: "Roboto Mono", monospace;
   margin: 0;
   color: #333;
+  /* Add responsive font size */
+  font-size: calc(1rem + 0.5vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
 }
+
 a {
   color: #333;
   text-decoration: none;
@@ -37,18 +52,6 @@ a:hover {
   max-width: 60ch;
 }
 
-/* Use a responsive layout */
-.container {
-  display: grid;  /* Use a responsive grid system */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Set the number and widths of the columns */
-  grid-gap: 20px;  /* Add some space between the grid items */
-}
-
-/* Use responsive fonts */
-html {
-  font-size: 62.5%;  /* Set the base font size to 10px */
-}
-
 /* Style the footer */
 footer {
   display: flex;
@@ -67,4 +70,44 @@ footer {
 }
 .footer-links a:hover {
   color: #666;
+}
+
+/* Add a night mode option */
+/* Set the base colors for night mode */
+.night-mode {
+  --bg-color: #111;
+  --text-color: #eee;
+  --link-color: #eee;
+  --link-hover-color: #fff;
+}
+
+/* Style the body element for night mode */
+.night-mode body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Style the navigation bar for night mode */
+.night-mode .nav {
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Style the main content area for night mode */
+.night-mode .container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Style the footer for night mode */
+.night-mode footer {
+  background-color: var(--bg-color);
+}
+
+/* Style links for night mode */
+.night-mode a {
+  color: var(--link-color);
+}
+.night-mode a:hover {
+  color: var(--link-hover-color);
 }
