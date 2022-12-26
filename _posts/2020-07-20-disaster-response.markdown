@@ -3,6 +3,7 @@ title: "Disaster Response Pipeline ⛑️"
 layout: post
 date: 2020-07-20
 tag: 'data engineering'
+type: 'project'
 ---
 ### Table of Contents
 
@@ -18,7 +19,7 @@ tag: 'data engineering'
 - [4. Conclusion](#4-conclusion)
 - [5. Files](#5-files)
 - [6. Software Requirements](#6-software-requirements)
-- [7. Licensing, Authors, Acknowledgements<a name="licensing"></a>](#7-licensing-authors-acknowledgements)
+- [7. Licensing, Authors, Acknowledgements](#7-licensing-authors-acknowledgements)
 
 ***
 
