@@ -1,5 +1,5 @@
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto Mono", monospace;
   margin: 0;
   color: #333;
 }
@@ -35,6 +35,18 @@ a:hover {
   margin: 0 auto;
   padding: 20px;
   max-width: 60ch;
+}
+
+/* Use a responsive layout */
+.container {
+  display: grid;  /* Use a responsive grid system */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Set the number and widths of the columns */
+  grid-gap: 20px;  /* Add some space between the grid items */
+}
+
+/* Use responsive fonts */
+html {
+  font-size: 62.5%;  /* Set the base font size to 10px */
 }
 
 /* Style the footer */
