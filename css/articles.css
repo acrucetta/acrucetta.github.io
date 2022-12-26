@@ -1,0 +1,28 @@
+/* Style the article list */
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.article-list .article {
+  width: calc(50% - 20px);
+  margin-bottom: 20px;
+  /* Add a hover effect for the articles */
+  transition: all 0.2s;
+}
+.article-list .article:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.article-list .article .title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.article-list .article .snippet {
+  font-size: 16px;
+  line-height: 1.5;
+  /* Set a max-height for the snippet to create the scrolling effect */
+  max-height: 200px;
+  overflow-y: scroll;
+}
