@@ -7,38 +7,17 @@ title: Home
     font-size: 15px;
     line-height: 130%
   }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-  }
-  
   .grid-item {
-    background-color: #f1f1f1;
+    background-color: #f1f1f100;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
   }
-  
-  .grid-item h3 {
-    margin-top: 0;
+  .grid {
+    display: grid;  /* Set the container element to be a grid */
+    grid-template-columns: 1fr 1fr;  /* Set the number and widths of the columns */
+    grid-gap: 20px;  /* Add some space between the grid items */
   }
-  
-  .grid-item ul {
-    list-style: square;
-    margin: 15px;
-    padding: 0;
-  }  
-
-  .grid-item {
-    /* Other styles for the grid item */
-    transition: background-color 0.3s;  /* Add a transition for the background-color property */
-  }
-  
-  .grid-item:hover {
-    /* Change the background color when the grid item is hovered */
-    background-color: #8d8d8d3a;
-  }
-  
+    
 </style>
 <div class="blurb">
   <h1>Hey, I'm Andrés! <span class="emoji wave" role="img" aria-label="hand wave"></span></h1>
@@ -55,39 +34,21 @@ title: Home
     Strategy& (part of PwC). More recently, I worked at Facebook (now Meta) as a Product Growth Intern and 
     interned at Shelf Engine as a Data Scientist.
   </p>
-  <h3>Tools I use</h3>
   <div class="grid">
     <div class="grid-item">
-      <h3>Back-End</h3>
+      <h3>Tools I've used</h3>
       <ul>
         <li>Python</li>
-        <li>Rust</li>
-        <li>PHP</li>
       </ul>
     </div>
     <div class="grid-item">
-      <h3>Data</h3>
+      <h3>Projects I've been involved with</h3>
       <ul>
-        <li>SQL</li>
-        <li>Python</li>
-        <li>Spark</li>
+        <li><a href="https://www.ctrl.golf/">CTRL.golf</a></li>
+        <li><a href="https://www.shelfengine.com/">Shelf Engine</a></li>
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
+        <li><a href="https://www.pwc.com/us/en.html">PwC</a></li>
       </ul>
     </div>
-    <div class="grid-item">
-      <h3>Front-End</h3>
-      <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-      </ul>
-    </div>
-    <div class="grid-item">
-      <h3>Cloud</h3>
-      <ul>
-        <li>Azure</li>
-        <li>AWS</li>
-      </ul>
-    </div>
-  </div>
-  
+  </div>  
 </div>
