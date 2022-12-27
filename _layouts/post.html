@@ -2,6 +2,12 @@
 layout: default
 ---
 <head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+    integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
+    crossorigin="anonymous"
+  />
   <link rel="stylesheet" type="text/css" href="/css/articles.css" />
   <link rel="stylesheet" type="text/css" href="/css/animations.css" />
   <link rel="stylesheet" type="text/css" href="/css/default.css" />
@@ -11,9 +17,15 @@ layout: default
     font-size: 14px;
     line-height: 130%;
   }
+  .pure-u p {
+    font-size: 14px;
+    line-height: 130%;
+  }
 </style>
-<h1>{{ page.title }}</h1>
-<p class="meta">{{ page.date | date_to_string }}</p>
-<div class="post-content">
-  {{ content }}
+<div class="pure-u">
+  <h1>{{ page.title }}</h1>
+  <p class="meta">{{ page.date | date_to_string }}</p>
+  <div class="post-content">
+    {{ content }}
+  </div>
 </div>
