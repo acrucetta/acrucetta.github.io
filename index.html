@@ -7,21 +7,9 @@ title: Home
   <!-- Import jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<style>
-  #cursor {
-    animation: blink 0.7s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% {
-      visibility: hidden;
-    }
-  }
-</style>
 <div class="blurb">
   <h1 id="revealText">
     Hey, I'm Andrés!
-    <span id="cursor">|</span>
   </h1>
   <p>
     I'm a Software Engineer with a MS in Computer Science and Public Policy from
@@ -62,19 +50,42 @@ title: Home
   </div>
 </div>
 <script>
-  const revealText = document.getElementById("revealText");
-  const textToReveal = "Hey, I'm Andrés!";
-  const cursor = document.getElementById("cursor");
-  revealText.textContent = "";
+ // Get the element with the text that we want to reveal
+const revealTextElement = document.getElementById("revealText");
 
-  let i = 0;
-  const typeWriter = () => {
-    if (i < text.length) {
-      revealText.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, 50);
+// Set the initial text to an empty string
+revealTextElement.innerHTML = "";
+
+// Set the caret to be invisible initially
+revealTextElement.style.borderRight = "none";
+
+// Set the text that we want to reveal
+const text = "Hey, I'm Andrés!";
+
+// Set the initial index to 0
+let index = 0;
+
+// Set the interval for the typewriter effect
+const interval = setInterval(() => {
+  // Add the next character to the revealed text
+  revealTextElement.innerHTML += text[index];
+  // Increment the index
+  index++;
+  // If we have reached the end of the text, clear the interval
+  if (index >= text.length) {
+    clearInterval(interval);
+  }
+  // Make the caret visible
+  revealTextElement.style.borderRight = "2px solid black";
+  // Set the interval for the caret blink
+  setTimeout(() => {
+    // Toggle the visibility of the caret
+    if (revealTextElement.style.borderRight === "2px solid black") {
+      revealTextElement.style.borderRight = "none";
+    } else {
+      revealTextElement.style.borderRight = "2px solid black";
     }
-  };
+  }, 500);
+}, 100);
 
-  typeWriter();
 </script>
