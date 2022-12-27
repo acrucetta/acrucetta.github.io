@@ -19,7 +19,7 @@ body {
   margin: 0;
   color: #333;
   /* Add responsive font size */
-  font-size: calc(1rem + 1vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
+  font-size: calc(1rem + 0.5vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
 }
 
 a {
@@ -47,3 +47,9 @@ a:hover {
 .nav-link.active {
   font-weight: 700;
 }
+
+@media screen and (max-width: 768px) {
+  .nav-link {
+    font-size: 14px;
+  }
+} 
