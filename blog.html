@@ -6,28 +6,17 @@ title: Blog
 <head>
   <link rel="stylesheet" type="text/css" href="/css/articles.css" />
   <link rel="stylesheet" type="text/css" href="/css/default.css" />
-  <!-- Bootstrap JavaScript -->
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"
-  ></script>
-  <!-- jQuery -->
-  <script
-    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"
-  ></script>
 </head>
 <h1>{{ page.title }}</h1>
 <div class="btn-group" role="group" aria-label="Filter posts by category">
-  <button type="button" class="btn btn-secondary" data-filter="all">All</button>
-  <button type="button" class="btn btn-secondary" data-filter="project">
+  <button type="button" class="pure-button" data-filter="all">All</button>
+  <button type="button" class="pure-button" data-filter="project">
     Projects
   </button>
-  <button type="button" class="btn btn-secondary" data-filter="article">
+  <button type="button" class="pure-button" data-filter="article">
     Articles
   </button>
+</div>
 </div>
 <div style="margin-top: 1.5rem">
   <ul class="posts">
