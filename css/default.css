@@ -3,6 +3,10 @@
   display: grid;  /* Use a responsive grid system */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Set the number and widths of the columns */
   grid-gap: 20px;  /* Add some space between the grid items */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 60ch;
 }
 
 /* Use responsive fonts */
@@ -42,14 +46,6 @@ a:hover {
 }
 .nav-link.active {
   font-weight: 700;
-}
-
-/* Style the main content area */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 60ch;
 }
 
 /* Style the footer */
