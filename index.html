@@ -75,17 +75,6 @@ const interval = setInterval(() => {
   if (index >= text.length) {
     clearInterval(interval);
   }
-  // Make the caret visible
-  revealTextElement.style.borderRight = "2px solid black";
-  // Set the interval for the caret blink
-  setTimeout(() => {
-    // Toggle the visibility of the caret
-    if (revealTextElement.style.borderRight === "2px solid black") {
-      revealTextElement.style.borderRight = "none";
-    } else {
-      revealTextElement.style.borderRight = "2px solid black";
-    }
-  }, 500);
-}, 100);
+}, 150);
 
 </script>
