@@ -17,8 +17,7 @@
 /* Style the list items */
 .posts li {
   list-style: square;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1 em 0;
 }
 
 .posts li a {
