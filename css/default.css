@@ -11,7 +11,7 @@
 
 /* Use responsive fonts */
 html {
-  font-size: 80%;  /* Set the base font size to 10px */
+  font-size: 65%;  /* Set the base font size to 10px */
 }
 
 body {
@@ -19,7 +19,7 @@ body {
   margin: 0;
   color: #333;
   /* Add responsive font size */
-  font-size: calc(1rem + 0.5vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
+  font-size: calc(1rem + 0.3vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
 }
 
 a {
@@ -40,7 +40,7 @@ a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .nav-link {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
   margin-right: 20px;
 }
