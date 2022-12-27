@@ -18,19 +18,15 @@ title: Blog
     />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
-</head>
+  </head>
 <h1>{{ page.title }}</h1>
-<div class="btn-group" role="group" aria-label="Filter posts by category">
-  <button type="button" class="pure-button" data-filter="all">All</button>
-  <button type="button" class="pure-button" data-filter="project">
-    Projects
-  </button>
-  <button type="button" class="pure-button" data-filter="article">
-    Articles
-  </button>
+<div class="pure-button-group" role="group" aria-label="...">
+  <button class="pure-button" data-filter="all">All</button>
+  <button class="pure-button" data-filter="project">Projects</button>
+  <button class="pure-button" data-filter="artilce">Articles</button>
+  <button class="pure-button" data-filter="til">TIL</button>
 </div>
-</div>
-<div style="margin-top: 1.5rem">
+<div class="pure-u-1">
   <ul class="posts">
     {% for post in site.posts %}
     <li class="post {{ post.category }}">
@@ -41,7 +37,7 @@ title: Blog
   </ul>
 </div>
 <script>
-  $(".btn").click(function () {
+  $(".pure-button").click(function () {
     $(".post").hide();
     var filter = $(this).data("filter");
     if (filter === "all") {
@@ -49,5 +45,5 @@ title: Blog
     } else {
       $(".post." + filter).show();
     }
-  });
+  });  
 </script>
