@@ -6,13 +6,6 @@ title: Blog
 <head>
   <link rel="stylesheet" type="text/css" href="/css/articles.css" />
   <link rel="stylesheet" type="text/css" href="/css/default.css" />
-  <!-- Bootstrap CSS -->
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-    crossorigin="anonymous"
-  />
   <!-- Bootstrap JavaScript -->
   <script
     src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
@@ -36,16 +29,16 @@ title: Blog
     Articles
   </button>
 </div>
-
-<ul class="posts">
-  {% for post in site.posts %}
-  <li class="post {{ post.category }}">
-    <a href="{{ post.url }}">{{ post.title }}</a>
-    <span class="date">[{{ post.date | date: "%Y-%m" }}]</span>
-  </li>
-  {% endfor %}
-</ul>
-
+<div style="margin-top: 1.5rem">
+  <ul class="posts">
+    {% for post in site.posts %}
+    <li class="post {{ post.category }}">
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      <span class="date">[{{ post.date | date: "%Y-%m" }}]</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 <script>
   $(".btn").click(function () {
     $(".post").hide();

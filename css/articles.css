@@ -28,3 +28,22 @@
   font-weight: 300;
   color: #999;
 }
+
+/* Use responsive font sizes */
+html {
+  font-size: 62.5%;  /* Set the base font size to 10px */
+}
+
+/* Use a responsive layout */
+@media (max-width: 768px) {
+  /* Change the font sizes for smaller devices */
+  .btn-group .btn {
+    font-size: 14px;
+  }
+  .posts li a {
+    font-size: 14px;
+  }
+  .posts li .date {
+    font-size: 12px;
+  }
+}
