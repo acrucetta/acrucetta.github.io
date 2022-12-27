@@ -11,7 +11,7 @@
 
 /* Use responsive fonts */
 html {
-  font-size: 62.5%;  /* Set the base font size to 10px */
+  font-size: 80%;  /* Set the base font size to 10px */
 }
 
 body {
@@ -19,7 +19,7 @@ body {
   margin: 0;
   color: #333;
   /* Add responsive font size */
-  font-size: calc(1rem + 0.5vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
+  font-size: calc(1rem + 1vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
 }
 
 a {
@@ -46,64 +46,4 @@ a:hover {
 }
 .nav-link.active {
   font-weight: 700;
-}
-
-/* Style the footer */
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #f8f8f8;
-}
-.footer-links {
-  display: flex;
-}
-.footer-links a {
-  font-size: 24px;
-  margin-right: 20px;
-  color: #333;
-}
-.footer-links a:hover {
-  color: #666;
-}
-
-/* Add a night mode option */
-/* Set the base colors for night mode */
-.night-mode {
-  --bg-color: #111;
-  --text-color: #eee;
-  --link-color: #eee;
-  --link-hover-color: #fff;
-}
-
-/* Style the body element for night mode */
-.night-mode body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-/* Style the navigation bar for night mode */
-.night-mode .nav {
-  background-color: var(--bg-color);
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-}
-
-/* Style the main content area for night mode */
-.night-mode .container {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-/* Style the footer for night mode */
-.night-mode footer {
-  background-color: var(--bg-color);
-}
-
-/* Style links for night mode */
-.night-mode a {
-  color: var(--link-color);
-}
-.night-mode a:hover {
-  color: var(--link-hover-color);
 }
