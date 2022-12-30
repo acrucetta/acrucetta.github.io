@@ -1,14 +1,8 @@
 ---
-title: Telling a new story of Venezuela to the world
-description: >-
-  What first comes to your mind whenever you think about Venezuela? Is it a
-  picture of a country with a communist regime, or is it lines of…
-date: '2020-06-12T00:26:41.707Z'
-categories: []
-keywords: []
-slug: /@andrescrucetta/telling-a-new-story-of-venezuela-to-the-world-29650a81dd53
-category: 'article'
 layout: post
+title: Telling a new story of Venezuela to the world
+date: '2020-06-12'
+category: 'article'
 ---
 
 What first comes to your mind whenever you think about Venezuela? Is it a picture of a country with a communist regime, or is it lines of people as in this front-page of the New York Times.
