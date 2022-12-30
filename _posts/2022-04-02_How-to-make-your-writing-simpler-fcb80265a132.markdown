@@ -1,14 +1,8 @@
 ---
-title: How to make your writing simpler
-description: >-
-  Some professions are full of complex words. In a previous life, as a
-  management consultant I got to see many of them. My first project out…
-date: '2022-04-02T20:50:32.720Z'
-categories: []
-keywords: []
-slug: /@andrescrucetta/how-to-make-your-writing-simpler-fcb80265a132
-category: 'article'
 layout: post
+title: "How to make your writing simpler"
+category: 'article'
+date: 2020-08-10
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__sMSlEN__GfLhh9s9M.jpg)
