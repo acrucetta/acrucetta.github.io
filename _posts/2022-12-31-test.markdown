@@ -1,8 +1,0 @@
----
-title: "Test article"
-layout: post
-date: 2022-12-31
-category: 'til'
-tag: 'test'
----
-# This is a test article.
