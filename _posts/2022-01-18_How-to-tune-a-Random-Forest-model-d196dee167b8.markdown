@@ -6,6 +6,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/how-to-tune-a-random-forest-model-d196dee167b8
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__4s3__xYiz1pgorrSv.jpg)

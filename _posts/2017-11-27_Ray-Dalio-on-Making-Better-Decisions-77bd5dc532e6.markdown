@@ -8,6 +8,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/ray-dalio-on-making-better-decisions-77bd5dc532e6
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/1__fZtMzXYgw__z8djLMIjopWg.png)

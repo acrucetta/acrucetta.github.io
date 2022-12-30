@@ -8,6 +8,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/telling-a-new-story-of-venezuela-to-the-world-29650a81dd53
 category: 'article'
+layout: post
 ---
 
 What first comes to your mind whenever you think about Venezuela? Is it a picture of a country with a communist regime, or is it lines of people as in this front-page of the New York Times.

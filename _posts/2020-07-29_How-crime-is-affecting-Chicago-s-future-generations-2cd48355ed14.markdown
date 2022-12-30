@@ -9,6 +9,7 @@ keywords: []
 slug: >-
   /@andrescrucetta/how-crime-is-affecting-chicagos-future-generations-2cd48355ed14
 category: 'article'
+layout: post
 ---
 
 Crime in Chicago has been an issue from the Chicago Outfit era to now widespread shootings across neighborhoods. NBC Chicago reported over 424 shootings in June 2020 across the city. Controlling these crimes has become a national topic with President Donald Trump clashing against current mayor Lori Lightfoot over whether or not to use the fed force to restrain it.¹

@@ -6,6 +6,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/innovating-in-times-of-turmoil-venezuela-754cf4f7d435
 category: 'article'
+layout: post
 ---
 
 _Article inspired from workshop at Plan Pais, 2017 (Washington, D.C.)_
