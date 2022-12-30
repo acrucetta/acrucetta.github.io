@@ -8,6 +8,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/an-easy-introduction-to-computational-complexity-b08c8f0bd6b9
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__V8xnDwq4nqD4Piow.jpg)

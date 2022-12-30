@@ -8,6 +8,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/lets-start-embracing-simple-devices-649c6afd63e7
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0____ff5zufqKyXk7woF.jpg)

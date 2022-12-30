@@ -8,6 +8,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/lessons-from-the-1-country-for-entrepreneurs-b736c2d0d02
 category: 'article'
+layout: post
 ---
 
 > “In addition to boasting the highest density of start-ups in the world (a total of 3,850 start-ups, one for every 1,844 Israelis), 6 more Israeli companies are listed on the NASDAQ exchange than all companies from the entire European continent.” — Startup Nation

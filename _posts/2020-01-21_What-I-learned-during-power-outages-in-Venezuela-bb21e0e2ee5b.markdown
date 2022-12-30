@@ -6,6 +6,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/what-i-learned-during-power-outages-in-venezuela-bb21e0e2ee5b
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__FK2Y9rFNLV82B__BW.jpg)

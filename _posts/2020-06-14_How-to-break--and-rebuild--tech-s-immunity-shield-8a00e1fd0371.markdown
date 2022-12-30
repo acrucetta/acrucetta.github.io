@@ -8,6 +8,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/how-to-break-and-rebuild-techs-immunity-shield-8a00e1fd0371
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__ThratdTHRDveAq__3.jpg)

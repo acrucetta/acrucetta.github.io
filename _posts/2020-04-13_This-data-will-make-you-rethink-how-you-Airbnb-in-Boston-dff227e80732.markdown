@@ -9,6 +9,7 @@ keywords: []
 slug: >-
   /@andrescrucetta/this-data-will-make-you-rethink-how-you-airbnb-in-boston-dff227e80732
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__ALz__eTYgDvYCpMlt.jpg)

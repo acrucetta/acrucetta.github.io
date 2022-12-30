@@ -8,6 +8,7 @@ categories: []
 keywords: []
 slug: /@andrescrucetta/high-performance-beyond-athletes-f7751434d355
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/1__Hbx2uYKWRYjexKR6rfiO8A.png)

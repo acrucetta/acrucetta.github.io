@@ -9,6 +9,7 @@ keywords: []
 slug: >-
   /@andrescrucetta/its-not-all-about-positioning-yourself-for-success-pt-1-ee9dec61dda0
 category: 'article'
+layout: post
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__1n2npkxp24UCDPII.jpg)
