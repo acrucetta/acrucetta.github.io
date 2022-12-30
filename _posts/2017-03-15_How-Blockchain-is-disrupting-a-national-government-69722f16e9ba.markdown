@@ -9,7 +9,6 @@ keywords: []
 slug: >-
   /@andrescrucetta/how-blockchain-is-disrupting-a-national-government-69722f16e9ba
 category: 'article'
-category: 'article'
 ---
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/1__6AWnGV__4hGYDqTDTdrwqJw.png)
