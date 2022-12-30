@@ -1,8 +1,8 @@
 ---
-title:"Test article"
-layout:post
-date:2022-12-31
-category:'til'
+title: "Test article"
+layout: post
+date: 2022-12-31
+category: 'til'
 ---
 
-This is a test article.
+# This is a test article.
