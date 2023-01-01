@@ -1,11 +1,16 @@
 ---
-title: "books and nvim"
+title: "Useful vim resources"
 layout: post
 date: 2021-12-30
-tag: 'web development'
-category: 'til'
+tag: 'editor'
+category: 'reference'
 ---
 
-Placeholder; to pull later.
+Tutorials to review:
+- vimtutor 
+- vim-adventures
+- Vim From Scratch: https://github.com/LunarVim/nvim-basic-ide
+- Kickstart Neovim: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
-
+Online tutorials
+- vimmer.io
