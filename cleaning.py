@@ -10,3 +10,4 @@ for filename in os.listdir(directory):
         new_filename = filename.replace('_','-')
         # Use the os.rename function to rename the file
         os.rename(os.path.join(directory, filename), os.path.join(directory, new_filename))
+
