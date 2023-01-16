@@ -1,5 +1,5 @@
 ---
-title: "Useful vim resources"
+title: "Vim tutorials"
 layout: post
 date: 2021-12-30
 tag: 'editor'
