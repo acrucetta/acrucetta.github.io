@@ -6,8 +6,6 @@ tag: 'editor'
 category: 'reference'
 ---
 
-# Resources I've used for coding interviews
-
 ### Most useful resources
 - Coding Preparation
 	- Leetcode 75 [(Free)](https://leetcode.com/study-plan/leetcode-75/)
