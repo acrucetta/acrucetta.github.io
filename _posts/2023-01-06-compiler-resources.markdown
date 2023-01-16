@@ -9,6 +9,8 @@ category: 'reference'
 Book:
 - Crafting Interpreters by Robert Nystrom 
 
+Advanced Material:
+- CS 6120: Advanced Compilers: The Self-Guided Online Course [free](https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/)
 
 Articles:
 - (How to Write a (Lisp) Interpreter (in Python)) [link](https://norvig.com/lispy.html)
