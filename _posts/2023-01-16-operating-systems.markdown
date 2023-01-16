@@ -1,5 +1,5 @@
 ---
-title: "Resources on operating systems for beginners"
+title: "Operating systems materials"
 layout: post
 date: 2023-01-16
 tag: 'editor'
