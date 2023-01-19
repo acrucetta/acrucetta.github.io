@@ -7,7 +7,7 @@ category: 'reference'
 ---
 
 Courses
-- MIT - 6.824 Distributed Systems (free)[https://learncs.me/mit/6.824]
+- MIT - 6.824 Distributed Systems [free](https://learncs.me/mit/6.824)
 
 Books
 - Designing Data Intensive Applications (paid)
@@ -16,5 +16,5 @@ Papers
 - TBD
 
 Notes
-- System Design Primer (free)[https://github.com/donnemartin/system-design-primer]
+- System Design Primer [free](https://github.com/donnemartin/system-design-primer)
 
