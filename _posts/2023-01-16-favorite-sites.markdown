@@ -6,15 +6,17 @@ tag: 'editor'
 category: 'reference'
 ---
 
+[In construction]
+
 ## Books
 - Crafting Interpreters
 - Don't Make Me Think
 
 ### Blogs
-- Paul Graham [link]
+- Paul Graham [link](http://www.paulgraham.com/articles.html)
 
 ### People
-- 
+- Richard Feynman 
 
 ### Website Designs
 - [https://beta.vero.site/](https://beta.vero.site/)
