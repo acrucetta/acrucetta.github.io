@@ -9,14 +9,32 @@ category: 'reference'
 [In construction]
 
 ## Books
+
+### Technology
 - Crafting Interpreters
+
+### Design
 - Don't Make Me Think
+
+### Humans
+- Sapiens
 
 ### Blogs
 - Paul Graham [link](http://www.paulgraham.com/articles.html)
 
 ### People
+<<<<<<< Updated upstream
 - Richard Feynman 
+=======
+- Richard Feynman
+>>>>>>> Stashed changes
 
-### Website Designs
+## Websites
+
+### Coding inspiration
 - [https://beta.vero.site/](https://beta.vero.site/)
+
+### Learning content
+- [https://www.yegor256.com/](https://www.yegor256.com/)
+- [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
+- [https://www.swyx.io/about](https://www.swyx.io/about)
