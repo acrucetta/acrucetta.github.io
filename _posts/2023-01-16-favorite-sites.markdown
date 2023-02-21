@@ -23,16 +23,13 @@ category: 'reference'
 - Paul Graham [link](http://www.paulgraham.com/articles.html)
 
 ### People
-<<<<<<< Updated upstream
 - Richard Feynman 
-=======
-- Richard Feynman
->>>>>>> Stashed changes
 
 ## Websites
 
 ### Coding inspiration
 - [https://beta.vero.site/](https://beta.vero.site/)
+- [https://ayazhafiz.com/](https://ayazhafiz.com/)
 
 ### Learning content
 - [https://www.yegor256.com/](https://www.yegor256.com/)
