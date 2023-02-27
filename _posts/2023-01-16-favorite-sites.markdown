@@ -30,6 +30,7 @@ category: 'reference'
 ### Coding inspiration
 - [https://beta.vero.site/](https://beta.vero.site/)
 - [https://ayazhafiz.com/](https://ayazhafiz.com/)
+- [https://thesephist.com/](https://thesephist.com/)
 
 ### Learning content
 - [https://www.yegor256.com/](https://www.yegor256.com/)

@@ -10,5 +10,4 @@ Book:
 
 Articles:
 - How browsers work [https://web.dev/howbrowserswork/](https://web.dev/howbrowserswork/)
-
-
+- Internet From First Principles [https://explained-from-first-principles.com](https://explained-from-first-principles.com)
