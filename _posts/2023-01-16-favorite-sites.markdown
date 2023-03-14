@@ -31,6 +31,7 @@ category: 'reference'
 - [https://beta.vero.site/](https://beta.vero.site/)
 - [https://ayazhafiz.com/](https://ayazhafiz.com/)
 - [https://thesephist.com/](https://thesephist.com/)
+- https://j3s.sh/
 
 ### Learning content
 - [https://www.yegor256.com/](https://www.yegor256.com/)
