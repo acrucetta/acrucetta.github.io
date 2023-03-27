@@ -6,8 +6,6 @@ tag: 'editor'
 category: 'reference'
 ---
 
-[In construction]
-
 ## Books
 
 ### Technology
@@ -27,11 +25,12 @@ category: 'reference'
 
 ## Websites
 
-### Coding inspiration
+### Design inspiration
 - [https://beta.vero.site/](https://beta.vero.site/)
 - [https://ayazhafiz.com/](https://ayazhafiz.com/)
 - [https://thesephist.com/](https://thesephist.com/)
 - [https://j3s.sh/](https://j3s.sh/)
+- [https://garden.bradwoods.io/](https://garden.bradwoods.io/)
 
 ### Learning content
 - [https://www.yegor256.com/](https://www.yegor256.com/)
