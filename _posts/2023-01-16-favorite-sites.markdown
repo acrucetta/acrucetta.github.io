@@ -37,3 +37,4 @@ category: 'reference'
 - [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
 - [https://www.swyx.io/about](https://www.swyx.io/about)
 - [https://notes.andymatuschak.org/About_these_notes](https://notes.andymatuschak.org/About_these_notes)
+- [https://www.scattered-thoughts.net/](https://www.scattered-thoughts.net/)
