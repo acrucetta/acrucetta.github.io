@@ -1,16 +1,41 @@
 ---
-title: "List of small languages I've enjoyed"
+title: "Favorite books, blogs, and people"
 layout: post
-date: 2023-02-27
-tag: 'compilations'
+date: 2023-01-16
+tag: 'editor'
 category: 'reference'
 ---
 
-[In construction]
+## Books
 
-## Functional
-- O'Caml
-- Elm
+### Technology
+- Crafting Interpreters
 
-## Small languages
-- Ink
+### Design
+- Don't Make Me Think
+
+### Humans
+- Sapiens
+
+### Blogs
+- Paul Graham [link](http://www.paulgraham.com/articles.html)
+
+### People
+- Richard Feynman
+- Kevin Kelly 
+
+## Websites
+
+### Design inspiration
+- [https://beta.vero.site/](https://beta.vero.site/)
+- [https://ayazhafiz.com/](https://ayazhafiz.com/)
+- [https://thesephist.com/](https://thesephist.com/)
+- [https://j3s.sh/](https://j3s.sh/)
+- [https://garden.bradwoods.io/](https://garden.bradwoods.io/)
+
+### Learning content
+- [https://www.yegor256.com/](https://www.yegor256.com/)
+- [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
+- [https://www.swyx.io/about](https://www.swyx.io/about)
+- [https://notes.andymatuschak.org/About_these_notes](https://notes.andymatuschak.org/About_these_notes)
+- [https://www.scattered-thoughts.net/](https://www.scattered-thoughts.net/)
