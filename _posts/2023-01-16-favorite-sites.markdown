@@ -21,7 +21,8 @@ category: 'reference'
 - Paul Graham [link](http://www.paulgraham.com/articles.html)
 
 ### People
-- Richard Feynman 
+- Richard Feynman
+- Kevin Kelly 
 
 ## Websites
 
