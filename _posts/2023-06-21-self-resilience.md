@@ -12,10 +12,10 @@ small catalog of websites, documentaries, and people who
 have lived by this ethos.
 
 Documentaries
-- [https://www.youtube.com/watch?v=rY0i2wUmIak&t=6s&pp=ygUTdHdvIHllYXJzIG9uIGEgYmlrZQ%3D%3D](Two years on a bike by Martjin Doolard)
-- [https://www.youtube.com/watch?v=KDOhQ-hyI5w&t=3890s&pp=ygUTdHdvIHllYXJzIG9uIGEgYmlrZQ%3D%3D](From Cape to Cairo, Bike Free Documentary)
-- [https://www.youtube.com/watch?v=Mmdxs_0yYwc&t=625s&pp=ygUTdHdvIHllYXJzIG9uIGEgYmlrZQ%3D%3D](A bivvy, a phone and a drone: cycling home from China)
+- [Two Years on a Bike](https://www.youtube.com/watch?v=rY0i2wUmIak&t=6s&pp=ygUTdHdvIHllYXJzIG9uIGEgYmlrZQ%3D%3D)
+- [From Cape to Cairo, Bike Free Documentary](https://www.youtube.com/watch?v=KDOhQ-hyI5w&t=3890s&pp=ygUTdHdvIHllYXJzIG9uIGEgYmlrZQ%3D%3D)
+- [A bivvy, a phone and a drone: cycling home from China](https://www.youtube.com/watch?v=Mmdxs_0yYwc&t=625s&pp=ygUTdHdvIHllYXJzIG9uIGEgYmlrZQ%3D%3D)
 
 Websites
-- [100r.co](Hundred Rabbits Collective)
-- [https://sive.rs/](Derek Sivers)
+- [Hundred Rabbits Collective](100r.co)
+- [Derek Sivers](https://sive.rs/)
