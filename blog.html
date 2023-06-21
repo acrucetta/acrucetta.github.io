@@ -1,38 +1,47 @@
----
-layout: default
+---layout: default
 title: Blog
 ---
 
 
-<head>
-  <link rel="stylesheet" type="text/css" href="/css/articles.css" />
-  <link rel="stylesheet" type="text/css" href="/css/default.css" />
-  <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
-      integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
-      crossorigin="anonymous"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </head>
-<style>
-  .posts {
-    line-height: 200%;
-    margin-right: .2em;
+<he <link rel="stylesheet" type="text/css" href="/css/articles.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+  integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0      crossorigin=" anonymous" />
+eta name="viewpo ink rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids <s </head>
+  stle>
+  .ts {
+  line-heigh 200%;
+  margin-right: .2em;
   }
   .pure-button-group {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 100%;
-    max-width: 600px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+  max-width: 600px;
   }
-</style>
+  </style>
+  h1{{ page.title }}</h1>
+  <div class="pure-button-group" role="group" aria-label="...">
+    <button <button class="pure-button" data-filter="project">Projects</button>
+    <butt <button class="pure-button" data-filter="reference">Reference</button>
+  </div>
+  <div class="pure-u-1">
+    <ul class="posts">
+      {% for post in site.posts %}
+      <li class="post      <a href=" {{ post.url }}">{{ post.title }} {{ post.date}}</a>
+        {% endfor %}
+
+    </ul>
+  </div>
+  <script>
+    $(".pure-button").click(function () {
+      $(".post").hide();
+      var filter = $(this).data("filter");
+      if (filter = $(".post").show();
+    } else {
+      $(".post." + filter).show();
+     });  
+  </script()) ()) 
 <h1>{{ page.title }}</h1>
 <div class="pure-button-group" role="group" aria-label="...">
   <button class="pure-button" data-filter="all">All</button>
@@ -44,7 +53,7 @@ title: Blog
   <ul class="posts">
     {% for post in site.posts %}
     <li class="post {{ post.category }}">
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ post.url }}">{{ post.title }} ({{ post.date }})</a>
     </li>
     {% endfor %}
   </ul>
