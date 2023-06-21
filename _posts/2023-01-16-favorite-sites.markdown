@@ -1,5 +1,5 @@
 ---
-title: "Favorite books, blogs, and people"
+title: "Favorite things"
 layout: post
 date: 2023-01-16
 tag: 'editor'
@@ -7,22 +7,9 @@ category: 'reference'
 ---
 
 ## Books
-
-### Technology
 - Crafting Interpreters
-
-### Design
 - Don't Make Me Think
-
-### Humans
-- Sapiens
-
-### Blogs
-- Paul Graham [link](http://www.paulgraham.com/articles.html)
-
-### People
-- Richard Feynman
-- Kevin Kelly 
+- Sapien
 
 ## Websites
 
@@ -32,6 +19,7 @@ category: 'reference'
 - [https://thesephist.com/](https://thesephist.com/)
 - [https://j3s.sh/](https://j3s.sh/)
 - [https://garden.bradwoods.io/](https://garden.bradwoods.io/)
+- [https://elly.town/](https://elly.town/)
 
 ### Learning content
 - [https://www.yegor256.com/](https://www.yegor256.com/)
