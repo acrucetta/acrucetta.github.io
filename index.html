@@ -12,25 +12,25 @@ title: Home
     Hey, I'm Andrés!
   </h1>
   <p>
-    I am currently a Back End Engineer at <a href="https://www.waltzhealth.com/">Waltz Health</a>, where I work on a 
-    platform to help people save money with their prescriptions. 
+    I am currently a Back End Engineer at <a href="https://www.waltzhealth.com/">Waltz Health</a>, where I work on a
+    platform to help people save money with their prescriptions.
   </p>
-    I'm interested in data platforms, machine learning, and statistics.  
+  I'm interested in data platforms, machine learning, and statistics.
   </>
   <p>
     After college, I started a company called
     <a href="https://www.ctrl.golf/">CTRL.golf</a> to help golfers improve their
     club swing with machine learning. I was part of the founding team and helped
-    get the product acquire funding from the National Science Foundation. 
+    get the product acquire funding from the National Science Foundation.
   </p>
   <p>
     I've worked at a few tech companies including Shelf Engine (data science)
     and Facebook's Privacy team (product growth).
   </p>
   <p>
-    You can find out more about my experience on my 
-    <a href="https://www.linkedin.com/in/andres-crucetta/">LinkedIn</a>, 
-    <a href="https://github.com/acrucetta">Github</a>. 
+    You can find out more about my experience on my
+    <a href="https://www.linkedin.com/in/andres-crucetta/">LinkedIn</a>,
+    <a href="https://github.com/acrucetta">Github</a>.
     To read some of my writing in the blog section of this site.
   </p>
   <div class="pure-g">
@@ -47,45 +47,53 @@ title: Home
       <h3>Things I've built</h3>
       <ul>
         <li>task - capture tasks from the terminal <a href=https://github.com/acrucetta/todoer>(git)</a></li>
-        <li>hmm - capture your thoughts from the terminal <a href=https://github.com/acrucetta/thought-capturer>(git)</a></li>
+        <li>hmm - capture your thoughts from the terminal <a
+            href=https://github.com/acrucetta/thought-capturer>(git)</a></li>
         <li>ankify - build anki cards with Open AI <a href="https://github.com/acrucetta/anki-builder">(git)</a></li>
-        <li>Tracking political movements over time <a href="https://github.com/acrucetta/political-movements">(git)</a></li>
+        <li>Tracking political movements over time <a href="https://github.com/acrucetta/political-movements">(git)</a>
+        </li>
       </ul>
       <h3>Things I'm learning</h3>
       <ul>
         <li>Functional Programming (OCaml)</li>
-        <li>Building with Open AI API</li> 
-        <li>Neovim</li>
+        <li>Helix Editor</li>
+        <li>Building a compiler in Golang</li>
       </ul>
+      <h3>Things I'm interested in now<h3>
+          <ul>
+            <li>Connected notes</li>
+            <li>Hand-crafted software</li>
+            <li>Pixel art and CLI tools</li>
+          </ul>
     </div>
   </div>
 </div>
 <script>
- // Get the element with the text that we want to reveal
-const revealTextElement = document.getElementById("revealText");
+  // Get the element with the text that we want to reveal
+  const revealTextElement = document.getElementById("revealText");
 
-// Set the initial text to an empty string
-revealTextElement.innerHTML = "";
+  // Set the initial text to an empty string
+  revealTextElement.innerHTML = "";
 
-// Set the caret to be invisible initially
-revealTextElement.style.borderRight = "none";
+  // Set the caret to be invisible initially
+  revealTextElement.style.borderRight = "none";
 
-// Set the text that we want to reveal
-const text = "Hey, I'm Andrés!";
+  // Set the text that we want to reveal
+  const text = "Hey, I'm Andrés!";
 
-// Set the initial index to 0
-let index = 0;
+  // Set the initial index to 0
+  let index = 0;
 
-// Set the interval for the typewriter effect
-const interval = setInterval(() => {
-  // Add the next character to the revealed text
-  revealTextElement.innerHTML += text[index];
-  // Increment the index
-  index++;
-  // If we have reached the end of the text, clear the interval
-  if (index >= text.length) {
-    clearInterval(interval);
-  }
-}, 150);
+  // Set the interval for the typewriter effect
+  const interval = setInterval(() => {
+    // Add the next character to the revealed text
+    revealTextElement.innerHTML += text[index];
+    // Increment the index
+    index++;
+    // If we have reached the end of the text, clear the interval
+    if (index >= text.length) {
+      clearInterval(interval);
+    }
+  }, 150);
 
 </script>
