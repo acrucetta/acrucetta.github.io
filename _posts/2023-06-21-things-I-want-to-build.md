@@ -12,6 +12,7 @@ to build
 - tiny operating system
 - virtual machine 
 - programming language 
+- simple text editor
 - rss reader
 - flat file wiki web page
 - an ergonomic keyboard
