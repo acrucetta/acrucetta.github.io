@@ -15,6 +15,6 @@ Advanced Material:
 Articles:
 - (How to Write a (Lisp) Interpreter (in Python)) [link](https://norvig.com/lispy.html)
 - Laurence Tratt: Compiled and Interpreted Languages: Two Ways of Saying Tomato [link](https://tratt.net/laurie/blog/2023/compiled_and_interpreted_languages_two_ways_of_saying_tomato.html)
-
+- Design Principles Behind Smalltalk [link](https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html#figure_1)
 
 
