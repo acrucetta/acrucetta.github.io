@@ -12,10 +12,12 @@ Rasperry Pi powering it. It will run Plan 9 as the operating
 system and be used mostly for writing and editing.
 
 Bill of materials:
-- Rasperry Pi 3B+
-- E-ink screen / Arduino screen 7"
-- Mechanical keyboard
-- Wooden case
+- Rasperry Pi 3B+ (~$70)
+- E-ink screen / Arduino screen 7" (~$70)
+- Mechanical keyboard ($50-60)
+- Wooden case (???)
+
+Sub-total: $210-220
 
 Resources:
 - [https://9fans.github.io/plan9port/](https://9fans.github.io/plan9port/)
