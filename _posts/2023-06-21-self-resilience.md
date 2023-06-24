@@ -17,5 +17,5 @@ Documentaries
 - [A bivvy, a phone and a drone: cycling home from China](https://www.youtube.com/watch?v=Mmdxs_0yYwc&t=625s&pp=ygUTdHdvIHllYXJzIG9uIGEgYmlrZQ%3D%3D)
 
 Websites
-- [Hundred Rabbits Collective](100r.co)
+- [Hundred Rabbits Collective](https://100r.co/site/home.html)
 - [Derek Sivers](https://sive.rs/)
