@@ -20,6 +20,7 @@ category: 'reference'
 - [https://garden.bradwoods.io/](https://garden.bradwoods.io/)
 - [https://elly.town/](https://elly.town/)
 - [https://wiki.xxiivv.com/site/home.html](https://wiki.xxiivv.com/site/home.html)
+- [http://worrydream.com/#!/Bio](http://worrydream.com/#!/Bio)
 
 ### Learning content
 - [https://www.yegor256.com/](https://www.yegor256.com/)
