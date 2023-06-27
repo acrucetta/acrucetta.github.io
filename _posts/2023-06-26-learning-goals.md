@@ -7,6 +7,8 @@ tag: 'editor'
 category: 'reference'
 ---
 
+## Learning Goals
+
 Compilers
 - [X] Read Writing an Interpreter in Go
 - [~] Read Writing a Compilter in Go
@@ -25,3 +27,31 @@ Operating Systems (with Resources)
 - [] Operating System Design and Implementation: The online book "Operating Systems: From 0 to 1" again provides a good starting point.
 - [] Case Studies: "The Design of the UNIX Operating System" by Maurice J. Bach is a classic text. It's a bit older, but it can give you a solid understanding of a historically important OS.
 
+## How I (should) approach learning a subject
+...
+
+## Mnemonic before starting the day
+
+### F - Frame Your Day
+Create a to-do list of tasks to accomplish. Prioritize them based on urgency and importance.
+Schedule specific times for each task to ensure you have a structured plan for the day.
+
+###O - Organize Your Space
+
+Ensure your workspace is clean and free of potential visual distractions.
+Make sure the noise level in your workspace is manageable. If not, consider using noise-cancelling headphones or a white noise machine.
+
+### C - Control Digital Distractions
+
+Turn off non-essential notifications on your devices.
+Set aside designated times for checking emails and social media rather than allowing constant interruptions.
+Use apps or browser extensions that limit access to distracting websites or apps during your focus periods.
+
+### U - Understand Your Energy Levels
+
+Schedule your most important or difficult tasks during your peak energy periods.
+Take regular breaks torefresh and recharge. Consider using techniques like the Pomodoro method.
+
+### S - Set Boundaries
+Inform others (colleagues, family, friends) about your focus hours to minimize interruptions.
+Establish and stick to your boundaries for work-life balance. Don't allow your work to encroach on your personal time and vice versa.
