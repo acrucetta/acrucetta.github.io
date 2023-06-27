@@ -1,12 +1,19 @@
 ---
 title: "Learning goals for 2024"
 layout: post
-date: 2023-06-26
-tag: 'editor'
+date: 2023-06-23
+tag: 'learning'
 category: 'reference'
 ---
 
 ## Topics I want to learn this year
+
+### Learning at work (as a data engineer)
+- [] How CI/CD processes work in production-grade code
+- [] Git CLI
+- [] Data architecture patterns
+- [] How to communicate effectively with other engineers through
+tools and disciplines (e.g., pull requests, code reviews)
 
 ### Compilers (Q2)
 - [X] Read Writing an Interpreter in Go
