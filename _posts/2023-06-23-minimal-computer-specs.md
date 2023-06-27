@@ -14,10 +14,11 @@ system and be used mostly for writing and editing.
 Bill of materials:
 - Rasperry Pi 3B+ (~$70)
 - E-ink screen / Arduino screen 7" (~$70)
-- Mechanical keyboard ($50-60)
+- Mechanical keyboard (Pre-owned)
+- SmartiPi Touch 27" - Case for Rasperry Pi Touchscreen (~$29)
 - Wooden case (???)
 
-Sub-total: $210-220
+Sub-total: $160-180
 
 Resources:
 - [https://9fans.github.io/plan9port/](https://9fans.github.io/plan9port/)
