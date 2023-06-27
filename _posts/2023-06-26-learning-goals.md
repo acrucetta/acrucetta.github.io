@@ -1,4 +1,3 @@
-
 ---
 title: "Learning goals for 2024"
 layout: post
@@ -11,7 +10,7 @@ category: 'reference'
 
 Compilers
 - [X] Read Writing an Interpreter in Go
-- [~] Read Writing a Compilter in Go
+- [] Read Writing a Compilter in Go
 - [] Skim Crafting Interpreters
 - [] Write a compiler for a Functional Language (Mini Cam'l)
 - [] Add more advanced features to an existing implementation
