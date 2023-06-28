@@ -17,14 +17,14 @@ tools and disciplines (e.g., pull requests, code reviews)
 
 ### Compilers (Q2)
 - [X] Read Writing an Interpreter in Go
-- [] Read Writing a Compilter in Go
+- [X] Read Writing a Compilter in Go
 - [] Skim Crafting Interpreters
 - [] Write a compiler for a Functional Language (Mini Cam'l)
 - [] Add more advanced features to an existing implementation
 e.g., Garbage Collection, Closures, etc...
 
 ### Operating Systems (Q3) 
-- [] Introduction to Operating Systems: A basic understanding can be obtained from online resources like "Operating Systems: From 0 to 1" by Tu, Do Hoang which is available for free.
+- [X] Introduction to Operating Systems: A basic understanding can be obtained from online resources like "Operating Systems: From 0 to 1" by Tu, Do Hoang which is available for free.
 - [] Process Management: The "Processes" chapter in "Operating Systems: Three Easy Pieces" by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau, a freely available book, provides a comprehensive introduction.
 - [] Memory Management: The "Memory" chapter in "Operating Systems: Three Easy Pieces" offers a beginner-friendly guide.
 - [] File Systems: The Khan Academy course on "Memory and Storage" includes a segment on file systems.
