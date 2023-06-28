@@ -1,8 +1,11 @@
 /* Use a responsive layout */
 .container {
-  display: grid;  /* Use a responsive grid system */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Set the number and widths of the columns */
-  grid-gap: 20px;  /* Add some space between the grid items */
+  display: grid; /* Use a responsive grid system */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Set the number and widths of the columns */
+  grid-gap: 20px; /* Add some space between the grid items */
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -11,21 +14,22 @@
 
 /* Use responsive fonts */
 html {
-  font-size: 65%;  /* Set the base font size to 10px */
+  font-size: 65%; /* Set the base font size to 10px */
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: "Cousine", monospace;
   margin: 0;
   color: #333;
   /* Add responsive font size */
-  font-size: calc(1rem + 0.3vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
+  font-size: calc(
+    1rem + 0.3vw
+  ); /* Set the body font size to 1rem + 0.5% of the viewport width */
 }
 
 a {
   color: #333;
 }
-
 
 a:hover {
   color: #666;
@@ -53,4 +57,4 @@ a:hover {
   .nav-link {
     font-size: 14px;
   }
-} 
+}
