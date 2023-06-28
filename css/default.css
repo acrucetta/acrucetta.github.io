@@ -1,56 +1,248 @@
 /* Use a responsive layout */
 .container {
-  display: grid;  /* Use a responsive grid system */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Set the number and widths of the columns */
-  grid-gap: 20px;  /* Add some space between the grid items */
+  display: grid;
+  /* Use a responsive grid system */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Set the number and widths of the columns */
+  grid-gap: 20px;
+  /* Add some space between the grid items */
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   max-width: 60ch;
 }
 
-/* Use responsive fonts */
-html {
-  font-size: 65%;  /* Set the base font size to 10px */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #000
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
-  margin: 0;
-  color: #333;
-  /* Add responsive font size */
-  font-size: calc(1rem + 0.3vw);  /* Set the body font size to 1rem + 0.5% of the viewport width */
+  padding: 30px;
+  font-family: serif;
+  font-size: 16px
 }
 
-a {
-  color: #333;
+body>*,
+body>*>*,
+main figure>*,
+main figure>div>*,
+main p {
+  margin-bottom: 30px
 }
 
-
-a:hover {
-  color: #666;
+body a.self,
+body a.parent {
+  font-style: italic
 }
 
-/* Style the navigation bar */
-.nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+body a:hover,
+main a:hover>* {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none
 }
-.nav-link {
-  font-size: 14px;
-  font-weight: 300;
-  margin-right: 20px;
+
+table td,
+table th {
+  vertical-align: top;
+  padding: 2.5px 5px;
+  text-align: left
 }
-.nav-link.active {
-  font-weight: 700;
+
+table td>pre,
+table th>pre {
+  background: none;
+  padding: 0;
+  margin: 0
+}
+
+table tr img {
+  margin-bottom: 0
+}
+
+header {
+  float: left;
+  margin: 5px 30px 0 0;
+  min-height: 90px
+}
+
+header img {
+  display: block
+}
+
+nav {
+  margin: 0 0 30px
+}
+
+nav ul {
+  padding: 0;
+  margin: 0 45px 30px 0;
+  float: left
+}
+
+nav ul li {
+  list-style-type: none;
+  white-space: pre
+}
+
+nav ul li a {
+  padding: 0px 3px
+}
+
+main {
+  max-width: 624px;
+  clear: both
+}
+
+main a:before {
+  content:"{"
+}
+
+main a:after {
+  content: "}"
+}
+
+main a[target="_blank"]:before {
+  content: "["
+}
+
+main a[target="_blank"]:after {
+  content: "]"
+}
+
+main article {
+  border-left: 5px solid #efefef;
+  padding-left: 25px;
+  clear: both
+}
+
+main cite {
+  display: block;
+  clear: both;
+  margin-bottom: 30px
+}
+
+main cite:before {
+  content: "— "
+}
+
+main>figure:first-child img:first-child {
+  margin-left: -30px;
+  max-width: calc(100vw - 15px);
+  width: 800px
+}
+
+main iframe {
+  width: 100%
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main figure figcaption {
+  max-width: 400px
+}
+
+main ul,
+main ol {
+  margin: 0 30px 30px 30px
+}
+
+main ul ul {
+  margin-bottom: 0
+}
+
+main ul li,
+main ol li {
+  line-height: 25px;
+  padding: 0px 5px
+}
+
+main p {
+  line-height: 160%
+}
+
+main ::selection {
+  background-color: #72dec2;
+  color: #000;
+  text-decoration: none
+}
+
+main q {
+  font-family: serif;
+  font-size: 18px;
+  font-style: italic;
+  display: block;
+  max-width: 400px
+}
+
+main img,
+main svg {
+  max-width: 100%;
+  display: block;
+  margin: 0 0 30px
+}
+
+main pre {
+  overflow: auto;
+  background: #efefef;
+  padding: 10px;
+  font-size: 80%;
+  margin-bottom: 30px
+}
+
+main pre code,
+main pre i {
+  color: #777
+}
+
+main code {
+  white-space: pre
+}
+
+main hr {
+  clear: both
+}
+
+main kbd {
+  color: black;
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 5px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 1px;
+  line-height: 16px;
+  border: 2px solid #000;
+  background: white;
+  vertical-align: middle
+}
+
+footer {
+  border-top: 1.5px solid;
+  padding: 30px 0 0 0;
+  line-height: 30px;
+  clear: both
+}
+
+footer>* {
+  display: inline-block;
+  margin-right: 5px
+}
+
+footer img {
+  margin: 0 0 -10px 0;
+  width: 30px
 }
 
 @media screen and (max-width: 768px) {
   .nav-link {
     font-size: 14px;
   }
-} 
+}
