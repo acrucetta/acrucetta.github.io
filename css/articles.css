@@ -18,7 +18,7 @@
 .posts li {
   list-style: disc;
   margin: 1.5em 0;
-  line-height: 150%;
+  line-height: 125%;
 }
 
 .posts li a {
