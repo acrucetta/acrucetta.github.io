@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  font-family: "Cousine", monospace;
+  font-family: "Roboto Mono", monospace;
   margin: 0;
   color: #333;
   /* Add responsive font size */
@@ -44,6 +44,7 @@ a:hover {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .nav-link {
   font-size: 14px;
   font-weight: 300;
