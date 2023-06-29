@@ -16,7 +16,7 @@
 
 /* Style the list items */
 .posts li {
-  list-style: none;
+  list-style: disc;
   margin: 1.5em 0;
   line-height: 150%;
 }
@@ -26,6 +26,12 @@
   font-weight: 400;
   text-decoration: none;
   color: #333;
+}
+
+.post-date {
+  float: right;
+  font-size: 0.8em;
+  color: #888;
 }
 
 .posts li .date {
