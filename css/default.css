@@ -1,58 +1,60 @@
-/* Import the fonts */
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Helvetica&display=swap");
+/* Use a responsive layout */
+.container {
+  display: grid; /* Use a responsive grid system */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Set the number and widths of the columns */
+  grid-gap: 20px; /* Add some space between the grid items */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 60ch;
+}
 
-/* Style the filter buttons (interface elements) */
-.btn-group .btn {
-  font-family: "Helvetica", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  border: none;
-  background-color: transparent;
+/* Use responsive fonts */
+html {
+  font-size: 65%; /* Set the base font size to 10px */
+}
+
+body {
+  font-family: "Cousine", monospace;
+  margin: 0;
+  color: #333;
+  /* Add responsive font size */
+  font-size: calc(
+    1rem + 0.3vw
+  ); /* Set the body font size to 1rem + 0.5% of the viewport width */
+}
+
+a {
   color: #333;
 }
-.btn-group .btn:hover {
-  color: #555;
-}
-.btn-group .btn.active {
-  font-weight: 700;
-  color: #333;
+
+a:hover {
+  color: #666;
 }
 
-/* Style the list items (text) */
-.posts li {
-  font-family: "IBM Plex Mono", monospace;
-  list-style: none;
-  margin: 1.5em 0;
-  line-height: 150%;
+/* Style the navigation bar */
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-.posts li a {
-  font-size: 15px;
-  font-weight: 400;
-  text-decoration: none;
-  color: #333;
-}
-
-.posts li .date {
+.nav-link {
   font-size: 14px;
   font-weight: 300;
-  color: #888;
+  margin-right: 20px;
+}
+.nav-link.active {
+  font-weight: 700;
 }
 
-/* Base font size */
-html {
-  font-size: 100%;
-}
-
-/* Responsive layout */
-@media (max-width: 768px) {
-  .btn-group .btn {
+@media screen and (max-width: 768px) {
+  .nav-link {
     font-size: 14px;
-  }
-  .posts li a {
-    font-size: 14px;
-  }
-  .posts li .date {
-    font-size: 12px;
   }
 }
