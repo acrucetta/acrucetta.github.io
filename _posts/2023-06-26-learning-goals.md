@@ -32,3 +32,7 @@ e.g., Garbage Collection, Closures, etc...
 - [] Security and Protection: For an accessible introduction, you could try "Computer Security Basics" by Rick Lehtinen, Deborah Russell, and G.T. Gangemi Sr.
 - [] Operating System Design and Implementation: The online book "Operating Systems: From 0 to 1" again provides a good starting point.
 - [] Case Studies: "The Design of the UNIX Operating System" by Maurice J. Bach is a classic text. It's a bit older, but it can give you a solid understanding of a historically important OS.
+
+### Papers I've read
+- What Every Programmer Should Know About Memory
+- Out of the Tar Pit
