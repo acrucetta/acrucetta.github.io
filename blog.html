@@ -47,9 +47,8 @@ title: Blog
     {% for post in site.posts %}
     <li class="post {{ post.category }}">
       <a href="{{ post.url }}">
-        <span class="post-date"
-          >{{ post.date | date: "%m-%d-%Y" }} - {{ post.title }}
-        </span>
+        <span class="post-date">{{ post.date | date: "%m-%d-%Y" }} - </span>
+        {{ post.title }}
       </a>
     </li>
     {% endfor %}
