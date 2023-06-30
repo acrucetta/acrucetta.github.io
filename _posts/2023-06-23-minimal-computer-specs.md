@@ -1,17 +1,18 @@
 ---
-title: "building a minimal computer in the open"
+title: "Building a minimal computer in the open"
 layout: post
 date: 2023-06-23
-tag: 'low-tech'
-category: 'reference'
+tag: "low-tech"
+category: "reference"
 ---
 
-I'm going to be building a computer based on the 50 year old computer 
-concept. The ideal is for it to have an e-ink reader with a 
+I'm going to be building a computer based on the 50 year old computer
+concept. The ideal is for it to have an e-ink reader with a
 Rasperry Pi powering it. It will run Plan 9 as the operating
 system and be used mostly for writing and editing.
 
 Bill of materials:
+
 - Rasperry Pi 3B+ (~$70)
 - E-ink screen / Arduino screen 7" (~$70)
 - Mechanical keyboard (Pre-owned)
@@ -21,6 +22,7 @@ Bill of materials:
 Sub-total: $160-180
 
 Resources:
+
 - [https://9fans.github.io/plan9port/](https://9fans.github.io/plan9port/)
 - [https://ploum.net/the-computer-built-to-last-50-years/index.html](https://ploum.net/the-computer-built-to-last-50-years/index.html)
 - [https://alternativebit.fr/posts/ultimate-writer/](https://alternativebit.fr/posts/ultimate-writer/)
