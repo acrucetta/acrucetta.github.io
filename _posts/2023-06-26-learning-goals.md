@@ -9,9 +9,9 @@ category: 'reference'
 ## Topics I want to learn this year
 
 ### Learning at work (as a data engineer)
-- [] How CI/CD processes work in production-grade code
 - [] Git CLI
-- [] Data architecture patterns
+- [] How CI/CD processes work in production-grade code
+- [] Data engineering patterns
 - [] How to communicate effectively with other engineers through
 tools and disciplines (e.g., pull requests, code reviews)
 
@@ -23,16 +23,12 @@ tools and disciplines (e.g., pull requests, code reviews)
 - [] Add more advanced features to an existing implementation
 e.g., Garbage Collection, Closures, etc...
 
-### Operating Systems (Q3) 
-- [X] Introduction to Operating Systems: A basic understanding can be obtained from online resources like "Operating Systems: From 0 to 1" by Tu, Do Hoang which is available for free.
-- [] Process Management: The "Processes" chapter in "Operating Systems: Three Easy Pieces" by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau, a freely available book, provides a comprehensive introduction.
-- [] Memory Management: The "Memory" chapter in "Operating Systems: Three Easy Pieces" offers a beginner-friendly guide.
-- [] File Systems: The Khan Academy course on "Memory and Storage" includes a segment on file systems.
-- [] Device Management: It might be slightly harder to find approachable resources on this topic. However, "Computer Science: An Overview" by Glenn Brookshear and Dennis Brylow gives a good introduction.
-- [] Security and Protection: For an accessible introduction, you could try "Computer Security Basics" by Rick Lehtinen, Deborah Russell, and G.T. Gangemi Sr.
-- [] Operating System Design and Implementation: The online book "Operating Systems: From 0 to 1" again provides a good starting point.
-- [] Case Studies: "The Design of the UNIX Operating System" by Maurice J. Bach is a classic text. It's a bit older, but it can give you a solid understanding of a historically important OS.
+### Operating Systems (Q3)
+- [~] Read Operating Systems from 0 to 1
+- [~] Read Operating Systems in 3 Easy Pieces
+- [] Read The Design of the UNIX Operating System
+- [] Read Computer Security Basics (by Rick Lehtinen)
 
-### Papers I've read
+### Papers I've enjoyed
 - What Every Programmer Should Know About Memory
 - Out of the Tar Pit
