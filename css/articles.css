@@ -17,8 +17,8 @@
 /* Style the list items */
 .posts li {
   list-style: square;
-  margin: 0.75em 0;
-  line-height: 100%;
+  margin: 1em 0;
+  line-height: 130%;
 }
 
 .posts li a {
