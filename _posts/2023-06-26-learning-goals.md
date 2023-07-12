@@ -26,8 +26,13 @@ e.g., Garbage Collection, Closures, etc...
 ### Operating Systems (Q3)
 - [~] Read Operating Systems from 0 to 1
 - [~] Read Operating Systems in 3 Easy Pieces
+- [] Finish the Nand to Tetris course
 - [] Read The Design of the UNIX Operating System
 - [] Read Computer Security Basics (by Rick Lehtinen)
+
+### Distributed Comptuing (Q4)
+- [] Build a Key-Value storage database engine
+- [] Build a small mesagging system across two computers
 
 ### Papers I've enjoyed
 - What Every Programmer Should Know About Memory
