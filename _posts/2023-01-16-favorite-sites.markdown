@@ -28,3 +28,4 @@ category: 'reference'
 - [https://www.swyx.io/about](https://www.swyx.io/about)
 - [https://notes.andymatuschak.org/About_these_notes](https://notes.andymatuschak.org/About_these_notes)
 - [https://www.scattered-thoughts.net/](https://www.scattered-thoughts.net/)
+- [https://prog21.dadgum.com/](https://prog21.dadgum.com/)
