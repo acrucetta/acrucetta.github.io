@@ -1,14 +1,10 @@
 ---
-title: "Favorite things"
+title: "Favorite websites"
 layout: post
 date: 2023-01-16
 tag: 'editor'
 category: 'reference'
 ---
-
-## Books
-- Three Body Problem by Cixin Liu
-- ...
 
 ## Websites
 
