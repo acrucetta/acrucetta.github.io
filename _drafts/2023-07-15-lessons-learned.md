@@ -62,5 +62,30 @@ Some of favorite forums were:
 - DBT Slack
 - Dagster Slack
 - TigerDB Discord
+- lobste.rs 
 
-...
+Some areas where I got help:
+- Deciding which tools to pick for our data stack; we were debating between Prefect, Dagster, and Airflow
+- How to set-up Snowpipes with Snowflake
+- How to version control snowflake with Terraform
+
+## 5. Never waste a good crisis
+
+In this past year, I had issues in which we launched an API only to realize it was slower than we imagined. The deployment process didn't check for performance so we only found out later that we had increased the latency by 100ms. We also realized some prices were missing from the API response.
+
+After ruminating on it, I realized we needed to improve the CI/CD process. I wasn't taught in graduate school the importance of CI/CD as a "release captain". I swear now by a good CI/CD pipeline. For me the most important part of it is having an automated process that checks the code, lints it, and enforces all the rules you tend to forget when coding it.
+
+I also learned a lot about API performance, load testing, and optimizing SQL queries. I couldn't have learned it without being forced with the constraint to get the API response time under 200ms.
+
+## 6. You don't need a technical team to learn on the job
+
+As the second engineer in our company, I was worried I wouldn't be able to learn as much on what was the best way to do things. Many times I wondered if it would be easier to be in a bigger company and learn from more experienced engineers. While I still believe there's some benefit to it, I think you can learn on the job and from other people's mistakes if you are dilligent about asking questions in Slack and Discord communities.
+
+Any time I had a data question, I asked in the DBT or in the Locally Optimistic Slack and had 2-3 people answer with their own experience within half an hour.
+
+I also learned a lot from books and reading Medium tutorials. Some of the most useful books were:
+- Designing Data Intensive Applications
+- The Data Warehouse Toolkit
+- Optimizing SQL Query Performance by...
+
+Overall, I learned a lot this past year. I liked the quote that said that a good indication of how much you learned is when you look back and you're impressed by how much more you know about your field. 
