@@ -6,39 +6,35 @@ tag: 'reflections'
 category: 'blog'
 ---
 
-As I reach a year as a software engineer at my company, I'm writing some thoughts on lessons I've learned. 
+As I reach another year as a software engineer, I wanted to distill some lessons I learned. Most of them I still struggle with but serve as self-reminders next time I see a similar issue.
 
-Generally, I've learned about concepts such as data warehousing, modeling, how tech organizations work, how people make decisions, and how to work with offshore teams.
+## 1. If you want people to care about your idea, bring them along
 
-Here are some 6 lessons I've learned.
-
-## 1. To have people buy into your ideas, you need to bring them along
-
-In this last year, I've gotten to promote new tools for our team to use. Being in Azure Data Factory, we noted our data pipelines were growing in complexity. They were initially designed by an offshore team, we knew how they worked, but we couldn't change them to save our lives. New pipelines were taking 1-2 weeks to build.
+In this last year, I got to promote new data tools for our team to use. Being in Azure Data Factory, we saw our data pipelines grew in complexity. They were initially designed by an offshore team, we knew how they worked, but we couldn't change them to save our lives. New pipelines were taking 1-2 weeks to build.
 
 I decided to promote new orchestrators such as Dagster. Dagster provided some benefits such as seeing the data lineage, having the pipeline as code, and testing more easily.
 
-The hardest aspect of this project wasn't learning about the tool; it was convincing people why we needed to move to a new one. 
+When I promoted them, people's first reaction was resistance to change. I knew the benefits, but I didn't ask people what they were struggling with. Since I didn't bring them along at first they didn't see the benefits I was seeing.
 
-Some of the team's concerns were the tool's pricing structure, whether we had the capacity to learn a new tool, and why should we step out of Azure's footprint. Most of these concerns came from the Infrastructure team. 
+The team was concerned with the cost of the tool and whether we could learn it. They also asked me why should we stop using Azure's services, it was easier to keep everything to one platform.
 
-Since they weren't involved in the discussions, they initially rejected the idea. I had to sit down with their team members to hear their concerns and find out ways to address them. 
+After listening to their concerns, I had to go back and tailor my research to answer their questions. I learned we (engineers) don't work in a silo; I need to involve the operations, infrastructure, and development team when making an architecture decision.
 
-## 2. The developer experience can make or break how fast you ship features
+## 2. The developer experience has a huge impact on how fast you release feature
 
 I once read that most of the developer's work in a company was documenting features, attending meetings, and only about 20-30% of the remaining time was spent coding.
 
-This was specially true in this last year. As a small company, we didn't have developed CI/CD pipelines. Every release had to be manually QA'd by the offshore team. We also had to submit a form explaining why we needed to ship the release and stay until midnight to ship it, even if it wasn't a critical feature.
+This was specially true in this last year. As a small company, we didn't have mature CI/CD pipelines. Every release had to be manually QA'd by the offshore team. We also had to submit a form explaining why we needed to ship the release and stay until midnight to ship it, even if it wasn't a critical feature.
 
-The fear of bringing the system down with our brittle infrastructure lead us to fear change. Instead of shipping change constantly we considered new code changes as highly risky.
+The fear of bringing the system down lead us to fear change. Instead of shipping change constantly we considered new code changes as highly risky. This lead to developers dreading pushing new features so they wouldn't want to stay late.
 
-This leads to developers dreading pushing new features so they wouldn't want to stay late.
-
-Because we didn't have thorough unit testing and proper code reviews for each change, we assumed the worst.
+I learned that proper unit and integration testing, blameless incident calls, and...
 
 ## 3. The first employees have a large impact in the long-term tech decisions
 
-Your company's leadership and their background has a profound impact in the tools and architecture you end up working on. If your boss knows .NET you might end up as .NET shop. If your first data engineer loves Postgres you're going to do all yout transformations with stored procedures.
+*[REVIEW]*
+
+Whatever tools the first engineers know have a lasting impact in the tools and architecture you end up working with. If your boss knows .NET you might end up as .NET shop. If your first data engineer loves Postgres you're going to do all your transformations with stored procedures.
 
 Companies in the healthcare sector are particularly risk averse and slower to change. Any new tool has to be thoroughly inspected, go through architecture review and approved by the CIO, the CTO and the infrastructure team.
 
@@ -98,6 +94,7 @@ Many people also recommended these books to ramp up with common data engineering
 - SQL Performance Explained 
 
 I learned a lot this past year. I liked the quote that said: 
-*A worthy goal for a year is to learn enough about a subject so that you can’t believe how ignorant you were a year earlier.*
 
-For a list of books I've enjoyed this year you can check [this link.](https://andrescn.me/mente/site/books.html)
+```
+A worthy goal for a year is to learn enough about a subject so that you can’t believe how ignorant you were a year earlier.
+```
