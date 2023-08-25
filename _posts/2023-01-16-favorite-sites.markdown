@@ -2,13 +2,14 @@
 title: "Favorite websites"
 layout: post
 date: 2023-01-16
-tag: 'editor'
-category: 'reference'
+tag: "editor"
+category: "reference"
 ---
 
 ## Websites
 
 ### Design inspiration
+
 - [https://beta.vero.site/](https://beta.vero.site/)
 - [https://ayazhafiz.com/](https://ayazhafiz.com/)
 - [https://thesephist.com/](https://thesephist.com/)
@@ -16,12 +17,14 @@ category: 'reference'
 - [https://garden.bradwoods.io/](https://garden.bradwoods.io/)
 - [https://elly.town/](https://elly.town/)
 - [https://wiki.xxiivv.com/site/home.html](https://wiki.xxiivv.com/site/home.html)
-- [http://worrydream.com/#!/Bio](http://worrydream.com/#!/Bio)
+- [https://worrydream.com/#!/Bio](https://worrydream.com/#!/Bio)
 
 ### People I admire
+
 - [https://kanjun.me/](https://kanjun.me/): AI founder
 
 ### Learning content
+
 - [https://www.yegor256.com/](https://www.yegor256.com/)
 - [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
 - [https://www.swyx.io/about](https://www.swyx.io/about)

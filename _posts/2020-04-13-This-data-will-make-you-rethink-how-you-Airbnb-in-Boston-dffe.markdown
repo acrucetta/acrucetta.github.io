@@ -3,12 +3,12 @@ title: This data will make you rethink how you Airbnb in Boston
 description: >-
   If you’ve been to Boston you’ve probably wondered which are the best
   neighbourhoods to stay in for tourists
-date: '2020-04-13T13:45:11.178Z'
+date: "2020-04-13T13:45:11.178Z"
 categories: []
 keywords: []
 slug: >-
   /@andrescrucetta/this-data-will-make-you-rethink-how-you-airbnb-in-boston-dff227e80732
-category: 'article'
+category: "article"
 layout: post
 ---
 
@@ -18,14 +18,14 @@ If you’ve been to Boston you’ve probably wondered which are the best neighbo
 
 If you’ve been thinking of being a host you’ve probably taken steps towards making sure your listing is up to the standards of top hosts and to open your listing at the right time.
 
-I’ve also asked myself these questions. Hence, I analyzed the Boston [Airbnb Database from Kaggle](https://www.kaggle.com/airbnb/boston#listings.csv) to answer them. This dataset is part of the [Airbnb Inside initiative](http://insideairbnb.com/index.html), sourced from publicly available information from the Airbnb site.
+I’ve also asked myself these questions. Hence, I analyzed the Boston [Airbnb Database from Kaggle](https://www.kaggle.com/airbnb/boston#listings.csv) to answer them. This dataset is part of the [Airbnb Inside initiative](https://insideairbnb.com/index.html), sourced from publicly available information from the Airbnb site.
 
 **In short, through this article you will learn:**
 
-*   Which neighbourhoods in Boston are more expensive than others?
-*   Which areas are busier at different times of the year?
-*   What type of comments top hosts get vs. low performing hosts?
-*   What contributes the most to a top rating for your Airbnb listing?
+- Which neighbourhoods in Boston are more expensive than others?
+- Which areas are busier at different times of the year?
+- What type of comments top hosts get vs. low performing hosts?
+- What contributes the most to a top rating for your Airbnb listing?
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__diwnmleePuhvzbDT.jpg)
 
@@ -35,9 +35,9 @@ Boston can be an expensive town, with Airbnb listing prices ranging from $ 75 in
 
 According to [Adventurous Kate’s blog](https://www.adventurouskate.com/where-to-stay-in-boston-best-neighborhoods-and-accommodation/), these are the most touristy neighbourhoods in Boston:
 
-*   **Back Bay**: it’s beautiful, central, well-connected, and home to fabulous parks, shopping, and nightlife
-*   **North End**: best neighborhood for history lovers
-*   **South End**: best neighborhood for foodies
+- **Back Bay**: it’s beautiful, central, well-connected, and home to fabulous parks, shopping, and nightlife
+- **North End**: best neighborhood for history lovers
+- **South End**: best neighborhood for foodies
 
 Based on the analysis, these are all neighbourhoods with an above average price and a high number of listings. As seen in the graph below, the sweet spot for a neighbourhood is an above average number of listings with an average price.
 
@@ -109,10 +109,10 @@ After the guests visit, the quality of your space becomes the next impression. T
 
 **If you’re visiting Boston:**
 
-*   Pick a good balance of price and value. South End, Fenway, and South Boston are all great options to stay at.
-*   Pick the right time of the year, for the right neighbourhood. Avoid Fenway during the summer or Longwood Medical Area in the Fall.
+- Pick a good balance of price and value. South End, Fenway, and South Boston are all great options to stay at.
+- Pick the right time of the year, for the right neighbourhood. Avoid Fenway during the summer or Longwood Medical Area in the Fall.
 
 **If you want to increase your listing rating:**
 
-*   Provide an emotional connection between your guest, the listing, and your community. Think of what type of food or decoration can you make available for your hosts that leave them with a lasting memory.
-*   Provide a good balance of value and price for your listing, maintain the place clean, and be accurate in your pictures.
+- Provide an emotional connection between your guest, the listing, and your community. Think of what type of food or decoration can you make available for your hosts that leave them with a lasting memory.
+- Provide a good balance of value and price for your listing, maintain the place clean, and be accurate in your pictures.
