@@ -32,15 +32,11 @@ I learned that proper unit and integration testing, blameless incident calls, an
 
 ## 3. The first employees have a large impact in the long-term tech decisions
 
-*[REVIEW]*
-
 Whatever tools the first engineers know have a lasting impact in the tools and architecture you end up working with. If your boss knows .NET you might end up as .NET shop. If your first data engineer loves Postgres you're going to do all your transformations with stored procedures.
 
 Companies in the healthcare sector are particularly risk averse and slower to change. Any new tool has to be thoroughly inspected, go through architecture review and approved by the CIO, the CTO and the infrastructure team.
 
-This process ensures we make a good decision but it also slows down how fast we ship features and adopt new tools. 
-
-Once we adopted Postgres and Azure, it's hard to change when things work *well enough*. 
+If you want to work on a particular technology it might make sense to join either a smaller start-up that is more nimble and can adopt it, or join a larger company that is already building with that tool. 
 
 ## 4. Even in teams of 1 you can learn from online communities
 
@@ -95,6 +91,4 @@ Many people also recommended these books to ramp up with common data engineering
 
 I learned a lot this past year. I liked the quote that said: 
 
-```
-A worthy goal for a year is to learn enough about a subject so that you can’t believe how ignorant you were a year earlier.
-```
+*A worthy goal for a year is to learn enough about a subject so that you can’t believe how ignorant you were a year earlier.*
