@@ -1,23 +1,31 @@
-/* Style the filter buttons */
+/* -- BASICS -- */
+html {
+  font-size: 100%; /* Base font size */
+}
+
+/* -- BUTTON STYLES -- */
 .btn-group .btn {
   font-size: 16px;
   font-weight: 400;
   border: none;
   background-color: transparent;
   color: #333;
+  transition: color 0.3s ease; /* Smooth color transition */
 }
+
 .btn-group .btn:hover {
   color: #555;
 }
+
 .btn-group .btn.active {
   font-weight: 700;
   color: #333;
 }
 
-/* Style the list items */
+/* -- LIST STYLES -- */
 .posts li {
   list-style: square;
-  margin: 1em 0;
+  margin: 0.5em 0; /* Adjusted margin */
   line-height: 130%;
 }
 
@@ -25,12 +33,6 @@
   margin-top: 1em;
   font-size: 1.5em;
   color: #333;
-}
-
-.posts li {
-  list-style: square;
-  margin: 0.5em 0;
-  line-height: 130%;
 }
 
 .posts li a {
@@ -41,31 +43,20 @@
   display: block;
 }
 
-@media (max-width: 768px) {
-  .year {
-    font-size: 1.2em;
-  }
-  .posts li a {
-    font-size: 14px;
-  }
-}
-
-/* Base font size */
-html {
-  font-size: 100%;
-}
-
-/* Responsive layout */
+/* -- RESPONSIVE STYLES -- */
 @media (max-width: 768px) {
   .btn-group .btn {
     font-size: 14px;
   }
+
   .posts li a {
     font-size: 14px;
   }
+
   .posts li .date {
     font-size: 12px;
   }
+
   .year {
     font-size: 1.2em;
   }

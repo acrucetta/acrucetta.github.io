@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 <head>
   <link
     rel="stylesheet"
@@ -11,11 +12,13 @@ layout: default
   <link rel="stylesheet" type="text/css" href="/css/articles.css" />
   <link rel="stylesheet" type="text/css" href="/css/animations.css" />
   <link rel="stylesheet" type="text/css" href="/css/default.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <div class="pure-u">
   <h1>{{ page.title }}</h1>
   <p class="meta">{{ page.date | date_to_string }}</p>
-  <div class="post-content">
-    {{ content }}
-  </div>
+  <div class="post-content">{{ content }}</div>
 </div>
