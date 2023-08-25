@@ -1,41 +1,27 @@
-/* Use a responsive layout */
-.container {
-  display: grid; /* Use a responsive grid system */
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(300px, 1fr)
-  ); /* Set the number and widths of the columns */
-  grid-gap: 20px; /* Add some space between the grid items */
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 60ch;
-}
-
-/* Use responsive fonts */
+/* -- BASICS -- */
 html {
-  font-size: 65%; /* Set the base font size to 10px */
+  font-size: 65%; /* Base font size: 10px */
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: "Fira Code", monospace;
   margin: 0;
   color: #333;
-  /* Add responsive font size */
-  font-size: calc(
-    1rem + 0.3vw
-  ); /* Set the body font size to 1rem + 0.5% of the viewport width */
+  font-size: calc(1rem + 0.3vw); /* Responsive font size */
+  line-height: 1.5; /* Improved readability */
 }
 
 a {
   color: #333;
+  text-decoration: none; /* Remove underlines */
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
 a:hover {
   color: #666;
 }
 
-/* Style the navigation bar */
+/* -- NAVIGATION -- */
 .nav {
   display: flex;
   justify-content: center;
@@ -49,13 +35,25 @@ a:hover {
   font-size: 14px;
   font-weight: 300;
   margin-right: 20px;
+  transition: font-weight 0.3s ease; /* Smooth weight transition */
 }
+
 .nav-link.active {
   font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {
   .nav-link {
-    font-size: 14px;
+    font-size: 12px; /* Slightly reduced for small screens */
   }
+}
+
+/* -- GRID CONTAINER -- */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  max-width: 800px; /* Retain only one max-width */
+  margin: 0 auto;
+  padding: 20px;
 }
