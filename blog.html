@@ -26,14 +26,19 @@ title: Blog
 </head>
 <style>
   .posts {
-    line-height: 200%;
-    margin-right: 0.2em;
+      line-height: 200%;
+      margin-right: 0.2em;
   }
   .pure-button-group {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 100%;
-    max-width: 600px;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      width: 100%;
+      max-width: 600px;
+      display: block;  /* Ensuring block-level display */
+      clear: both;    /* Clear any floats */
+  }
+  h1 {
+      display: block;  /* Ensuring block-level display */
   }
 </style>
 <h1>{{ page.title }}</h1>
