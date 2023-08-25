@@ -1,15 +1,15 @@
 ---
 layout: post
 title: Telling a new story of Venezuela to the world
-date: '2020-06-12'
-category: 'article'
+date: "2020-06-12"
+category: "article"
 ---
 
 What first comes to your mind whenever you think about Venezuela? Is it a picture of a country with a communist regime, or is it lines of people as in this front-page of the New York Times.
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__3xPoFR20q1KpAkIL.jpg)
 
-The way we tell our stories and how we perceive the world ultimately guides our experience of it. As storytelling creatures, we have evolved to become incredibly influenced by the stories we listen to and the many variations of [Joseph Campbell Hero’s Journey](http://www.movieoutline.com/articles/the-hero-journey-mythic-structure-of-joseph-campbell-monomyth.html) echoed throughout our lives.
+The way we tell our stories and how we perceive the world ultimately guides our experience of it. As storytelling creatures, we have evolved to become incredibly influenced by the stories we listen to and the many variations of [Joseph Campbell Hero’s Journey](https://www.movieoutline.com/articles/the-hero-journey-mythic-structure-of-joseph-campbell-monomyth.html) echoed throughout our lives.
 
 > “Stories constitute the single most powerful weapon in a leader’s arsenal.” — [Dr. Howard Gardner](https://www.gse.harvard.edu/faculty/howard-gardner), professor Harvard University
 
@@ -45,7 +45,7 @@ We don’t need to look too far, the new narrative is already being built by _pe
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__yxoLTIu8oUnTIQQc.jpg)
 
-Or by _Maickel Melamed_ (right), a runner with physical dystrophy who completed the [Boston Marathon](http://www.espn.com/sportsnation/post/_/id/12734770/after-20-hours-man-muscular-dystrophy-finishes-boston-marathon) in 20 hours after years of struggle. Creator of the documentary “Vamos”.
+Or by _Maickel Melamed_ (right), a runner with physical dystrophy who completed the [Boston Marathon](https://www.espn.com/sportsnation/post/_/id/12734770/after-20-hours-man-muscular-dystrophy-finishes-boston-marathon) in 20 hours after years of struggle. Creator of the documentary “Vamos”.
 
 ![](/Users/andrescrucettanieto/Documents/GitHub/markdown-converter/posts/md_1672369357164/img/0__q8iAEwwJkOHiGe__3.jpg)
 
@@ -53,7 +53,7 @@ The way we communicate our story is the way we ultimately shape it. According to
 
 > “We need to build a new narrative based on the amazing stories we share of our people” — Italo Pizzolante
 
-If we are to build a new country we need a different story, that is, we need to define what is going to be our compass for the recovery of the country and for the next 10 or 20 years to come. Do we want people to picture a NY Times front-page, or do we want for them to know more about Susanna’s or Maickel’s work, or even the work of [“El Sistema”](http://nucleocorona.org/Corona_Youth_Music_Project/ElSistemaInVZ.html) one of the world’s most impactful youth orchestras?
+If we are to build a new country we need a different story, that is, we need to define what is going to be our compass for the recovery of the country and for the next 10 or 20 years to come. Do we want people to picture a NY Times front-page, or do we want for them to know more about Susanna’s or Maickel’s work, or even the work of [“El Sistema”](https://nucleocorona.org/Corona_Youth_Music_Project/ElSistemaInVZ.html) one of the world’s most impactful youth orchestras?
 
 First, this story will need to be shared individually — every time someone asks us at the market “so, how is Venezuela doing?” are we talking about the Venezuelan government or the Venezuelan people?; collectively, that is organizing ourselves and creating new organizations that emit the message we want — it could either be creating your own humanitarian enterprise as Susanna Raffali did or by collaborating with your neighbors to make Arepas.
 
@@ -67,7 +67,7 @@ Building a new narrative is not going to be done overnight, it is made from the 
 
 If you want to learn more about the amazing work they’re doing to make Venezuela a better place follow the work of the following sites:
 
-*   Cuatro Por Venezuela — [https://www.cuatroporvenezuela.org/](https://www.cuatroporvenezuela.org/)
-*   Caritas Por Venezuela — [https://www.caritas.org/where-caritas-work/latin-america/venezuela/](https://www.caritas.org/where-caritas-work/latin-america/venezuela/)
+- Cuatro Por Venezuela — [https://www.cuatroporvenezuela.org/](https://www.cuatroporvenezuela.org/)
+- Caritas Por Venezuela — [https://www.caritas.org/where-caritas-work/latin-america/venezuela/](https://www.caritas.org/where-caritas-work/latin-america/venezuela/)
 
-_Andres Crucetta is originally from Venezuela, currently based in Texas. He writes about Latin American issues, entrepreneurship and business through his blog_ [_andresecn.blog_](http://andresecn.blog) _and in_ [_Quora_](https://www.quora.com/profile/Andres-E-Crucetta-Nieto)_._
+_Andres Crucetta is originally from Venezuela, currently based in Texas. He writes about Latin American issues, entrepreneurship and business through his blog_ [_andresecn.blog_](https://andresecn.blog) _and in_ [_Quora_](https://www.quora.com/profile/Andres-E-Crucetta-Nieto)_._

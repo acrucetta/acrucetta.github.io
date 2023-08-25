@@ -1,11 +1,11 @@
 ---
-title: 'Innovating in times of turmoil: Venezuela'
-description: 'Article inspired from workshop at Plan Pais, 2017 (Washington, D.C.)'
-date: '2017-04-10T14:49:51.673Z'
+title: "Innovating in times of turmoil: Venezuela"
+description: "Article inspired from workshop at Plan Pais, 2017 (Washington, D.C.)"
+date: "2017-04-10T14:49:51.673Z"
 categories: []
 keywords: []
 slug: /@andrescrucetta/innovating-in-times-of-turmoil-venezuela-754cf4f7d435
-category: 'article'
+category: "article"
 layout: post
 ---
 
@@ -33,6 +33,6 @@ In the international news we hear about all of the macroeconomic factors that mi
 
 > “Sometimes the most important insights come from the bottom-up approach, by first understanding the people”
 
-Dunia de Barola and “Venezuela Competitiva” — a non-profit organization in Caracas, Venezuela — has taken this bottom-up approach and through their work have highlighted stories of success such as Ananké and Rosa’s business. They have been working on this project since 1993 and have highlighted hundreds of successful entrepreneurs who had the courage to become businessmen or businesswomen. If you want to stay updated and read more about their story follow their story at: [http://venezuelacompetitiva.com/](http://venezuelacompetitiva.com/) **(Spanish website).**
+Dunia de Barola and “Venezuela Competitiva” — a non-profit organization in Caracas, Venezuela — has taken this bottom-up approach and through their work have highlighted stories of success such as Ananké and Rosa’s business. They have been working on this project since 1993 and have highlighted hundreds of successful entrepreneurs who had the courage to become businessmen or businesswomen. If you want to stay updated and read more about their story follow their story at: [https://venezuelacompetitiva.com/](https://venezuelacompetitiva.com/) **(Spanish website).**
 
-_Plan Pais_ is an International Conference that gathers thinkers and doers of Venezuelan Policy from all over the world. Its latest conference was organized in Washington D.C. and holded many workshops to discuss the social and economic development of the country. ([planpais.com](http://planpais.com/))
+_Plan Pais_ is an International Conference that gathers thinkers and doers of Venezuelan Policy from all over the world. Its latest conference was organized in Washington D.C. and holded many workshops to discuss the social and economic development of the country. ([planpais.com](https://planpais.com/))
