@@ -28,7 +28,7 @@ This was specially true in this last year. As a small company, we didn't have ma
 
 The fear of bringing the system down lead us to fear change. Instead of shipping change constantly we considered new code changes as highly risky. This lead to developers dreading pushing new features so they wouldn't want to stay late.
 
-I learned that proper unit and integration testing, blameless incident calls, and...
+I learned that proper unit testing, blameless incident calls, and peer reviews were critical to avoiding issues in production. 
 
 ## 3. The first employees have a large impact in the long-term tech decisions
 
