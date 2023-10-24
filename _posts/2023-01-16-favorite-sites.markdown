@@ -32,3 +32,4 @@ category: "reference"
 - [https://notes.andymatuschak.org/About_these_notes](https://notes.andymatuschak.org/About_these_notes)
 - [https://www.scattered-thoughts.net/](https://www.scattered-thoughts.net/)
 - [https://prog21.dadgum.com/](https://prog21.dadgum.com/)
+- [https://gwern.net/about](https://gwern.net/about)

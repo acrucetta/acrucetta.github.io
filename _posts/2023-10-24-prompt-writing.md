@@ -3,7 +3,7 @@ title: "How to write effective Anki cards"
 layout: post
 date: 2023-10-24
 tag: 'anki'
-category: 'blog'
+category: 'article'
 ---
 
 These are some scattered notes on how to write effective flashcards.
@@ -74,3 +74,8 @@ These are some scattered notes on how to write effective flashcards.
 - A: because only simple organisms can live in it
 - Q: Why only simple organisms can live in the Dead Sea?
 - A: because of high salt content
+
+
+References:
+- https://www.supermemo.com/en/blog/twenty-rules-of-formulating-knowledge
+- https://gwern.net/spaced-repetition

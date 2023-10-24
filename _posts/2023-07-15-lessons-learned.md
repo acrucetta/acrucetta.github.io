@@ -3,7 +3,7 @@ title: "6 lessons from the last 12 months as a software engineer"
 layout: post
 date: 2023-07-15
 tag: 'reflections'
-category: 'blog'
+category: 'article'
 ---
 
 As I reach another year as a software engineer, I wanted to distill some lessons I learned. Most of them I still struggle with but serve as self-reminders next time I see a similar issue.
