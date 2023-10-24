@@ -26,10 +26,15 @@ category: "reference"
 
 ### Learning content
 
+**General Programming**
 - [https://www.yegor256.com/](https://www.yegor256.com/)
-- [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
 - [https://www.swyx.io/about](https://www.swyx.io/about)
 - [https://notes.andymatuschak.org/About_these_notes](https://notes.andymatuschak.org/About_these_notes)
 - [https://www.scattered-thoughts.net/](https://www.scattered-thoughts.net/)
 - [https://prog21.dadgum.com/](https://prog21.dadgum.com/)
+
+**Web Design**
+- [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
 - [https://gwern.net/about](https://gwern.net/about)
+- [https://practicaltypography.com/](https://practicaltypography.com/) 
+- [https://edwardtufte.github.io/tufte-css/](https://edwardtufte.github.io/tufte-css/)
