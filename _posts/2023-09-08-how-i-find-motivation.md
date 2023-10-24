@@ -3,7 +3,7 @@ title: "How I find motivation"
 layout: post
 date: 2023-09-08
 tag: "musings"
-category: "blog"
+category: "article"
 ---
 
 In this past year I've noticed how my motivation to do certain tasks has ebb and flowed. Sometimes I feel like reading a book on networking and developing small apps to practice. Other times I don't feel like doing anything.
