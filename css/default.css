@@ -1,24 +1,44 @@
 /* -- BASICS -- */
 html {
-  font-size: 65%; /* Base font size: 10px */
+  font-size: 65%;
+  /* Base font size: 10px */
 }
 
 body {
   font-family: "Fira Code", monospace;
   margin: 0;
   color: #333;
-  font-size: calc(1rem + 0.3vw); /* Responsive font size */
-  line-height: 1.5; /* Improved readability */
+  font-size: calc(1rem + 0.3vw);
+  /* Responsive font size */
+  line-height: 1.5;
+  /* Improved readability */
 }
 
 a {
   color: #333;
-  text-decoration: none; /* Remove underlines */
-  transition: color 0.3s ease; /* Smooth color transition */
+  text-decoration: none;
+  /* Remove underlines */
+  transition: color 0.3s ease;
+  /* Smooth color transition */
+}
+
+a:link {
+  color: #6900ff
+}
+
+a:focus {
+  text-decoration: none;
+  background: #bae498;
 }
 
 a:hover {
-  color: #666;
+  text-decoration: none;
+  background: #cdfeaa;
+}
+
+a:active {
+  background: #6900ff;
+  color: #cdfeaa;
 }
 
 /* -- NAVIGATION -- */
@@ -35,7 +55,8 @@ a:hover {
   font-size: 14px;
   font-weight: 300;
   margin-right: 20px;
-  transition: font-weight 0.3s ease; /* Smooth weight transition */
+  transition: font-weight 0.3s ease;
+  /* Smooth weight transition */
 }
 
 .nav-link.active {
@@ -44,7 +65,8 @@ a:hover {
 
 @media screen and (max-width: 768px) {
   .nav-link {
-    font-size: 12px; /* Slightly reduced for small screens */
+    font-size: 12px;
+    /* Slightly reduced for small screens */
   }
 }
 
@@ -53,7 +75,8 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
-  max-width: 600px; /* Retain only one max-width */
+  max-width: 600px;
+  /* Retain only one max-width */
   margin: 0 auto;
   padding: 20px;
 }
