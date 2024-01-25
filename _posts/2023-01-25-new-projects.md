@@ -28,7 +28,7 @@ After a while this keep evolving into a slightly bigger project and I kept gaini
 
 Most great people allowed themselves the time to play and wander. To not take every project too seriously. In fact, I wonder if that's what allowed them to do great things.
 
-Claude Shannon, the inventor of information theory, famously spent hours juggling, building electric mice, and trying to beat the roulettes in Las Vegas using mathematics. (Add links)
+Claude Shannon, the inventor of information theory, famously spent hours juggling, building electric mice, and trying to beat the roulettes in Las Vegas using mathematics. 
 
 Reframing each of the gremlins can let us start working on the projects much easier. These are what I would call *"friends of focus"*. They release the inner pressure of doing something great.
 
