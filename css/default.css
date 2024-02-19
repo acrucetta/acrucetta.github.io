@@ -1,82 +1,82 @@
 /* -- BASICS -- */
 html {
-  font-size: 65%;
-  /* Base font size: 10px */
+    font-size: 65%;
+    /* Base font size: 10px */
 }
 
 body {
-  font-family: "Fira Code", monospace;
-  margin: 0;
-  color: #333;
-  font-size: calc(1rem + 0.3vw);
-  /* Responsive font size */
-  line-height: 1.5;
-  /* Improved readability */
+    font-family: "Fira Code", monospace;
+    margin: 0;
+    color: #333;
+    font-size: calc(1rem + 0.3vw);
+    /* Responsive font size */
+    line-height: 1.5;
+    /* Improved readability */
 }
 
 a {
-  color: #333;
-  text-decoration: none;
-  /* Remove underlines */
-  transition: color 0.3s ease;
-  /* Smooth color transition */
+    color: #333;
+    text-decoration: none;
+    /* Remove underlines */
+    transition: color 0.3s ease;
+    /* Smooth color transition */
 }
 
 a:link {
-  color: #6900ff
+    color: #6900ff;
 }
 
 a:focus {
-  text-decoration: none;
-  background: #bae498;
+    text-decoration: none;
+    background: #bae498;
 }
 
 a:hover {
-  text-decoration: none;
-  background: #cdfeaa;
+    text-decoration: none;
+    background: #cdfeaa;
 }
 
 a:active {
-  background: #6900ff;
-  color: #cdfeaa;
+    background: #6900ff;
+    color: #cdfeaa;
 }
 
 /* -- NAVIGATION -- */
 .nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link {
-  font-size: 14px;
-  font-weight: 300;
-  margin-right: 20px;
-  transition: font-weight 0.3s ease;
-  /* Smooth weight transition */
+    font-size: 14px;
+    font-weight: 300;
+    margin-right: 20px;
+    transition: font-weight 0.3s ease;
+    /* Smooth weight transition */
 }
 
 .nav-link.active {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {
-  .nav-link {
-    font-size: 12px;
-    /* Slightly reduced for small screens */
-  }
+    .nav-link {
+        font-size: 12px;
+        /* Slightly reduced for small screens */
+    }
 }
 
 /* -- GRID CONTAINER -- */
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
-  max-width: 600px;
-  /* Retain only one max-width */
-  margin: 0 auto;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 5px;
+    max-width: 600px;
+    /* Retain only one max-width */
+    margin: 0 auto;
+    padding: 20px;
 }
