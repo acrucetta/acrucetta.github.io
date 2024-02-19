@@ -1,88 +1,104 @@
 ---
 layout: default
-title: About 
+title: About
 ---
 
 <head>
-  <!-- Import jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Import jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <div class="blurb">
-  <h1 id="revealText">
-    Hey, I'm Andrés!
-  </h1>
-  <p>
-    I am currently a Software Engineer at <a href="https://www.waltzhealth.com/">Waltz Health</a>, where I work on a
-    data platform to help people save money with their prescriptions.
-  </p>
-  <p>
-    I'm interested in data platforms, machine learning, and statistics.
-  </p>
-  <p>
-    I love tinkering with productivity tooling and
-    have built a set of Rust CLI tools to manage my daily tasks, take notes, and record my thoughts from the command
-    line.
-  </p>
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-md-1">
-      <h3>Previous work</h3>
-      <ul>
-        <li>I worked at Facebook's privacy and safety team; we led A/B tests to help improve the platform's safety in
-          emerging regions (India, Vietnam)</li>
-        <li>I worked at Shelf Engine building machine learning models to forecast grocery volumes; the platform seeked
-          to predict inventory to reduce waste</li>
-        <li>I started a company called <a href="https://www.ctrl.golf/">CTRL.golf</a> to help golfers improve their club
-          swing with machine learning.</li>
-      </ul>
-      <h3>Links</h3>
-      <ul>
-        <li><a href="https://www.linkedin.com/in/andres-crucetta/">LinkedIn</a></li>
-        <li><a href="https://github.com/acrucetta">Github</a></li>
-        <li><a href="https://andrescn.me/blog.html">Blog</a></li>
-        <li><a href="https://andrescn.me/mente">Personal Wiki</a></li>
-      </ul>
-      <h3>Projects</h3>
-      <ul>
-        <li><a href="https://github.com/acrucetta/look">[look]</a> a Rust CLI search engine for your notes</li>
-        <li><a href="https://github.com/acrucetta/mente">[mente]</a> a static wiki engine built in Rust</li>
-        <li><a href=https://github.com/acrucetta/todoer>[todoer]</a> a Rust CLI tool to capture tasks from your terminal
-        </li>
-        <li><a href=https://github.com/acrucetta/thought-capturer>[hmm]</a> a Rust CLI tool to capture your thoughts
-          from the terminal</li>
-        <li><a href="https://github.com/acrucetta/anki-builder">[ankify]</a> a Go CLI tool to build anki cards with the
-          Open AI API</li>
-        </li>
-      </ul>
+    <h1 id="revealText">
+        Hey, I'm Andrés!
+    </h1>
+    <p>
+        I am currently a Software Engineer at <a href="https://www.waltzhealth.com/">Waltz Health</a>, where I work on a
+        data platform to help people save money with their prescriptions.
+    </p>
+    <p>
+        I'm interested in data platforms, machine learning, and statistics.
+    </p>
+    <p>
+        I love tinkering with productivity tooling and
+        have built a set of Rust CLI tools to manage my daily tasks, take notes, and record my thoughts from the command
+        line.
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1">
+            <h3>Previous work</h3>
+            <ul>
+                <li>I worked at Facebook's privacy and safety team; we led A/B tests to help improve the platform's
+                    safety in
+                    emerging regions (India, Vietnam)</li>
+                <li>I worked at Shelf Engine building machine learning models to forecast grocery volumes; the platform
+                    seeked
+                    to predict inventory to reduce waste</li>
+                <li>I started a company called <a href="https://www.ctrl.golf/">CTRL.golf</a> to help golfers improve
+                    their club
+                    swing with machine learning.</li>
+            </ul>
+            <h3>Links</h3>
+            <ul>
+                <li><a href="https://www.linkedin.com/in/andres-crucetta/">LinkedIn</a></li>
+                <li><a href="https://github.com/acrucetta">Github</a></li>
+                <li><a href="https://andrescn.me/blog.html">Blog</a></li>
+                <li><a href="https://andrescn.me/mente">Personal Wiki</a></li>
+            </ul>
+            <h3>Projects</h3>
+            <ul>
+                <li><a href="https://github.com/acrucetta/look">[look]</a> a Rust CLI search engine for your notes</li>
+                <li><a href="https://github.com/acrucetta/mente">[mente]</a> a static wiki engine built in Rust</li>
+                <li><a href=https://github.com/acrucetta/todoer>[todoer]</a> a Rust CLI tool to capture tasks from your
+                    terminal
+                </li>
+                <li><a href=https://github.com/acrucetta/thought-capturer>[hmm]</a> a Rust CLI tool to capture your
+                    thoughts
+                    from the terminal</li>
+                <li><a href="https://github.com/acrucetta/anki-builder">[ankify]</a> a Go CLI tool to build anki cards
+                    with the
+                    Open AI API</li>
+                </li>
+            </ul>
+            <h3>Writing</h3>
+            <ul>
+                {% assign sorted_posts = site.posts | sort: "date" %}
+                {% for post in sorted_posts reversed limit 5%}
+                <li>
+                    <!-- Format: YYYY-DD - Blog Title -->
+                    <a href="{{ post.url }}">{{ post.date | date: "%Y-%m" }} - {{ post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
 <script>
-  // Get the element with the text that we want to reveal
-  const revealTextElement = document.getElementById("revealText");
+    // Get the element with the text that we want to reveal
+    const revealTextElement = document.getElementById("revealText");
 
-  // Set the initial text to an empty string
-  revealTextElement.innerHTML = "";
+    // Set the initial text to an empty string
+    revealTextElement.innerHTML = "";
 
-  // Set the caret to be invisible initially
-  revealTextElement.style.borderRight = "none";
+    // Set the caret to be invisible initially
+    revealTextElement.style.borderRight = "none";
 
-  // Set the text that we want to reveal
-  const text = "Hey, I'm Andrés!";
+    // Set the text that we want to reveal
+    const text = "Hey, I'm Andrés!";
 
-  // Set the initial index to 0
-  let index = 0;
+    // Set the initial index to 0
+    let index = 0;
 
-  // Set the interval for the typewriter effect
-  const interval = setInterval(() => {
-    // Add the next character to the revealed text
-    revealTextElement.innerHTML += text[index];
-    // Increment the index
-    index++;
-    // If we have reached the end of the text, clear the interval
-    if (index >= text.length) {
-      clearInterval(interval);
-    }
-  }, 150);
+    // Set the interval for the typewriter effect
+    const interval = setInterval(() => {
+        // Add the next character to the revealed text
+        revealTextElement.innerHTML += text[index];
+        // Increment the index
+        index++;
+        // If we have reached the end of the text, clear the interval
+        if (index >= text.length) {
+            clearInterval(interval);
+        }
+    }, 150);
 
 </script>
