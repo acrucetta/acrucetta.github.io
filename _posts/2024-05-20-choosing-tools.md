@@ -36,6 +36,6 @@ This taught me a crucial lesson: sometimes, it's better to refactor and optimize
 
 Over the past two years, I've realized that if you're building a startup, you can't spend too much time debating what tools to use or constantly refactoring your codebase. It's almost always better to focus on shipping new features and taking advantage of newer projects to introduce new tools. 
 
-Most clients don't care if you're running on the "modern data stack." They are the product works. Even though it's easy to fall in love with tools as developers, tools by themselves are not a panacea.
+Most clients don't care if you're running on the "modern data stack." They care the product works. Even though it's easy to fall in love with tools as developers, tools by themselves are not a panacea.
 
 This is a harsh lesson to learn, but it gives you the freedom to spend the time solving the problems that matter. Tools are essential, but the real value lies in solving problems for the people paying you.
