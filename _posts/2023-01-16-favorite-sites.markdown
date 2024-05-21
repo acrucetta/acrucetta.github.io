@@ -8,6 +8,9 @@ category: "reference"
 
 ## Websites
 
+### Newsletters
+- [https://nabeelqu.substack.com/](https://nabeelqu.substack.com/)
+
 ### Design inspiration
 
 - [https://beta.vero.site/](https://beta.vero.site/)
@@ -23,8 +26,9 @@ category: "reference"
 ### People I admire
 
 - [https://kanjun.me/](https://kanjun.me/): AI founder
+- [https://thundergolfer.com/blog/](https://thundergolfer.com/blog/) - Data and ML Platforms
 
-### Learning content
+### Learning
 
 **General Programming**
 - [https://www.yegor256.com/](https://www.yegor256.com/)
