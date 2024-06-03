@@ -85,9 +85,9 @@ A few years after, I joined a Series B start-up (30-50 people, $50M~ raised). It
 
 I think it can be exciting to join an early-stage start-up. But I would ensure you know what you're doing when you join. After spending a few years at early-stage companies I think getting mentorship is key if you're just getting into software engineering. 
 
-Looking back, I would recommend anyone new to join a start-up between 50-100 people with 2-3 experienced engineers above you. I would also ensure the engineering leadership is technically competent.You don't want to be in a engineering team with a CTO that hasn't coded in 20 years. 
+Looking back, I would recommend anyone new to join a start-up between 50-100 people with 2-3 experienced engineers above you. I would also ensure the engineering leadership is technically competent. You don't want to be in a engineering team with a CTO that hasn't coded in 20 years. 
 
-An added perk if the start-up is using tools that can make you marketable in future roles. If not, run in the other direction and ghost your recruiter.
+An added perk if the start-up is using tools that can make you marketable in future roles. 
 
 Assuming the company meets all your needs, I would keep trying to learn outside of your job to stay sharp. The industry changes and what you like might change. 
 
