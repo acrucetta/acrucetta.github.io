@@ -1,5 +1,5 @@
 ---
-title: "How to avoid getting your offer rescinded from a start-up"
+title: "Questions to ask before you join a start-up"
 layout: post
 date: 2024-06-03
 tag: 'startups'
