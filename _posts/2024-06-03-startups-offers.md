@@ -66,10 +66,10 @@ Questions are important but it's also hard to predict the future. And your inter
 
 Sometimes you have to do your own research, these sites can give you more information on the company.
 
-1. **Crunchbase**: great information on latest funding rounds and founders
+1. **Crunchbase**: great information on latest funding rounds and founders 
 2. **LinkedIn Company Statistics:** you can see turnover rates and people who left or joined the company recently
 3. **Industry News**: e.g., TechCrunch, VentureBeat, Business Insider, and Forbes
-4. **Start-up ranking sites:** https://www.joinprospect.com
+4. **Start-up ranking sites:** [this one](https://www.joinprospect.com) seems promising
 
 At each of these sources, your goal should be to get a feel of how much "heat" there is around the company. That can be a) increasing number of customers, b) recent fundraising rounds c), and c) highlights in industry blogs.
 
