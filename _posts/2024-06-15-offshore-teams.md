@@ -6,7 +6,7 @@ tag: 'startups'
 category: 'article'
 ---
 
-Startups offshore their tech teams to save money, ship fast a product, or save time recruiting. They can be great if you know how to use them. If you don't, you can maintain code you barely understand how it works. And paying massive fees for a contractor you can't get rid of.
+Startups offshore their tech teams to save money, rush a product, or save time recruiting. They can be great if you know how to use them. If you don't, you can end up maintaining code you barely understand and paying massive fees for a contractor you can't get rid of.
 
 I had an experience like this when I joined my startup as one of the first two technical hires. At that time, the company was a year old and got VC funding to launch a product to help people save money on prescription drugs.
 
