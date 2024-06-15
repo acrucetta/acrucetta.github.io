@@ -22,6 +22,7 @@ category: "reference"
 - [https://wiki.xxiivv.com/site/home.html](https://wiki.xxiivv.com/site/home.html)
 - [https://worrydream.com/#!/Bio](https://worrydream.com/#!/Bio)
 - [https://anto.pt/articles](https://anto.pt/articles)
+- [https://tinyawards.net/2023](https://tinyawards.net/2023)
 
 ### People I admire
 
