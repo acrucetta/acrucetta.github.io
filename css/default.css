@@ -455,3 +455,34 @@ label input {
 .debug-toggle-label {
   text-align: right;
 }
+
+/* CSS OVERRIDES FOR PURE MENU*/
+
+.pure-menu {
+    text-align: left;
+}
+
+.pure-menu-heading {
+    padding: 0.5em 1em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.pure-menu-link {
+    font-size: 18px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Remove any default margins */
+.pure-menu-heading,
+.pure-menu-link {
+    margin: 0;
+}
+
+/* Add a small right margin to create space between buttons */
+.pure-menu-heading:not(:last-child) {
+    margin-right: 0.5em;
+}
