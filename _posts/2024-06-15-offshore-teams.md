@@ -1,5 +1,5 @@
 ---
-title: "The Real Cost of Offshore Tech Teams"
+title: "Pros and cons of offshore teams"
 layout: post
 date: 2024-06-15
 tag: 'startups'
