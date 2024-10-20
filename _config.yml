@@ -6,3 +6,6 @@ picture: https://raw.githubusercontent.com/acrucetta/acrucetta.github.io/gh-page
 
 url: https://acrucetta.github.io
 
+collections:
+  notes:
+    output: true
