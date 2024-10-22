@@ -6,29 +6,6 @@ tag: 'coding'
 category: 'article'
 ---
 
-# Tweet (140 chars)
-
-Learn to accept the tools you're dealt. Use them better if you can't change them. Clients pay you for the product, they don't care how you got there.
-
-# 150 Word Version
-
-When I joined my current start-up, the tech architecture was a mess. Lots of code with no version control or documentation. I wanted to change things but it was hard and frustrating. 
-
-I realized you can't always change tools mid-project. You need to make do.
-
-Many reasons lead to complex architectures. Clients change what they need, your data changes, or you found better ways of doing things.
-
-We end up picking tools with what we know at the time. But sometimes that comes short.
-
-If you want to improve your architecture or your code. You need to look for good opportunities to do so. A good opportunity is beginning new projects. 
-
-If you can't change it, it's helpful to accept things as they are and use the tools better.
-
-At the end of the day, clients pay you for the product, not for the tools you use.
-
-
-# Full Version
-
 It can be hard to make decisions at a startup. Things change, and the tools you choose today may not work tomorrow. 
 
 When I first joined my startup, I was thrown into a messy codebase written by offshore contractors. We were using 50+ Postgres stored procedures without version control. We had over 200 Azure Data Factory pipelines but only used about a dozen. It was a nightmare.
