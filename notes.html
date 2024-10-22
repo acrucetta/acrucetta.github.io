@@ -8,7 +8,7 @@ title: Blog
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
 </head>
 <h2>Latest</h2>
-{% for post in site.posts limit: 1 %}
+{% for post in site.notes limit: 1 %}
 <div class="post">
     <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
     <p>{{ post.excerpt }}...<a href="{{ post.url }}">Keep reading</a></p>
