@@ -8,15 +8,15 @@ category: 'article'
 
 There's no mythical person that knows everything you don't. 
 
-Impostor syndrome can happen when we think we don't belong to a certain profession. We say everyone around us is smarter, faster, more connected. This prevent us from moving ahead, we paralyze and decide not to do anything because it's not worth it. 
+Impostor syndrome can happen when we think we we're not good enough to do a job. We think everyone around us is smarter, faster, more connected. This prevent us from moving ahead, we paralyze and decide not to do anything because it's not worth it. 
 
-It can happen when we're first learning something, we research things to learn and we can become overwhelmed by the sheer amount of content on a subject. Try to learn about Deep Learning? There's over 50 good books you "must" read. Try to learn how to program? Too late, you're too old, or too slow, or there's thousands of other people that are already doing it, why try.
+It can happen when you first try to learn something, you research what to learn and become overwhelmed by the sheer amount of things to know. Try to learn about Deep Learning? There's over 15 good books you "must" read. Try to learn how to program? Too late, you're too old, or too slow, or there's thousands of other people that are already doing it, why try.
 
-The key to push through is to embrace "imperfectionism" and to cultivate joy and interest in what you do. 
+I've found the key to push through is to embrace "imperfectionism" and to cultivate joy and interest in what you do. 
 
-Imperfectionism means that your life is finite, you won't be able to do everything you want. You won't read all the books or know everything about a subject. But that means you can learn something, maybe a book or two that you find interesting.
+Imperfectionism means that your life is finite, you won't be able to do everything you want. You won't read all the books or know everything about a subject. Ironically, that same thought means you can learn *something*, maybe a book or two that you find interesting. You won't learn everything but you can start somewhere.
 
-Cultivating joy and interest means pulling a thread of some topic you're curious about. Then taking a step towards it. Once you're a few steps in, you learn more about the subject. Maybe you want to learn how to program, you build a small Tic Toe app, then you explore how to use CSS and HTML. Slowly you build confidence in a small domain. That confidence can trickle down to other areas.
+Cultivating joy and interest means pulling a thread of some topic you're curious about. Then taking a step towards it. Once you're a few steps in, you learn more about the subject. Maybe you want to learn how to program, you build a small Tetris app, then you explore how to use CSS and HTML. Slowly you build confidence in a narrow domain. That confidence can trickle down to other areas.
 
 I found helpful John Carmack's commencement speech on the value of believing you can learn anything you want.
 
