@@ -1,5 +1,5 @@
 ---
-title: "Notes on Learning"
+title: "Learning"
 layout: post
 date: 2024-10-20
 tag: 'learning'
