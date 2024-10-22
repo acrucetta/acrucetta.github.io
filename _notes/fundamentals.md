@@ -6,8 +6,6 @@ tag: 'learning'
 category: 'note'
 ---
 
-## Notes on Fundamentals
-
 ### Richard Hamming on Fundamentals
 
 > Hamming emphasizes focusing on foundational concepts rather than transient
