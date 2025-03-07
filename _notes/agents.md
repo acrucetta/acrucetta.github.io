@@ -11,6 +11,9 @@ category: 'note'
 - How does a company run by 100 agents look like? 
 - What does a full-stack AI company look like? 
 
+## Use cases
+- A PR prompts an agent to update your documentation
+
 ## Videos on building agents
 - [Tips for building AI agents by Anthropic](https://www.youtube.com/watch?v=LP5OCa20Zpg)
 
