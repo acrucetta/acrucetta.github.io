@@ -30,6 +30,11 @@ category: 'note'
 - [LLM Codegen Workflow by Harper Reed](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/?&aid=recfbroRs107rnqx4&_bhlid=3b4dab42393bddf31253b50fd1ed5fb64cfa41e3)
 - [Reasoning Best Practices by OpenAI](https://platform.openai.com/docs/guides/reasoning-best-practices)
 
+### Learning with LLMs
+
+- [How to use LLMs to help me write code](https://simonwillison.net/2025/Mar/11/using-llms-for-code/#set-reasonable-expectations)
+
 
 ### Philosophical LLM takes
+
 - [To avoid being replaced by LLMs, do what they can't](https://www.seangoedecke.com/what-llms-cant-do/?&aid=rec1rrrhyetwRNMPq&_bhlid=995bbca0203f450d5043001e5d0572336095f3eb)

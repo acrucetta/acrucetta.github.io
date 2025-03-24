@@ -9,5 +9,3 @@ category: 'note'
 ### Learning with LLMs
 
 - Disabling the autocomplete/copilot allows you to remember the syntax, which is faster than looking it up each time.
-
-
