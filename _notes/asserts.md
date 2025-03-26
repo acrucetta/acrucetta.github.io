@@ -1,5 +1,5 @@
 ---
-title: "coding practices"
+title: "Coding practices"
 layout: post
 date: 2025-03-26
 tag: 'practices'
@@ -52,7 +52,7 @@ category: 'note'
 - Appreciate, from day one, all compiler warnings at the compiler's strictest setting.
 
 **Communication**
-- **Always motivate, always say why**. Never forget to say why. Because if you explain the rationale for a decision, it not only increases the hearer's understanding, and makes them more likely to adhere or comply, but it also shares criteria with them with which to evaluate the decision and its importance.
+- Always motivate, always say why. Never forget to say why. Because if you explain the rationale for a decision, it not only increases the hearer's understanding, and makes them more likely to adhere or comply, but it also shares criteria with them with which to evaluate the decision and its importance.
 
 ### References 
-- [1] https://github.com/tigerbeetle/tigerbeetle/blob/main/docs/TIGER_STYLE.md
+- [1] [Tiger Style by Tiger Beetle](https://github.com/tigerbeetle/tigerbeetle/blob/main/docs/TIGER_STYLE.md)
