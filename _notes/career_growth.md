@@ -8,6 +8,7 @@ category: 'note'
 
 ### Advice from others
 - Casey Handmer: [Stuff you should have been taught in college but weren't](https://caseyhandmer.wordpress.com/2025/02/04/stuff-you-should-have-been-taught-in-college-but-werent/)
+- [Building a sense of what's important in your company](https://www.seangoedecke.com/what-is-important/)
 
 ### Square's notes on promotions
 - Square blog [link](https://developer.squareup.com/blog/squares-growth-framework-for-engineers-and-engineering-managers/)
