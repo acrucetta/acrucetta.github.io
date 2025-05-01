@@ -6,6 +6,10 @@ tag: 'practices'
 category: 'note'
 ---
 
+## Foundational papers
+
+- [The Era of Experience by Richard Sutton](https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/welcome-to-the-era-of-experien/The_Era_of_Experience_Paper.pdf)
+
 ## Scattered notes on LLMs
 
 ### Newsletters
@@ -14,7 +18,7 @@ category: 'note'
 ### Leaderboards
 - [Live Bench Performance Monitoring](https://livebench.ai/#/?Reasoning=a&Coding=a&Language=a)
 
-### Model notes
+### LLM vibes
 
 - Grok:
   - Quick and effective for fact-checking tweets.
