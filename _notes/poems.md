@@ -6,6 +6,30 @@ date: 2025-07-29
 tag: 'art'
 category: 'note'
 ---
+
+```
+         Wrinkly Lady Dancer by Alicia Ostriker
+
+
+Going to be an old wrinkly lady
+Going to be one of those frail rag people
+Going to have withered hands and be
+Puzzled to tears crossing the street
+
+Hobble cautiously onto buses
+Like a withery fruit
+And quite silently sitting in this lurching bus
+The avenues coming by
+
+Some other passengers gaze at me
+Clutching my cane and my newspaper
+Seemingly protectively, but I will really be
+      thinking about
+The afternoon I danced naked with you
+The afternoon I danced naked with you
+The afternoon! I danced! Naked with you!
+```
+
 ```
 The Layers
 ~~~
