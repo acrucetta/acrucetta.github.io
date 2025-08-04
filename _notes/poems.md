@@ -1,5 +1,5 @@
 ---
-title: "poems"
+title: "Poems"
 layout: post
 date: 2025-07-29
 tag: "art"
