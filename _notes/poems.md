@@ -1,10 +1,9 @@
-
 ---
 title: "poems"
 layout: post
 date: 2025-07-29
-tag: 'art'
-category: 'note'
+tag: "art"
+category: "note"
 ---
 
 ```
@@ -124,4 +123,3 @@ I am not done with my changes.
 - stanley kunitz
 
 ```
-
