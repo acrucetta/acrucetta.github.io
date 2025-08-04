@@ -6,6 +6,8 @@ tag: "art"
 category: "note"
 ---
 
+### Wrinkly Lady Dancer
+
 ```
          Wrinkly Lady Dancer by Alicia Ostriker
 
@@ -29,9 +31,10 @@ The afternoon I danced naked with you
 The afternoon! I danced! Naked with you!
 ```
 
+
+### The Layers
+
 ```
-The Layers
-~~~
 I have walked through many lives,
 
 some of them my own,
