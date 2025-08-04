@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bundle exec jekyll serve:*)",
+      "Bash(jekyll serve:*)",
+      "WebFetch(domain:acrucetta.github.io)",
+      "WebFetch(domain:www.andrescn.me)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": []
+  }
+}
