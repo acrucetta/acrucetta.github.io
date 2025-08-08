@@ -18,16 +18,8 @@ category: 'note'
 ### Leaderboards
 - [Live Bench Performance Monitoring](https://livebench.ai/#/?Reasoning=a&Coding=a&Language=a)
 
-### LLM vibes
-
-- Grok:
-  - Quick and effective for fact-checking tweets.
-- Claude Sonnet:
-  - Great for coding, good writer, thoughtful, philosophical and versatile
-- OpenAI (4o, 4.5)
-  - Deep research is great for personal research and long-form reports
-- Gemini
-  - Good for multimodal tasks and long documents
+### Agent guidelines
+- [Onboarding for Coding Agents](https://www.fuzzycomputer.com/posts/onboarding?&aid=recqrDNk2WPeiRuha&_bhlid=6ed666e8707736b6b1a0fdd0854b3d805dca441f)
 
 ### Prompt workflows
 
