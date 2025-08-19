@@ -6,6 +6,44 @@ tag: "art"
 category: "note"
 ---
 
+### If You Knew
+
+```
+If You Knew by Ellen Bass
+
+What if you knew you'd be the last
+to touch someone?
+If you were taking tickets, for example,
+at the theater, tearing them,
+giving back the ragged stubs,
+you might take care to touch that palm,
+brush your fingertips
+along the life line's crease.
+
+When a man pulls his wheeled suitcase
+too slowly through the airport, when
+the car in front of me doesn't signal,
+when the clerk at the pharmacy
+won't say Thank you, I don't remember
+they're going to die.
+
+A friend told me she'd been with her aunt.
+They'd just had lunch and the waiter,
+a young gay man with plum black eyes,
+joked as he served the coffee, kissed
+her aunt's powdered cheek when they left.
+Then they walked half a block and her aunt
+dropped dead on the sidewalk.
+
+How close does the dragon's spume
+have to come? How wide does the crack
+in heaven have to split?
+What would people look like
+if we could see them as they are,
+soaked in honey, stung and swollen,
+reckless, pinned against time?  
+```
+
 ### Wrinkly Lady Dancer
 
 ```
