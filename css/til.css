@@ -160,6 +160,7 @@
   border-radius: 999px;
   border: 1px solid var(--til-card-border);
   font-size: 0.75rem;
+  line-height: 1;
   text-transform: lowercase;
   letter-spacing: 0.02em;
   background: transparent;
