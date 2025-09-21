@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<article class="til-entry">
+    <header class="til-entry__header">
+        <p class="til-entry__date">{{ page.date | date: "%B %-d, %Y" }}</p>
+        <h1 class="til-entry__title">{{ page.title }}</h1>
+    </header>
+    <div class="til-entry__body">
+        {{ content }}
+    </div>
+    {% if page.tags %}
+    <footer class="til-entry__footer">
+        {% for tag in page.tags %}
+        <span class="til-chip">#{{ tag }}</span>
+        {% endfor %}
+    </footer>
+    {% endif %}
+</article>
