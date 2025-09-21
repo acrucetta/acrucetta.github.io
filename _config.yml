@@ -9,3 +9,13 @@ url: https://acrucetta.github.io
 collections:
   notes:
     output: true
+  til:
+    output: true
+    permalink: /til/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: til
+    values:
+      layout: til-entry

@@ -1,0 +1,230 @@
+:root {
+  --til-card-bg: var(--background-color-alt);
+  --til-card-border: rgba(0, 0, 0, 0.08);
+  --til-muted: var(--text-color-alt);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --til-card-border: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.til-intro {
+  margin-bottom: calc(var(--line-height) * 2);
+}
+
+.til-intro h1 {
+  margin-bottom: var(--line-height);
+  font-size: 1.75rem;
+}
+
+.til-intro p {
+  color: var(--til-muted);
+  max-width: 60ch;
+}
+
+.til-empty {
+  color: var(--til-muted);
+  font-style: italic;
+}
+
+.til-timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.til-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 1rem;
+  width: 2px;
+  background: var(--til-card-border);
+}
+
+.til-year {
+  position: relative;
+  margin-bottom: calc(var(--line-height) * 3);
+}
+
+.til-year__label {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.25rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: var(--til-muted);
+}
+
+.til-year__entries {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--line-height) * 1.25);
+}
+
+.til-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5ch;
+  padding: calc(var(--line-height) * 1.25);
+  background: var(--til-card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--til-card-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+}
+
+.til-card::before {
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  left: -1.9rem;
+  width: 12px;
+  height: 12px;
+  background: var(--background-color);
+  border: 3px solid var(--text-color);
+  border-radius: 999px;
+}
+
+.til-card__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--til-muted);
+  min-width: 3.5rem;
+}
+
+.til-card__month {
+  font-weight: var(--font-weight-medium);
+}
+
+.til-card__day {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+.til-card__title {
+  margin: 0 0 calc(var(--line-height) / 2);
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.til-card__title a {
+  text-decoration: none;
+}
+
+.til-card__content > :first-child {
+  margin-top: 0;
+}
+
+.til-card__content p {
+  margin: calc(var(--line-height) / 2) 0;
+}
+
+.til-card__content ul,
+.til-card__content ol {
+  margin: calc(var(--line-height) / 2) 0 calc(var(--line-height) / 2) 1.5rem;
+}
+
+.til-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--line-height);
+}
+
+.til-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--til-card-border);
+  font-size: 0.75rem;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  background: transparent;
+}
+
+.til-entry {
+  margin-top: calc(var(--line-height) * 2);
+}
+
+.til-entry__header {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--line-height) / 2);
+  margin-bottom: var(--line-height);
+}
+
+.til-entry__date {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--til-muted);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.til-entry__title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.til-entry__body > :first-child {
+  margin-top: 0;
+}
+
+.til-entry__footer {
+  margin-top: calc(var(--line-height) * 2);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .til-timeline {
+    padding-left: 1.5rem;
+  }
+
+  .til-timeline::before {
+    left: 0.5rem;
+  }
+
+  .til-year__label {
+    position: static;
+    writing-mode: initial;
+    transform: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    margin-bottom: var(--line-height);
+  }
+
+  .til-card {
+    grid-template-columns: 1fr;
+    padding-left: calc(var(--line-height) * 1.25);
+  }
+
+  .til-card::before {
+    left: -1.2rem;
+  }
+
+  .til-card__date {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .til-card__day {
+    font-size: 1.2rem;
+  }
+}
