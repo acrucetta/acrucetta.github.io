@@ -153,7 +153,8 @@
 }
 
 .til-chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 0.1rem 0.6rem;
   border-radius: 999px;
   border: 1px solid var(--til-card-border);
@@ -223,7 +224,7 @@
   }
 
   .til-card::before {
-    left: -1.5rem;
+    left: -1rem;
   }
 
   .til-card__date {
