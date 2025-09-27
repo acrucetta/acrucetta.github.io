@@ -1,5 +1,5 @@
 ---
-title: "practice"
+title: "Practice"
 layout: post
 date: 2025-03-06
 tag: "practices"
