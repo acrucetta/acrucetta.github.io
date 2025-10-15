@@ -1,240 +1,122 @@
 :root {
-  --til-card-bg: var(--background-color-alt);
-  --til-card-border: rgba(0, 0, 0, 0.08);
-  --til-muted: var(--text-color-alt);
+  --til-card-border: rgba(0, 0, 0, 0.1);
+  --til-date-color: #666;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --til-card-border: rgba(255, 255, 255, 0.12);
+    --til-card-border: rgba(255, 255, 255, 0.15);
+    --til-date-color: #999;
   }
 }
 
 .til-intro {
-  margin-bottom: calc(var(--line-height) * 2);
+  margin-bottom: 2rem;
 }
 
 .til-intro h1 {
-  margin-bottom: var(--line-height);
-  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
 }
 
 .til-intro p {
-  color: var(--til-muted);
-  max-width: 60ch;
+  color: var(--til-date-color);
+  font-size: 1rem;
 }
 
 .til-empty {
-  color: var(--til-muted);
+  color: var(--til-date-color);
   font-style: italic;
 }
 
-.til-timeline {
-  position: relative;
-  padding-left: 2.5rem;
-}
-
-.til-timeline::before {
-  content: "";
-  position: absolute;
-  top: 0.25rem;
-  bottom: 0.25rem;
-  left: 1rem;
-  width: 2px;
-  background: var(--til-card-border);
-}
-
-.til-year {
-  position: relative;
-  margin-bottom: calc(var(--line-height) * 3);
-}
-
-.til-year__label {
-  position: absolute;
-  left: -3.2rem;
-  top: 0.25rem;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: 0.15em;
-  font-size: 0.75rem;
-  color: var(--til-muted);
-}
-
-.til-year__entries {
+.til-list {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--line-height) * 1.25);
+  gap: 2rem;
+  max-width: 800px;
 }
 
-.til-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1.5ch;
-  padding: calc(var(--line-height) * 1.25);
-  background: var(--til-card-bg);
-  border-radius: 16px;
-  border: 1px solid var(--til-card-border);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
-  align-items: flex-start;
-}
-
-.til-card::before {
-  content: "";
-  position: absolute;
-  top: 1.25rem;
-  left: -1.9rem;
-  width: 12px;
-  height: 12px;
+.til-item {
+  padding: 1.5rem;
   background: var(--background-color);
-  border: 3px solid var(--text-color);
-  border-radius: 999px;
+  border: 1px solid var(--til-card-border);
+  border-radius: 8px;
 }
 
-.til-card__date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--til-muted);
-  min-width: 3.5rem;
+.til-item__date {
+  display: block;
+  color: var(--til-date-color);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
 }
 
-.til-card__body {
-  min-width: 0;
+.til-item__title {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.til-card__month {
-  font-weight: var(--font-weight-medium);
-}
-
-.til-card__day {
-  font-size: 1.4rem;
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-}
-
-.til-card__title {
-  margin: 0 0 calc(var(--line-height) / 2);
-  font-size: 1.1rem;
-  line-height: 1.4;
-}
-
-.til-card__title a {
+.til-item__title a {
+  color: var(--text-color);
   text-decoration: none;
 }
 
-.til-card__content > :first-child {
+.til-item__title a:hover {
+  text-decoration: underline;
+}
+
+.til-item__content {
+  line-height: 1.6;
+}
+
+.til-item__content > :first-child {
   margin-top: 0;
 }
 
-.til-card__content p {
-  margin: calc(var(--line-height) / 2) 0;
+.til-item__content > :last-child {
+  margin-bottom: 0;
 }
 
-.til-card__content {
-  word-break: break-word;
+.til-item__content p {
+  margin: 0.75rem 0;
 }
 
-.til-card__content ul,
-.til-card__content ol {
-  margin: calc(var(--line-height) / 2) 0 calc(var(--line-height) / 2) 1.5rem;
+.til-item__content pre {
+  background: rgba(0, 0, 0, 0.03);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.9rem;
 }
 
-.til-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-  align-items: center;
+@media (prefers-color-scheme: dark) {
+  .til-item__content pre {
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
-.til-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.1rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid var(--til-card-border);
-  font-size: 0.75rem;
-  line-height: 1;
-  text-transform: lowercase;
-  letter-spacing: 0.02em;
-  background: transparent;
+.til-item__content code {
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .til-entry {
-  margin-top: calc(var(--line-height) * 2);
+  max-width: 800px;
+  margin: 2rem auto;
 }
 
 .til-entry__header {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--line-height) / 2);
-  margin-bottom: var(--line-height);
+  margin-bottom: 2rem;
 }
 
 .til-entry__date {
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--til-muted);
-  font-size: 0.8rem;
-  margin: 0;
+  color: var(--til-date-color);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
 }
 
 .til-entry__title {
   margin: 0;
   font-size: 2rem;
-}
-
-.til-entry__body > :first-child {
-  margin-top: 0;
-}
-
-.til-entry__footer {
-  margin-top: calc(var(--line-height) * 2);
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-  .til-timeline {
-    padding-left: 1.5rem;
-  }
-
-  .til-timeline::before {
-    left: 0.5rem;
-  }
-
-  .til-year__label {
-    position: static;
-    writing-mode: initial;
-    transform: none;
-    font-size: 0.85rem;
-    letter-spacing: 0.3em;
-    margin-bottom: var(--line-height);
-  }
-
-  .til-card {
-    grid-template-columns: 1fr;
-    padding-left: calc(var(--line-height) * 1.25);
-  }
-
-  .til-card::before {
-    left: -1rem;
-  }
-
-  .til-card__date {
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .til-card__day {
-    font-size: 1.2rem;
-  }
+  font-weight: 700;
 }

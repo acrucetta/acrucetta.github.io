@@ -5,51 +5,25 @@ title: Today I Learned
 <section class="til-intro">
     <h1>Today I Learned</h1>
     <p>
-        Short notes on things I'm learning. Entries are organized by year with the newest first.
+        Short notes on things I'm learning.
     </p>
 </section>
 
 {% assign entries = site.til | sort: 'date' | reverse %}
 {% if entries.size == 0 %}
-<p class="til-empty">No TIL entries yet. Add markdown files under <code>_til/</code> with a date, title, and a short note.</p>
+<p class="til-empty">No TIL entries yet.</p>
 {% else %}
-<section class="til-timeline">
-    {% assign current_year = '' %}
+<section class="til-list">
     {% for entry in entries %}
-        {% assign entry_year = entry.date | date: '%Y' %}
-        {% if entry_year != current_year %}
-            {% if current_year != '' %}
-                    </div>
-                </div>
-            {% endif %}
-            <div class="til-year" id="til-{{ entry_year }}">
-                <h2 class="til-year__label">{{ entry_year }}</h2>
-                <div class="til-year__entries">
-        {% endif %}
-        <article class="til-card">
-            <div class="til-card__date">
-                <span class="til-card__month">{{ entry.date | date: '%b' }}</span>
-                <span class="til-card__day">{{ entry.date | date: '%-d' }}</span>
-            </div>
-            <div class="til-card__body">
-                <h3 class="til-card__title">
-                    <a href="{{ entry.url }}">{{ entry.title }}</a>
-                </h3>
-                <div class="til-card__content">
-                    {{ entry.content }}
-                </div>
-                {% if entry.tags %}
-                <div class="til-card__tags">
-                    {% for tag in entry.tags %}
-                    <span class="til-chip">#{{ tag }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
+        <article class="til-item">
+            <time class="til-item__date">{{ entry.date | date: '%B %-d, %Y' }}</time>
+            <h3 class="til-item__title">
+                <a href="{{ entry.url }}">{{ entry.title }}</a>
+            </h3>
+            <div class="til-item__content">
+                {{ entry.content }}
             </div>
         </article>
-        {% assign current_year = entry_year %}
     {% endfor %}
-            </div>
-        </div>
 </section>
 {% endif %}
