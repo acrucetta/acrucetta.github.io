@@ -6,6 +6,54 @@ tag: "art"
 category: "note"
 ---
 
+### The bell and the blackbird by David Whyte
+
+```
+The sound of a bell
+Still reverberating,
+or a blackbird calling
+from a corner of the field,
+asking you to wake
+into this life,
+or inviting you deeper
+into the one that waits.
+
+Either way
+takes courage,
+either way wants you
+to be nothing
+but that self that
+is no self at all,
+wants you to walk
+to the place
+where you find
+you already know
+how to give
+every last thing
+away.
+
+The approach
+that is also
+the meeting
+itself,
+without any
+meeting
+at all.
+
+That radiance
+you have always
+carried with you
+as you walk
+both alone
+and completely
+accompanied
+in friendship
+by every corner
+of the world
+crying
+Allelujah.
+```
+
 ### If You Knew
 
 ```
