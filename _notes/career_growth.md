@@ -7,6 +7,7 @@ category: 'note'
 ---
 
 ### Advice from others
+- [Advice for college and beyond](https://www.avitalbalwit.com/post/the-advice-i-would-give-on-a-mentorship-call)
 - [Stuff you should have been taught in college but weren't](https://caseyhandmer.wordpress.com/2025/02/04/stuff-you-should-have-been-taught-in-college-but-werent/)
 - [Building a sense of what's important in your company](https://www.seangoedecke.com/what-is-important/)
 - [Committing to technical decisions](https://www.seangoedecke.com/taking-a-position/)
