@@ -14,6 +14,7 @@ category: 'note'
 - [Burn your title](https://notes.eatonphil.com/2025-04-22-burn-your-title.html?&aid=rec909H5AvDEOVLzs&_bhlid=d080d427d4d7fb72b0ee4c58351456c3d73bb265)
   - Your job title is the minimum expectation. Your ability to affect change is unbounded.
 - [Impact and taste](https://www.benkuhn.net/impact/)
+- [Being exceptional at anything](https://abdulhamidhassan.com/post/802459222214410240/how-to-be-exceptional-at-anything)
 
 ### Square's notes on promotions
 - Square blog [link](https://developer.squareup.com/blog/squares-growth-framework-for-engineers-and-engineering-managers/)
