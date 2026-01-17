@@ -17,6 +17,10 @@ category: 'note'
 ## Blogs 
 - [12 Factors to Build AI Agents](https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-1-natural-language-to-tool-calls.md)
 
+## Multi-Agents
+- [https://cursor.com/blog/agent-best-practices](https://cursor.com/blog/agent-best-practices)
+- [https://cursor.com/blog/scaling-agents](https://cursor.com/blog/scaling-agents)
+
 ## Videos
 - [Tips for building AI agents by Anthropic](https://www.youtube.com/watch?v=LP5OCa20Zpg)
 
