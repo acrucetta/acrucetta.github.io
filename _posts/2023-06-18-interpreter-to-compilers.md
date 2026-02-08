@@ -2,7 +2,7 @@
 title: "My journey from interpreted to compiled languages"
 layout: post
 date: 2023-06-18
-tag: "compilers"
+tags: ['compilers']
 category: "blog"
 ---
 

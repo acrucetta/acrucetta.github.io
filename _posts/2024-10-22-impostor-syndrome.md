@@ -2,7 +2,7 @@
 title: "The fallacy of impostor syndrome"
 layout: post
 date: 2024-10-22
-tag: 'life'
+tags: ['life']
 category: 'article'
 ---
 

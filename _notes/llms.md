@@ -2,7 +2,7 @@
 title: "LLMs"
 layout: post
 date: 2025-03-06
-tag: 'practices'
+tags: ['practices']
 category: 'note'
 ---
 

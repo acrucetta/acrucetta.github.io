@@ -2,7 +2,7 @@
 title: "Career growth"
 layout: post
 date: 2024-10-20
-tag: 'learning'
+tags: ['learning']
 category: 'note'
 ---
 

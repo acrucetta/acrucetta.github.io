@@ -12,6 +12,9 @@ title: Today I Learned
         Short notes on things I am learning.
         Inspired by <a href="https://til.simonwillison.net/">Simon Willison's TILs</a>.
     </p>
+    <noscript>
+        <p class="til-page__intro">JavaScript is off, so topic links below open dedicated topic pages.</p>
+    </noscript>
 
     {% assign topic_count = 0 %}
     {% for tag in topics %}
@@ -43,14 +46,21 @@ title: Today I Learned
             <ul class="til-topic-list">
                 {% for tag in topics %}
                     {% if tag != '' %}
+                        {% assign tag_slug = tag | slugify %}
+                        {% assign topic_doc = site.til_topics | where_exp: "topic_doc", "topic_doc.slug == tag_slug" | first %}
+                        {% if topic_doc %}
+                            {% assign topic_href = topic_doc.url | relative_url %}
+                        {% else %}
+                            {% capture topic_href %}#tag-{{ tag_slug }}{% endcapture %}
+                        {% endif %}
                         {% assign count = 0 %}
                         {% for entry in entries %}
                             {% if entry.tags contains tag %}
                                 {% assign count = count | plus: 1 %}
                             {% endif %}
                         {% endfor %}
-                        <li data-topic-slug="{{ tag | slugify }}">
-                            <a data-topic-filter="{{ tag | slugify }}" href="#tag-{{ tag | slugify }}">{{ tag }}</a>
+                        <li data-topic-slug="{{ tag_slug }}">
+                            <a data-topic-filter="{{ tag_slug }}" href="{{ topic_href }}">{{ tag }}</a>
                             <span class="til-topic-list__count">{{ count }}</span>
                         </li>
                     {% endif %}
@@ -77,8 +87,15 @@ title: Today I Learned
                             </time>
                             {% if entry.tags and entry.tags.size > 0 %}
                                 {% for tag in entry.tags %}
+                                    {% assign tag_slug = tag | slugify %}
+                                    {% assign topic_doc = site.til_topics | where_exp: "topic_doc", "topic_doc.slug == tag_slug" | first %}
+                                    {% if topic_doc %}
+                                        {% assign topic_href = topic_doc.url | relative_url %}
+                                    {% else %}
+                                        {% capture topic_href %}#tag-{{ tag_slug }}{% endcapture %}
+                                    {% endif %}
                                     <span class="til-listing__topic">
-                                        <a data-topic-filter="{{ tag | slugify }}" href="#tag-{{ tag | slugify }}">{{ tag }}</a>
+                                        <a data-topic-filter="{{ tag_slug }}" href="{{ topic_href }}">{{ tag }}</a>
                                     </span>
                                 {% endfor %}
                             {% endif %}
@@ -213,6 +230,9 @@ title: Today I Learned
 
         topicLinks.forEach((link) => {
             link.addEventListener("click", (event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+                    return;
+                }
                 const topic = event.currentTarget.dataset.topicFilter;
                 if (!topic) {
                     return;

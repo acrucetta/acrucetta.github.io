@@ -11,8 +11,15 @@ layout: default
             <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%Y-%m-%d" }}</time>
             {% if page.tags and page.tags.size > 0 %}
                 {% for tag in page.tags %}
+                    {% assign tag_slug = tag | slugify %}
+                    {% assign topic_doc = site.til_topics | where_exp: "topic_doc", "topic_doc.slug == tag_slug" | first %}
+                    {% if topic_doc %}
+                        {% assign topic_href = topic_doc.url | relative_url %}
+                    {% else %}
+                        {% capture topic_href %}{{ '/til.html' | relative_url }}#tag-{{ tag_slug }}{% endcapture %}
+                    {% endif %}
                     <span class="til-entry__topic">
-                        <a href="{{ '/til.html' | relative_url }}#tag-{{ tag | slugify }}">{{ tag }}</a>
+                        <a href="{{ topic_href }}">{{ tag }}</a>
                     </span>
                 {% endfor %}
             {% endif %}

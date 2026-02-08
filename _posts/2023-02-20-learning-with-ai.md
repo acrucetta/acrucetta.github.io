@@ -2,7 +2,7 @@
 title: "Why I find it hard to learn with AI"
 layout: post
 date: 2024-02-20
-tag: 'coding'
+tags: ['coding']
 category: 'article'
 ---
 

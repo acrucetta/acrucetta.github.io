@@ -2,7 +2,7 @@
 title: "6 lessons from the last 12 months as a software engineer"
 layout: post
 date: 2023-07-15
-tag: 'reflections'
+tags: ['reflections']
 category: 'article'
 ---
 

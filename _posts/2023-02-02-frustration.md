@@ -2,7 +2,7 @@
 title: "Programming and frustration"
 layout: post
 date: 2024-02-02
-tag: 'life'
+tags: ['life']
 category: 'article'
 ---
 

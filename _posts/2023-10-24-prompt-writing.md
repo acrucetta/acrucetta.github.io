@@ -2,7 +2,7 @@
 title: "How to write effective Anki cards"
 layout: post
 date: 2023-10-24
-tag: 'anki'
+tags: ['anki']
 category: 'article'
 ---
 

@@ -2,7 +2,7 @@
 title: "How I find motivation"
 layout: post
 date: 2023-09-08
-tag: "musings"
+tags: ['musings']
 category: "article"
 ---
 
