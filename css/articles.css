@@ -1,63 +1,79 @@
-/* -- BASICS -- */
-html {
-  font-size: 100%; /* Base font size */
+.listing-page h1 {
+  margin-bottom: 0.55rem;
 }
 
-/* -- BUTTON STYLES -- */
-.btn-group .btn {
-  font-size: 16px;
-  font-weight: 400;
-  border: none;
-  background-color: transparent;
-  color: #333;
-  transition: color 0.3s ease; /* Smooth color transition */
+.listing-page__intro {
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
 }
 
-.btn-group .btn:hover {
-  color: #555;
+.listing-page__section {
+  margin-top: 2rem;
 }
 
-.btn-group .btn.active {
-  font-weight: 700;
-  color: #333;
+.feature-entry {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 1rem 1.05rem;
 }
 
-/* -- LIST STYLES -- */
-.posts li {
-  list-style: square;
-  margin: 0.5em 0; /* Adjusted margin */
-  line-height: 130%;
+.feature-entry__title {
+  margin: 0 0 0.35rem;
+  line-height: 1.25;
 }
 
-.year {
-  margin-top: 1em;
-  font-size: 1.5em;
-  color: #333;
+.feature-entry__meta {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-muted);
 }
 
-.posts li a {
-  font-size: 15px;
-  font-weight: 400;
-  text-decoration: none;
-  color: #333;
-  display: block;
+.feature-entry__excerpt {
+  margin-bottom: 0;
 }
 
-/* -- RESPONSIVE STYLES -- */
-@media (max-width: 768px) {
-  .btn-group .btn {
-    font-size: 14px;
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry-list__item {
+  margin: 0;
+  border-top: 1px dotted var(--color-border);
+  padding: 0.58rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.entry-list__item:first-child {
+  border-top: 0;
+}
+
+.entry-list__title {
+  margin: 0;
+  line-height: 1.38;
+}
+
+.entry-list__date {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .feature-entry {
+    padding: 0.9rem 0.85rem;
   }
 
-  .posts li a {
-    font-size: 14px;
-  }
-
-  .posts li .date {
-    font-size: 12px;
-  }
-
-  .year {
-    font-size: 1.2em;
+  .entry-list__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.22rem;
   }
 }

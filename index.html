@@ -2,102 +2,79 @@
 layout: default
 title: About
 ---
+<section class="blurb">
+    <h1 id="revealText">Hey, I'm Andrés!</h1>
+    <p>
+        I am a software engineer at CoreWeave's cloud platform team, where I help people get access to GPUs to train
+        LLMs and run computer graphics.
+    </p>
+    <p>I am interested in data platforms, machine learning, and operating systems.</p>
+    <p>
+        I love tinkering with productivity tooling and have built a set of Rust CLI tools to manage my daily tasks,
+        take notes, and record thoughts from the command line.
+    </p>
 
-<head>
-    <!-- Import jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<div class="blurb">
-    <h1 id="revealText">
-        Hey, I'm Andrés!
-    </h1>
-    <p>
-        I am a Software Engineer at CoreWeave's cloud platform team, where I help people get access to GPUs to train LLMs and run computer graphics.
-    </p>
-    <p>
-        I'm interested in data platforms, machine learning, and operating systems.
-    </p>
-    <p>
-        I love tinkering with productivity tooling and
-        have built a set of Rust CLI tools to manage my daily tasks, take notes, and record my thoughts from the command
-        line. A few of them now use LLM (e.g., ai-commits, pr-reviewer, code-smells)
-    </p>
-    <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1">
-            <h3>Previous work</h3>
-            <ul>
-                <li>I was the second engineer at Waltz Health, a Series A health-tech start-up working to make prescription medicines cheaper</li>
-                <li>I worked at Facebook's product growth team; we led A/B tests to help improve the platform</li>
-                <li>I worked at Shelf Engine building machine learning models to forecast grocery volumes; the platform
-                    seeked
-                    to predict inventory to reduce waste</li>
-                <li>I started a company called <a href="https://www.ctrl.golf/">CTRL.golf</a> to help golfers improve
-                    their club
-                    swing with machine learning.</li>
-            </ul>
-            <h3>Links</h3>
-            <ul>
-                <li><a href="https://www.linkedin.com/in/andres-crucetta/">LinkedIn</a></li>
-                <li><a href="https://github.com/acrucetta">Github</a></li>
-                <li><a href="https://andrescn.me/blog.html">Blog</a></li>
-            </ul>
-            <h3>Tools I've built</h3>
-            <ul>
-                <li><a href="https://github.com/acrucetta/ai-commit">[ai-commit]</a> an LLM commit helper using conventional commits</li>
-                <li><a href="https://github.com/acrucetta/pr-reviewer">[pr-reviewer]</a> an LLM tool that creates draft PRs for you</li>
-                <li><a href="https://github.com/acrucetta/code-smells">[code-smells]</a> an LLM tool that reviews your commits using guidelines from the book, the Philosophy of Software Design</li>
-                <li><a href="https://github.com/acrucetta/mente">[mente]</a> a static wiki engine built in Rust</li>
-                <li><a href=https://github.com/acrucetta/todoer>[todoer]</a> a Rust CLI tool to capture tasks from your
-                <li><a href=https://github.com/acrucetta/thought-capturer>[hmm]</a> a Rust CLI tool to capture your
-                    thoughts
-                    from the terminal</li>
-                <li><a href="https://github.com/acrucetta/anki-builder">[ankify]</a> a Go CLI tool to build anki cards
-                    with the
-                    Open AI API</li>
-                </li>
-                <li><a href="https://github.com/acrucetta/look">[look]</a> a Rust CLI search engine for your notes</li>
-                    terminal
-                </li>
-            </ul>
-            <h3>Latest Writing</h3>
-            <ul>
-                <!-- Show the most recent 5 posts by date -->
-                {% for post in site.posts limit:5 %}
+    <section aria-labelledby="previous-work-heading">
+        <h2 id="previous-work-heading">Previous Work</h2>
+        <ul>
+            <li>I was the second engineer at Waltz Health, a Series A health-tech startup focused on making medicines cheaper.</li>
+            <li>I worked on Facebook's product growth team, where we ran A/B tests to improve the platform.</li>
+            <li>I worked at Shelf Engine building machine learning models to forecast grocery volumes and reduce inventory waste.</li>
+            <li>I started <a href="https://www.ctrl.golf/">CTRL.golf</a> to help golfers improve their swing with machine learning.</li>
+        </ul>
+    </section>
+
+    <section aria-labelledby="links-heading">
+        <h2 id="links-heading">Links</h2>
+        <ul>
+            <li><a href="https://www.linkedin.com/in/andres-crucetta/">LinkedIn</a></li>
+            <li><a href="https://github.com/acrucetta">GitHub</a></li>
+            <li><a href="{{ '/blog.html' | relative_url }}">Blog</a></li>
+        </ul>
+    </section>
+
+    <section aria-labelledby="tools-heading">
+        <h2 id="tools-heading">Tools I Have Built</h2>
+        <ul>
+            <li><a href="https://github.com/acrucetta/ai-commit">[ai-commit]</a> an LLM commit helper using conventional commits.</li>
+            <li><a href="https://github.com/acrucetta/pr-reviewer">[pr-reviewer]</a> an LLM tool that creates draft pull requests.</li>
+            <li><a href="https://github.com/acrucetta/code-smells">[code-smells]</a> an LLM tool that reviews commits using principles from The Philosophy of Software Design.</li>
+            <li><a href="https://github.com/acrucetta/mente">[mente]</a> a static wiki engine built in Rust.</li>
+            <li><a href="https://github.com/acrucetta/todoer">[todoer]</a> a Rust CLI tool to capture tasks from your terminal.</li>
+            <li><a href="https://github.com/acrucetta/thought-capturer">[hmm]</a> a Rust CLI tool to capture ideas from the terminal.</li>
+            <li><a href="https://github.com/acrucetta/anki-builder">[ankify]</a> a Go CLI tool to build Anki cards with the OpenAI API.</li>
+            <li><a href="https://github.com/acrucetta/look">[look]</a> a Rust CLI search engine for personal notes.</li>
+        </ul>
+    </section>
+
+    <section aria-labelledby="latest-writing-heading">
+        <h2 id="latest-writing-heading">Latest Writing</h2>
+        <ul>
+            {% for post in site.posts limit:5 %}
                 <li>
-                    <a href="{{ post.url }}">{{ post.date | date: "%Y-%m" }} - {{ post.title }}</a>
+                    <a href="{{ post.url | relative_url }}">{{ post.date | date: "%Y-%m" }} - {{ post.title }}</a>
                 </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</div>
+            {% endfor %}
+        </ul>
+    </section>
+</section>
 <script>
-    // Get the element with the text that we want to reveal
     const revealTextElement = document.getElementById("revealText");
-
-    // Set the initial text to an empty string
-    revealTextElement.innerHTML = "";
-
-    // Set the caret to be invisible initially
-    revealTextElement.style.borderRight = "none";
-
-    // Set the text that we want to reveal
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const text = "Hey, I'm Andrés!";
 
-    // Set the initial index to 0
-    let index = 0;
+    if (revealTextElement && !reducedMotion.matches) {
+        revealTextElement.textContent = "";
+        let index = 0;
 
-    // Set the interval for the typewriter effect
-    const interval = setInterval(() => {
-        // Add the next character to the revealed text
-        revealTextElement.innerHTML += text[index];
-        // Increment the index
-        index++;
-        // If we have reached the end of the text, clear the interval
-        if (index >= text.length) {
-            clearInterval(interval);
-        }
-    }, 150);
+        const interval = setInterval(() => {
+            revealTextElement.textContent += text[index];
+            index += 1;
+
+            if (index >= text.length) {
+                clearInterval(interval);
+            }
+        }, 110);
+    }
 
 </script>

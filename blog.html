@@ -1,28 +1,46 @@
 ---
 layout: default
 title: Blog
+styles:
+  - /css/articles.css
 ---
+<section class="listing-page">
+    <h1>Blog</h1>
+    <p class="listing-page__intro">Writing on engineering, learning, and systems thinking.</p>
 
-<head>
-    <link rel="stylesheet" type="text/css" href="/css/articles.css" />
-    <link rel="stylesheet" type="text/css" href="/css/default.css" />
-</head>
-<h2>Latest</h2>
-{% for post in site.posts limit: 1 %}
-<div class="post">
-    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-    <p>{{ post.excerpt }}...<a href="{{ post.url }}">Keep reading</a></p>
-</div>
-{% endfor %}
-<h2>Writing</h2>
-<ul>
-    {% assign sorted_posts = site.posts | sort: "date" %} {% for post in
-    sorted_posts reversed %}
-    <li>
-        <!-- Format: YYYY-DD - Blog Title -->
-        <a href="{{ post.url }}"
-            >{{ post.date | date: "%Y-%m" }} - {{ post.title }}</a
-        >
-    </li>
-    {% endfor %}
-</ul>
+    {% assign latest_post = site.posts | sort: "date" | last %}
+    {% if latest_post %}
+        <section class="listing-page__section" aria-labelledby="latest-post-heading">
+            <h2 id="latest-post-heading">Latest</h2>
+            <article class="feature-entry">
+                <h3 class="feature-entry__title">
+                    <a href="{{ latest_post.url | relative_url }}">{{ latest_post.title }}</a>
+                </h3>
+                <p class="feature-entry__meta">
+                    <time datetime="{{ latest_post.date | date: '%Y-%m-%d' }}">
+                        {{ latest_post.date | date: "%Y-%m-%d" }}
+                    </time>
+                </p>
+                <p class="feature-entry__excerpt">
+                    {{ latest_post.excerpt | strip_html | strip_newlines | truncate: 260 }}
+                    <a href="{{ latest_post.url | relative_url }}">Read full entry</a>
+                </p>
+            </article>
+        </section>
+    {% endif %}
+
+    <section class="listing-page__section" aria-labelledby="all-posts-heading">
+        <h2 id="all-posts-heading">All Writing</h2>
+        {% assign sorted_posts = site.posts | sort: "date" | reverse %}
+        <ul class="entry-list">
+            {% for post in sorted_posts %}
+                <li class="entry-list__item">
+                    <a class="entry-list__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <time class="entry-list__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+                        {{ post.date | date: "%Y-%m-%d" }}
+                    </time>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</section>

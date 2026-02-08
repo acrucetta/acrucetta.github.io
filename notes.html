@@ -1,28 +1,46 @@
 ---
 layout: default
-title: Blog
+title: Notes
+styles:
+  - /css/articles.css
 ---
+<section class="listing-page">
+    <h1>Notes</h1>
+    <p class="listing-page__intro">A stream of shorter writing and reference notes.</p>
 
-<head>
-    <link rel="stylesheet" type="text/css" href="/css/articles.css" />
-    <link rel="stylesheet" type="text/css" href="/css/default.css" />
-</head>
-<h2>Latest</h2>
-{% for post in site.notes limit: 1 %}
-<div class="post">
-    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-    <p>{{ post.excerpt }}...<a href="{{ post.url }}">Keep reading</a></p>
-</div>
-{% endfor %}
-<h2>Notes</h2>
-<ul>
-    {% assign sorted_posts = site.notes | sort: "date" %} {% for post in
-    sorted_posts reversed %}
-    <li>
-        <!-- Format: YYYY-DD - Blog Title -->
-        <a href="{{ post.url }}"
-            >{{ post.date | date: "%Y-%m" }} - {{ post.title }}</a
-        >
-    </li>
-    {% endfor %}
-</ul>
+    {% assign latest_note = site.notes | sort: "date" | last %}
+    {% if latest_note %}
+        <section class="listing-page__section" aria-labelledby="latest-note-heading">
+            <h2 id="latest-note-heading">Latest</h2>
+            <article class="feature-entry">
+                <h3 class="feature-entry__title">
+                    <a href="{{ latest_note.url | relative_url }}">{{ latest_note.title }}</a>
+                </h3>
+                <p class="feature-entry__meta">
+                    <time datetime="{{ latest_note.date | date: '%Y-%m-%d' }}">
+                        {{ latest_note.date | date: "%Y-%m-%d" }}
+                    </time>
+                </p>
+                <p class="feature-entry__excerpt">
+                    {{ latest_note.excerpt | strip_html | strip_newlines | truncate: 260 }}
+                    <a href="{{ latest_note.url | relative_url }}">Read full note</a>
+                </p>
+            </article>
+        </section>
+    {% endif %}
+
+    <section class="listing-page__section" aria-labelledby="all-notes-heading">
+        <h2 id="all-notes-heading">All Notes</h2>
+        {% assign sorted_notes = site.notes | sort: "date" | reverse %}
+        <ul class="entry-list">
+            {% for post in sorted_notes %}
+                <li class="entry-list__item">
+                    <a class="entry-list__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <time class="entry-list__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+                        {{ post.date | date: "%Y-%m-%d" }}
+                    </time>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</section>
