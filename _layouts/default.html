@@ -1,61 +1,52 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
-        <title>{{ page.title }}</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-            rel="stylesheet"
-        />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% if page.title %}{{ page.title }} | {% endif %}Andres Crucetta</title>
         <link rel="stylesheet" type="text/css" href="{{ '/css/default.css' | relative_url }}" />
         <link rel="stylesheet" type="text/css" href="{{ '/css/til.css' | relative_url }}" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
-            integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
-            crossorigin="anonymous"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css"
-        />
-        <style>
-            .pure-menu {
-                text-align: left; /* Align the menu to the left */
-            }
-
-            .pure-menu-link {
-                font-size: 18px;
-            }
-        </style>
+        {% if page.styles %}
+            {% for stylesheet in page.styles %}
+                <link rel="stylesheet" type="text/css" href="{{ stylesheet | relative_url }}" />
+            {% endfor %}
+        {% endif %}
     </head>
-
     <body>
-        <div class="pure-menu pure-menu-horizontal">
-            <a
-                class="pure-menu-heading pure-menu-link"
-                aria-current="page"
-                href="/"
-                >Home</a
-            >
-            <a class="pure-menu-heading pure-menu-link" href="/blog.html"
-                >Blog</a
-            >
-            <a class="pure-menu-heading pure-menu-link" href="/til.html"
-                >TIL</a
-            >
-            <a class="pure-menu-heading pure-menu-link" href="/notes.html"
-                >Notes</a
-            >
-            <a class="pure-menu-heading pure-menu-link" href="/bookshelf.html"
-                >Bookshelf</a
-            >
+        <a class="skip-link" href="#main-content">Skip to content</a>
+        <div class="site-shell">
+            <header class="site-header">
+                <nav class="site-nav" aria-label="Primary">
+                    <ul class="site-nav__list">
+                        <li>
+                            <a class="site-nav__link{% if page.url == '/' %} is-active{% endif %}" href="{{ '/' | relative_url }}">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a class="site-nav__link{% if page.url == '/blog.html' or page.collection == 'posts' %} is-active{% endif %}" href="{{ '/blog.html' | relative_url }}">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a class="site-nav__link{% if page.url == '/til.html' or page.collection == 'til' %} is-active{% endif %}" href="{{ '/til.html' | relative_url }}">
+                                TIL
+                            </a>
+                        </li>
+                        <li>
+                            <a class="site-nav__link{% if page.url == '/notes.html' or page.collection == 'notes' %} is-active{% endif %}" href="{{ '/notes.html' | relative_url }}">
+                                Notes
+                            </a>
+                        </li>
+                        <li>
+                            <a class="site-nav__link{% if page.url == '/bookshelf.html' %} is-active{% endif %}" href="{{ '/bookshelf.html' | relative_url }}">
+                                Bookshelf
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <main class="site-main" id="main-content">{{ content }}</main>
         </div>
-        <div class="container">{{ content }}</div>
-        <br />
     </body>
 </html>
