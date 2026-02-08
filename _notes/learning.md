@@ -6,6 +6,10 @@ tag: 'learning'
 category: 'note'
 ---
 
+### Learning from doing the opposite
+
+[add notes on skiing practice...]
+
 ### Learning with LLMs
 
 - Disabling the autocomplete/copilot allows you to remember the syntax, which is faster than looking it up each time.
