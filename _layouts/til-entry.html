@@ -2,18 +2,23 @@
 layout: default
 ---
 <article class="til-entry">
+    <p class="til-entry__back">
+        <a href="{{ '/til.html' | relative_url }}">&larr; Back to TIL index</a>
+    </p>
     <header class="til-entry__header">
-        <p class="til-entry__date">{{ page.date | date: "%B %-d, %Y" }}</p>
         <h1 class="til-entry__title">{{ page.title }}</h1>
+        <p class="til-entry__meta">
+            <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+            {% if page.tags and page.tags.size > 0 %}
+                {% for tag in page.tags %}
+                    <span class="til-entry__topic">
+                        <a href="{{ '/til.html' | relative_url }}#tag-{{ tag | slugify }}">{{ tag }}</a>
+                    </span>
+                {% endfor %}
+            {% endif %}
+        </p>
     </header>
     <div class="til-entry__body">
         {{ content }}
     </div>
-    {% if page.tags %}
-    <footer class="til-entry__footer">
-        {% for tag in page.tags %}
-        <span class="til-chip">#{{ tag }}</span>
-        {% endfor %}
-    </footer>
-    {% endif %}
 </article>
