@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% assign entries = site.til | sort: 'date' | reverse %}
+{% assign match_count = 0 %}
+
+<article class="til-topic-page">
+    <p class="til-entry__back">
+        <a href="{{ '/til.html' | relative_url }}">&larr; Back to TIL index</a>
+    </p>
+
+    <header class="til-topic-page__header">
+        <h1>{{ page.title }}</h1>
+        <p class="til-page__intro">Entries tagged <span class="til-topic-page__tag">{{ page.topic }}</span>.</p>
+    </header>
+
+    <ul class="til-topic-page__list">
+        {% for entry in entries %}
+            {% if entry.tags contains page.topic %}
+                {% assign match_count = match_count | plus: 1 %}
+                <li class="til-topic-page__item">
+                    <a href="{{ entry.url | relative_url }}">{{ entry.title }}</a>
+                    <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">{{ entry.date | date: "%Y-%m-%d" }}</time>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    {% if match_count == 0 %}
+        <p class="til-empty">No TIL entries found for this topic yet.</p>
+    {% endif %}
+</article>

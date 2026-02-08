@@ -2,7 +2,7 @@
 title: "Coding"
 layout: post
 date: 2025-03-17
-tag: 'learning'
+tags: ['learning']
 category: 'note'
 ---
 

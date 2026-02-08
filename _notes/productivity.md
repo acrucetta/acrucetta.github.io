@@ -3,7 +3,7 @@
 title: "productivity"
 layout: post
 date: 2025-05-21
-tag: 'practices'
+tags: ['practices']
 category: 'note'
 ---
 
@@ -17,4 +17,3 @@ Assorted notes on productivity:
 
 References:
 - [1] [https://danluu.com/productivity-velocity/](https://danluu.com/productivity-velocity/)
-

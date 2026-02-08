@@ -2,7 +2,7 @@
 title: "Terminals"
 layout: post
 date: 2025-09-21
-tag: 'practices'
+tags: ['practices']
 category: 'note'
 ---
 

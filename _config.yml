@@ -12,10 +12,37 @@ collections:
   til:
     output: true
     permalink: /til/:name/
+  til_topics:
+    output: true
+    permalink: /til/topic/:name/
 
 defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      tags: []
+      summary: ""
+      status: published
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: post
+      tags: []
+      summary: ""
+      status: published
   - scope:
       path: ""
       type: til
     values:
       layout: til-entry
+      tags: []
+      summary: ""
+      status: published
+  - scope:
+      path: ""
+      type: til_topics
+    values:
+      layout: til-topic

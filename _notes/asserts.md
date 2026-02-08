@@ -2,7 +2,7 @@
 title: "Coding practices"
 layout: post
 date: 2025-03-26
-tag: 'practices'
+tags: ['practices']
 category: 'note'
 ---
 

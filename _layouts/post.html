@@ -1,12 +1,131 @@
 ---
 layout: default
 ---
+{% assign page_tags = page.tags %}
+{% if page_tags == nil and page.tag %}
+  {% assign page_tags = page.tag | split: "," %}
+{% endif %}
+{% assign summary_source = page.summary %}
+{% if summary_source == nil or summary_source == "" %}
+  {% assign summary_source = page.excerpt %}
+{% endif %}
+{% assign summary_text = summary_source | markdownify | strip_html | strip_newlines | strip %}
+{% assign word_count = content | number_of_words %}
+{% assign reading_minutes = word_count | plus: 199 | divided_by: 200 %}
+{% if reading_minutes < 1 %}
+  {% assign reading_minutes = 1 %}
+{% endif %}
 <article class="post">
-  <header>
+  <header class="post-header">
     <h1>{{ page.title }}</h1>
-    <p class="meta">
-      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%Y-%m-%d" }}</time>
-    </p>
+    <dl class="post-meta-grid">
+      <div>
+        <dt>Published</dt>
+        <dd>
+          <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+        </dd>
+      </div>
+      {% if page.updated %}
+        <div>
+          <dt>Updated</dt>
+          <dd>
+            <time datetime="{{ page.updated | date: '%Y-%m-%d' }}">{{ page.updated | date: "%Y-%m-%d" }}</time>
+          </dd>
+        </div>
+      {% endif %}
+      <div>
+        <dt>Reading Time</dt>
+        <dd>{{ reading_minutes }} min</dd>
+      </div>
+      {% if page.status %}
+        <div>
+          <dt>Status</dt>
+          <dd>{{ page.status }}</dd>
+        </div>
+      {% endif %}
+      {% if page_tags and page_tags.size > 0 %}
+        <div class="post-meta-grid__topics">
+          <dt>Topics</dt>
+          <dd>
+            {% for topic_raw in page_tags %}
+              {% assign topic = topic_raw | strip %}
+              {% if topic != "" %}
+                <span class="post-tag">{{ topic }}</span>
+              {% endif %}
+            {% endfor %}
+          </dd>
+        </div>
+      {% endif %}
+    </dl>
+    {% if summary_text != "" %}
+      <p class="post-summary">{{ summary_text }}</p>
+    {% endif %}
+    <nav class="post-toc" aria-label="Table of contents" data-post-toc hidden>
+      <h2 class="post-toc__title">On This Page</h2>
+      <ol class="post-toc__list"></ol>
+    </nav>
   </header>
   <div class="post-content">{{ content }}</div>
 </article>
+<script>
+  (() => {
+    const toc = document.querySelector("[data-post-toc]");
+    const list = toc?.querySelector(".post-toc__list");
+    const content = document.querySelector(".post-content");
+
+    if (!toc || !list || !content) {
+      return;
+    }
+
+    const headings = Array.from(content.querySelectorAll("h2, h3"));
+    if (headings.length === 0) {
+      return;
+    }
+
+    const seenIds = new Set();
+
+    const slugify = (value) => {
+      return value
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+    };
+
+    const ensureHeadingId = (heading) => {
+      if (heading.id && !seenIds.has(heading.id)) {
+        seenIds.add(heading.id);
+        return heading.id;
+      }
+
+      const base = slugify(heading.textContent || "section") || "section";
+      let candidate = base;
+      let suffix = 2;
+
+      while (seenIds.has(candidate) || document.getElementById(candidate)) {
+        candidate = `${base}-${suffix}`;
+        suffix += 1;
+      }
+
+      heading.id = candidate;
+      seenIds.add(candidate);
+      return candidate;
+    };
+
+    headings.forEach((heading) => {
+      const id = ensureHeadingId(heading);
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+
+      item.className = heading.tagName.toLowerCase() === "h3" ? "post-toc__item post-toc__item--sub" : "post-toc__item";
+      link.href = `#${id}`;
+      link.textContent = heading.textContent;
+
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+
+    toc.hidden = false;
+  })();
+</script>

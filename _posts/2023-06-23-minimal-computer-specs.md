@@ -2,7 +2,7 @@
 title: "Building a minimal computer in the open"
 layout: post
 date: 2023-06-23
-tag: "low-tech"
+tags: ['low-tech']
 category: "reference"
 ---
 

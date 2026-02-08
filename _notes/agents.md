@@ -2,7 +2,7 @@
 title: "AI Agents"
 layout: post
 date: 2025-03-07
-tag: 'practices'
+tags: ['practices']
 category: 'note'
 ---
 

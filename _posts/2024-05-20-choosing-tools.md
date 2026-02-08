@@ -2,7 +2,7 @@
 title: "Lessons adding new tools to a startup"
 layout: post
 date: 2024-05-20
-tag: 'coding'
+tags: ['coding']
 category: 'article'
 ---
 

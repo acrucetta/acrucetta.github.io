@@ -2,7 +2,7 @@
 title: "Favorite websites"
 layout: post
 date: 2023-01-16
-tag: "editor"
+tags: ['editor']
 category: "reference"
 ---
 

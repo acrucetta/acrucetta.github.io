@@ -2,7 +2,7 @@
 title: "Thought capturer: A Rust CLI tool to capture your thoughts and ideas"
 layout: post
 date: 2023-03-18
-tag: 'cli'
+tags: ['cli']
 category: 'project'
 ---
 # Capturing Your Fleeting Thoughts: Introducing `hmm`

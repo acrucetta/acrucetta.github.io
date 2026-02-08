@@ -2,8 +2,7 @@
 title: "Evaluating Missing Data Methods in ML Projects"
 layout: post
 date: 2021-12-10 22:10
-tag: 
-- machine learning
+tags: ['machine learning']
 image: 'assets/images/boston_airbnb.jpg'
 headerImage: false
 projects: true

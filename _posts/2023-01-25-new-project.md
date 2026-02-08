@@ -2,7 +2,7 @@
 title: "How to allow yourself to start new projects"
 layout: post
 date: 2024-01-25
-tag: 'life'
+tags: ['life']
 category: 'article'
 ---
 

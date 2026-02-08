@@ -2,7 +2,7 @@
 title: "Pros and cons of offshore teams"
 layout: post
 date: 2024-06-15
-tag: 'startups'
+tags: ['startups']
 category: 'article'
 ---
 
