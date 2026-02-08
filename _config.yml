@@ -24,7 +24,6 @@ defaults:
       layout: post
       tags: []
       summary: ""
-      status: published
   - scope:
       path: ""
       type: notes
@@ -32,7 +31,6 @@ defaults:
       layout: post
       tags: []
       summary: ""
-      status: published
   - scope:
       path: ""
       type: til
@@ -40,7 +38,6 @@ defaults:
       layout: til-entry
       tags: []
       summary: ""
-      status: published
   - scope:
       path: ""
       type: til_topics

@@ -5,11 +5,7 @@ layout: default
 {% if page_tags == nil and page.tag %}
   {% assign page_tags = page.tag | split: "," %}
 {% endif %}
-{% assign summary_source = page.summary %}
-{% if summary_source == nil or summary_source == "" %}
-  {% assign summary_source = page.excerpt %}
-{% endif %}
-{% assign summary_text = summary_source | markdownify | strip_html | strip_newlines | strip %}
+{% assign summary_text = page.summary | markdownify | strip_html | strip_newlines | strip %}
 {% assign word_count = content | number_of_words %}
 {% assign reading_minutes = word_count | plus: 199 | divided_by: 200 %}
 {% if reading_minutes < 1 %}
@@ -37,7 +33,7 @@ layout: default
         <dt>Reading Time</dt>
         <dd>{{ reading_minutes }} min</dd>
       </div>
-      {% if page.status %}
+      {% if page.status and page.status != "" and page.status != "published" %}
         <div>
           <dt>Status</dt>
           <dd>{{ page.status }}</dd>
@@ -78,7 +74,7 @@ layout: default
     }
 
     const headings = Array.from(content.querySelectorAll("h2, h3"));
-    if (headings.length === 0) {
+    if (headings.length < 2) {
       return;
     }
 
