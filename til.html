@@ -21,6 +21,23 @@ title: Today I Learned
     {% endfor %}
 
     {% if topic_count > 0 %}
+        <section class="til-filter" aria-label="Filter TILs by topic">
+            <label class="til-filter__label" for="til-topic-filter">Filter by topic</label>
+            <div class="til-filter__controls">
+                <select class="til-filter__select" id="til-topic-filter" name="topic">
+                    <option value="">All topics</option>
+                    {% for tag in topics %}
+                        {% if tag != '' %}
+                            <option value="{{ tag | slugify }}">{{ tag }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <button class="til-filter__clear" id="til-topic-filter-clear" type="button">Clear</button>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if topic_count > 0 %}
         <section class="til-topics" aria-label="Browse by topic">
             <h2>Browse By Topic</h2>
             <ul class="til-topic-list">
@@ -32,8 +49,8 @@ title: Today I Learned
                                 {% assign count = count | plus: 1 %}
                             {% endif %}
                         {% endfor %}
-                        <li>
-                            <a href="#tag-{{ tag | slugify }}">{{ tag }}</a>
+                        <li data-topic-slug="{{ tag | slugify }}">
+                            <a data-topic-filter="{{ tag | slugify }}" href="#tag-{{ tag | slugify }}">{{ tag }}</a>
                             <span class="til-topic-list__count">{{ count }}</span>
                         </li>
                     {% endif %}
@@ -49,7 +66,8 @@ title: Today I Learned
             <h2>Recent TILs</h2>
             <div class="til-list">
                 {% for entry in entries limit: 25 %}
-                    <article class="til-listing">
+                    {% capture entry_tag_slugs %}{% if entry.tags and entry.tags.size > 0 %}{% for tag in entry.tags %}{{ tag | slugify }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}{% endcapture %}
+                    <article class="til-listing" data-topic-slugs="{{ entry_tag_slugs | strip }}">
                         <h3 class="til-listing__title">
                             <a href="{{ entry.url | relative_url }}">{{ entry.title }}</a>
                         </h3>
@@ -60,7 +78,7 @@ title: Today I Learned
                             {% if entry.tags and entry.tags.size > 0 %}
                                 {% for tag in entry.tags %}
                                     <span class="til-listing__topic">
-                                        <a href="#tag-{{ tag | slugify }}">{{ tag }}</a>
+                                        <a data-topic-filter="{{ tag | slugify }}" href="#tag-{{ tag | slugify }}">{{ tag }}</a>
                                     </span>
                                 {% endfor %}
                             {% endif %}
@@ -71,6 +89,7 @@ title: Today I Learned
                     </article>
                 {% endfor %}
             </div>
+            <p class="til-filter__empty" id="til-filter-empty" hidden>No entries match this topic yet.</p>
         </section>
 
         {% if topic_count > 0 %}
@@ -78,7 +97,7 @@ title: Today I Learned
                 <h2>All TILs By Topic</h2>
                 {% for tag in topics %}
                     {% if tag != '' %}
-                        <section class="til-topic-group" id="tag-{{ tag | slugify }}">
+                        <section class="til-topic-group" id="tag-{{ tag | slugify }}" data-topic-slug="{{ tag | slugify }}">
                             <h3>{{ tag }}</h3>
                             <ul>
                                 {% for entry in entries %}
@@ -99,3 +118,113 @@ title: Today I Learned
         {% endif %}
     {% endif %}
 </section>
+<script>
+    (() => {
+        const select = document.getElementById("til-topic-filter");
+        if (!select) {
+            return;
+        }
+
+        const clearButton = document.getElementById("til-topic-filter-clear");
+        const emptyState = document.getElementById("til-filter-empty");
+        const recentEntries = Array.from(document.querySelectorAll(".til-listing"));
+        const topicGroups = Array.from(document.querySelectorAll(".til-topic-group"));
+        const topicPills = Array.from(document.querySelectorAll(".til-topic-list > li"));
+        const topicLinks = Array.from(document.querySelectorAll("[data-topic-filter]"));
+
+        const validTopics = new Set(
+            Array.from(select.options)
+                .map((option) => option.value)
+                .filter((value) => value !== "")
+        );
+
+        const normalizeTopic = (value) => {
+            if (!value) {
+                return "";
+            }
+            const normalized = value.trim().toLowerCase();
+            if (!validTopics.has(normalized)) {
+                return "";
+            }
+            return normalized;
+        };
+
+        const splitTopics = (value) => {
+            if (!value) {
+                return [];
+            }
+            return value
+                .split(",")
+                .map((topic) => topic.trim())
+                .filter((topic) => topic.length > 0);
+        };
+
+        const updateQueryString = (topic) => {
+            const url = new URL(window.location.href);
+            if (topic) {
+                url.searchParams.set("topic", topic);
+                url.hash = "";
+            } else {
+                url.searchParams.delete("topic");
+            }
+            window.history.replaceState({}, "", url);
+        };
+
+        const applyFilter = (rawTopic, shouldUpdateUrl) => {
+            const topic = normalizeTopic(rawTopic);
+            select.value = topic;
+
+            let visibleEntryCount = 0;
+            recentEntries.forEach((entry) => {
+                const entryTopics = splitTopics(entry.dataset.topicSlugs);
+                const matchesTopic = !topic || entryTopics.includes(topic);
+                entry.hidden = !matchesTopic;
+                if (matchesTopic) {
+                    visibleEntryCount += 1;
+                }
+            });
+
+            topicGroups.forEach((group) => {
+                group.hidden = !!topic && group.dataset.topicSlug !== topic;
+            });
+
+            topicPills.forEach((pill) => {
+                pill.classList.toggle("is-active", topic !== "" && pill.dataset.topicSlug === topic);
+            });
+
+            if (emptyState) {
+                emptyState.hidden = !topic || visibleEntryCount > 0;
+            }
+
+            if (shouldUpdateUrl) {
+                updateQueryString(topic);
+            }
+        };
+
+        select.addEventListener("change", (event) => {
+            applyFilter(event.target.value, true);
+        });
+
+        if (clearButton) {
+            clearButton.addEventListener("click", () => {
+                applyFilter("", true);
+            });
+        }
+
+        topicLinks.forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const topic = event.currentTarget.dataset.topicFilter;
+                if (!topic) {
+                    return;
+                }
+                event.preventDefault();
+                applyFilter(topic, true);
+            });
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const queryTopic = normalizeTopic(params.get("topic"));
+        const hashTopic = normalizeTopic(window.location.hash.replace(/^#tag-/, ""));
+        applyFilter(queryTopic || hashTopic, false);
+    })();
+</script>

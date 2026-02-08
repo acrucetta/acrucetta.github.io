@@ -83,6 +83,10 @@ body {
   line-height: 1.35;
 }
 
+.site-nav__list > li + li {
+  margin-top: 0;
+}
+
 .site-nav__link {
   color: var(--color-muted);
   text-decoration: none;
