@@ -1,0 +1,115 @@
+.bookshelf-page {
+  max-width: 80ch;
+}
+
+.bookshelf-intro {
+  max-width: 72ch;
+}
+
+.bookshelf-legend,
+.bookshelf-controls,
+.bookshelf-year {
+  margin-top: 1.7rem;
+}
+
+.bookshelf-legend ul {
+  margin: 0.6rem 0 0;
+}
+
+.bookshelf-controls {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  padding: 0.85rem 1rem;
+}
+
+.bookshelf-controls h2 {
+  margin-top: 0;
+}
+
+.bookshelf-controls__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  align-items: center;
+}
+
+.bookshelf-controls__inputs label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.bookshelf-controls__inputs select,
+.bookshelf-controls__inputs input,
+.bookshelf-controls__inputs button {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  padding: 0.32rem 0.45rem;
+  font-family: inherit;
+}
+
+.bookshelf-controls__inputs input {
+  min-width: 16rem;
+}
+
+.bookshelf-controls__inputs button {
+  cursor: pointer;
+}
+
+.bookshelf-controls__summary {
+  margin: 0.7rem 0 0;
+  color: var(--color-muted);
+}
+
+.bookshelf-controls__index {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.7rem;
+}
+
+.bookshelf-controls__index a {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.bookshelf-year__heading {
+  scroll-margin-top: 1rem;
+}
+
+.bookshelf-table {
+  margin-top: 0.45rem;
+}
+
+.bookshelf-table td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.bookshelf-book-link {
+  text-decoration-thickness: 0.07em;
+}
+
+@media (max-width: 700px) {
+  .bookshelf-controls__inputs {
+    align-items: flex-start;
+  }
+
+  .bookshelf-controls__inputs label {
+    width: 100%;
+  }
+
+  .bookshelf-controls__inputs input,
+  .bookshelf-controls__inputs select,
+  .bookshelf-controls__inputs button {
+    width: 100%;
+  }
+
+  .bookshelf-table {
+    font-size: 0.9rem;
+  }
+}

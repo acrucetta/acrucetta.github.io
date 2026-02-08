@@ -1,30 +1,54 @@
 ---
 layout: default
 title: Bookshelf
+styles:
+    - /css/bookshelf.css
 ---
+<section class="bookshelf-page">
+    <h1>Bookshelf</h1>
+    <p class="bookshelf-intro">
+        Books I have read (or attempted) over time. Ratings run from <strong>S</strong> to <strong>C</strong>, and
+        everything else is tracked as in progress or unrated.
+    </p>
 
-<h1>Bookshelf</h1>
-<p>
-    This is a list of books I have considered over time. Most are unfinished; those I have finished have a rating
-    from C to S based on how much I enjoyed them.
-</p>
+    <section class="bookshelf-legend" aria-label="Rating legend">
+        <h2>Legend</h2>
+        <ul>
+            <li><strong>S</strong> = Strongly recommended</li>
+            <li><strong>A</strong> = Recommended</li>
+            <li><strong>B</strong> = Recommended with reservations</li>
+            <li><strong>C</strong> = Not recommended</li>
+        </ul>
+    </section>
 
-<h2>Legend</h2>
-<ul>
-    <li><strong>S</strong> = Strongly recommended</li>
-    <li><strong>A</strong> = Recommended</li>
-    <li><strong>B</strong> = Recommended with reservations</li>
-    <li><strong>C</strong> = Not recommended</li>
-</ul>
+    <section class="bookshelf-controls" aria-label="Filter books">
+        <h2>Browse</h2>
+        <div class="bookshelf-controls__inputs">
+            <label for="bookshelf-year-filter">Year</label>
+            <select id="bookshelf-year-filter" name="year">
+                <option value="">All years</option>
+            </select>
+            <label for="bookshelf-rating-filter">Rating</label>
+            <select id="bookshelf-rating-filter" name="rating">
+                <option value="">All ratings</option>
+            </select>
+            <label for="bookshelf-search">Search</label>
+            <input id="bookshelf-search" type="search" placeholder="Title or author" />
+            <button id="bookshelf-clear-filters" type="button">Clear</button>
+        </div>
+        <p class="bookshelf-controls__summary" id="bookshelf-summary"></p>
+        <nav class="bookshelf-controls__index" id="bookshelf-index" aria-label="Jump to year"></nav>
+    </section>
 
-<h2>2025</h2>
-<table>
+    <section class="bookshelf-year" id="year-2025" data-year="2025">
+    <h2 class="bookshelf-year__heading">2025</h2>
+<table class="bookshelf-table">
     <tr>
         <td>Book</td>
         <td>Rating</td>
     </tr>
     <tr>
-        <td>The Dispossesed by Ursula K. Le Guin</td>
+        <td>The Dispossessed by Ursula K. Le Guin</td>
         <td>S</td>
     </tr>
     <tr>
@@ -80,15 +104,17 @@ title: Bookshelf
         <td>A</td>
     </tr>
 </table>
+    </section>
 
-<h2>2024</h2>
-<table>
+    <section class="bookshelf-year" id="year-2024" data-year="2024">
+    <h2 class="bookshelf-year__heading">2024</h2>
+<table class="bookshelf-table">
     <tr>
         <td>Book</td>
         <td>Rating</td>
     </tr>
     <tr>
-        <td>A Mind At Play, Claude Shannon</td>
+        <td>A Mind at Play by Jimmy Soni and Rob Goodman</td>
         <td>A</td>
     </tr>
     <tr>
@@ -100,7 +126,7 @@ title: Bookshelf
         <td>B</td>
     </tr>
     <tr>
-        <td>The Power Law, A Story of Venture Capital</td>
+        <td>The Power Law: Venture Capital and the Making of the New Future by Sebastian Mallaby</td>
         <td>S</td>
     </tr>
     <tr>
@@ -136,11 +162,11 @@ title: Bookshelf
         <td>S</td>
     </tr>
     <tr>
-        <td>The Founders: The Story of Paypal and the Entrepreneurs Who Shaped Silicon Valley</td>
+        <td>The Founders: The Story of PayPal and the Entrepreneurs Who Shaped Silicon Valley</td>
         <td>A</td>
     </tr>
     <tr>
-        <td>Wanting: The Power of Mimetic Desire In Everyday Life by Luke Burgis</td>
+        <td>Wanting: The Power of Mimetic Desire in Everyday Life by Luke Burgis</td>
         <td>A</td>
     </tr>
     <tr>
@@ -204,9 +230,11 @@ title: Bookshelf
         <td>S</td>
     </tr>
 </table>
+    </section>
 
-<h2>2023</h2>
-<table>
+    <section class="bookshelf-year" id="year-2023" data-year="2023">
+    <h2 class="bookshelf-year__heading">2023</h2>
+<table class="bookshelf-table">
     <tr>
         <td>Book</td>
         <td>Rating</td>
@@ -268,7 +296,7 @@ title: Bookshelf
         <td>A</td>
     </tr>
     <tr>
-        <td>Structure and Interpretations of Computer Programs</td>
+        <td>Structure and Interpretation of Computer Programs</td>
         <td>In Progress</td>
     </tr>
     <tr>
@@ -284,7 +312,7 @@ title: Bookshelf
         <td>S</td>
     </tr>
     <tr>
-        <td>Siddharta by Hermann Hesse</td>
+        <td>Siddhartha by Hermann Hesse</td>
         <td>N/A</td>
     </tr>
     <tr>
@@ -324,3 +352,160 @@ title: Bookshelf
         <td>A</td>
     </tr>
 </table>
+    </section>
+</section>
+<script>
+    (() => {
+        const yearFilter = document.getElementById("bookshelf-year-filter");
+        const ratingFilter = document.getElementById("bookshelf-rating-filter");
+        const searchInput = document.getElementById("bookshelf-search");
+        const clearButton = document.getElementById("bookshelf-clear-filters");
+        const summary = document.getElementById("bookshelf-summary");
+        const yearIndex = document.getElementById("bookshelf-index");
+        const yearSections = Array.from(document.querySelectorAll(".bookshelf-year"));
+        const tableRows = [];
+        const ratings = new Set();
+
+        const normalize = (value) => value.trim().toLowerCase();
+
+        const upsertOption = (select, value, label) => {
+            if (!value) {
+                return;
+            }
+            const exists = Array.from(select.options).some((option) => option.value === value);
+            if (!exists) {
+                const option = document.createElement("option");
+                option.value = value;
+                option.textContent = label;
+                select.appendChild(option);
+            }
+        };
+
+        yearSections.forEach((section) => {
+            const year = section.dataset.year || "";
+            if (year) {
+                upsertOption(yearFilter, year, year);
+            }
+
+            const heading = section.querySelector(".bookshelf-year__heading");
+            if (heading && heading.id === "") {
+                heading.id = section.id ? `${section.id}-heading` : "";
+            }
+            if (yearIndex && year) {
+                const link = document.createElement("a");
+                link.href = `#${section.id}`;
+                link.textContent = year;
+                yearIndex.appendChild(link);
+            }
+
+            const table = section.querySelector("table");
+            if (!table) {
+                return;
+            }
+
+            const firstRow = table.querySelector("tr");
+            if (firstRow) {
+                const firstRowCells = Array.from(firstRow.children);
+                const looksLikeHeader =
+                    firstRowCells.length === 2 &&
+                    normalize(firstRowCells[0].textContent) === "book" &&
+                    normalize(firstRowCells[1].textContent) === "rating";
+
+                if (looksLikeHeader) {
+                    const thead = document.createElement("thead");
+                    const headRow = document.createElement("tr");
+                    firstRowCells.forEach((cell) => {
+                        const th = document.createElement("th");
+                        th.scope = "col";
+                        th.textContent = cell.textContent.trim();
+                        headRow.appendChild(th);
+                    });
+                    thead.appendChild(headRow);
+                    table.insertBefore(thead, table.firstChild);
+                    firstRow.remove();
+                }
+            }
+
+            if (!table.tBodies.length) {
+                const body = document.createElement("tbody");
+                Array.from(table.querySelectorAll("tr")).forEach((row) => body.appendChild(row));
+                table.appendChild(body);
+            }
+
+            Array.from(table.tBodies[0].rows).forEach((row) => {
+                const cells = row.cells;
+                if (cells.length < 2) {
+                    return;
+                }
+
+                const bookCell = cells[0];
+                const ratingCell = cells[1];
+                const bookText = bookCell.textContent.trim();
+                const ratingText = ratingCell.textContent.trim();
+                const normalizedRating = normalize(ratingText);
+
+                ratings.add(ratingText);
+                row.dataset.year = year;
+                row.dataset.rating = normalizedRating;
+                row.dataset.search = normalize(`${bookText} ${ratingText}`);
+
+                if (!bookCell.querySelector("a")) {
+                    const link = document.createElement("a");
+                    link.className = "bookshelf-book-link";
+                    link.href = `https://openlibrary.org/search?q=${encodeURIComponent(bookText)}`;
+                    link.target = "_blank";
+                    link.rel = "noreferrer noopener";
+                    link.textContent = bookText;
+                    bookCell.textContent = "";
+                    bookCell.appendChild(link);
+                }
+
+                tableRows.push(row);
+            });
+        });
+
+        Array.from(ratings)
+            .sort((a, b) => a.localeCompare(b))
+            .forEach((rating) => upsertOption(ratingFilter, normalize(rating), rating));
+
+        const applyFilters = () => {
+            const selectedYear = yearFilter.value;
+            const selectedRating = ratingFilter.value;
+            const query = normalize(searchInput.value || "");
+            let visibleRows = 0;
+
+            tableRows.forEach((row) => {
+                const matchesYear = !selectedYear || row.dataset.year === selectedYear;
+                const matchesRating = !selectedRating || row.dataset.rating === selectedRating;
+                const matchesQuery = !query || row.dataset.search.includes(query);
+                const visible = matchesYear && matchesRating && matchesQuery;
+                row.hidden = !visible;
+                if (visible) {
+                    visibleRows += 1;
+                }
+            });
+
+            yearSections.forEach((section) => {
+                const rows = Array.from(section.querySelectorAll("tbody tr"));
+                section.hidden = rows.length > 0 && rows.every((row) => row.hidden);
+            });
+
+            if (summary) {
+                summary.textContent = `${visibleRows} book${visibleRows === 1 ? "" : "s"} shown`;
+            }
+        };
+
+        [yearFilter, ratingFilter].forEach((element) => {
+            element.addEventListener("change", applyFilters);
+        });
+        searchInput.addEventListener("input", applyFilters);
+        clearButton.addEventListener("click", () => {
+            yearFilter.value = "";
+            ratingFilter.value = "";
+            searchInput.value = "";
+            applyFilters();
+        });
+
+        applyFilters();
+    })();
+</script>
