@@ -2,28 +2,100 @@
 layout: default
 title: Today I Learned
 ---
-<section class="til-intro">
-    <h1>Today I Learned</h1>
-    <p>
-        Short notes on things I'm learning.
-    </p>
-</section>
-
 {% assign entries = site.til | sort: 'date' | reverse %}
-{% if entries.size == 0 %}
-<p class="til-empty">No TIL entries yet.</p>
-{% else %}
-<section class="til-list">
-    {% for entry in entries %}
-        <article class="til-item">
-            <time class="til-item__date">{{ entry.date | date: '%B %-d, %Y' }}</time>
-            <h3 class="til-item__title">
-                <a href="{{ entry.url }}">{{ entry.title }}</a>
-            </h3>
-            <div class="til-item__content">
-                {{ entry.content }}
-            </div>
-        </article>
+{% capture tags_blob %}{% for entry in entries %}{% for tag in entry.tags %}{{ tag }}|~|{% endfor %}{% endfor %}{% endcapture %}
+{% assign topics = tags_blob | split: '|~|' | uniq | sort %}
+
+<section class="til-page">
+    <h1>Today I Learned</h1>
+    <p class="til-page__intro">
+        Short notes on things I am learning.
+        Inspired by <a href="https://til.simonwillison.net/">Simon Willison's TILs</a>.
+    </p>
+
+    {% assign topic_count = 0 %}
+    {% for tag in topics %}
+        {% if tag != '' %}
+            {% assign topic_count = topic_count | plus: 1 %}
+        {% endif %}
     {% endfor %}
+
+    {% if topic_count > 0 %}
+        <section class="til-topics" aria-label="Browse by topic">
+            <h2>Browse By Topic</h2>
+            <ul class="til-topic-list">
+                {% for tag in topics %}
+                    {% if tag != '' %}
+                        {% assign count = 0 %}
+                        {% for entry in entries %}
+                            {% if entry.tags contains tag %}
+                                {% assign count = count | plus: 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        <li>
+                            <a href="#tag-{{ tag | slugify }}">{{ tag }}</a>
+                            <span class="til-topic-list__count">{{ count }}</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+
+    {% if entries.size == 0 %}
+        <p class="til-empty">No TIL entries yet.</p>
+    {% else %}
+        <section class="til-recent">
+            <h2>Recent TILs</h2>
+            <div class="til-list">
+                {% for entry in entries limit: 25 %}
+                    <article class="til-listing">
+                        <h3 class="til-listing__title">
+                            <a href="{{ entry.url | relative_url }}">{{ entry.title }}</a>
+                        </h3>
+                        <p class="til-listing__meta">
+                            <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">
+                                {{ entry.date | date: '%Y-%m-%d' }}
+                            </time>
+                            {% if entry.tags and entry.tags.size > 0 %}
+                                {% for tag in entry.tags %}
+                                    <span class="til-listing__topic">
+                                        <a href="#tag-{{ tag | slugify }}">{{ tag }}</a>
+                                    </span>
+                                {% endfor %}
+                            {% endif %}
+                        </p>
+                        <p class="til-listing__excerpt">
+                            {{ entry.content | markdownify | strip_html | strip_newlines | truncate: 220 }}
+                        </p>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        {% if topic_count > 0 %}
+            <section class="til-by-topic">
+                <h2>All TILs By Topic</h2>
+                {% for tag in topics %}
+                    {% if tag != '' %}
+                        <section class="til-topic-group" id="tag-{{ tag | slugify }}">
+                            <h3>{{ tag }}</h3>
+                            <ul>
+                                {% for entry in entries %}
+                                    {% if entry.tags contains tag %}
+                                        <li>
+                                            <a href="{{ entry.url | relative_url }}">{{ entry.title }}</a>
+                                            <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">
+                                                {{ entry.date | date: '%Y-%m-%d' }}
+                                            </time>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </section>
+                    {% endif %}
+                {% endfor %}
+            </section>
+        {% endif %}
+    {% endif %}
 </section>
-{% endif %}

@@ -1,0 +1,222 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: til [options] [title]
+
+Create a new TIL entry in _til and open it in your editor.
+
+Options:
+  -t, --tags TAGS    Comma-separated tags (example: postgres,sql)
+  -d, --date DATE    Entry date in YYYY-MM-DD format (default: today)
+  -n, --no-open      Create file but do not open editor
+  -h, --help         Show this help message
+
+Examples:
+  til "Primary and secondary replicas in Postgres"
+  til -t postgres,replication "Replica query conflict"
+  til -d 2026-02-08 -n "Draft title"
+EOF
+}
+
+resolve_script_dir() {
+  local source="${BASH_SOURCE[0]}"
+  while [[ -h "$source" ]]; do
+    local dir
+    dir="$(cd -P "$(dirname "$source")" && pwd)"
+    source="$(readlink "$source")"
+    [[ "$source" != /* ]] && source="$dir/$source"
+  done
+  cd -P "$(dirname "$source")" && pwd
+}
+
+trim() {
+  local value="$1"
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+  printf '%s' "$value"
+}
+
+yaml_escape() {
+  local value="$1"
+  value="${value//\\/\\\\}"
+  value="${value//\"/\\\"}"
+  printf '"%s"' "$value"
+}
+
+slugify() {
+  local value="$1"
+  value="$(printf '%s' "$value" | tr '[:upper:]' '[:lower:]')"
+  value="$(printf '%s' "$value" | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')"
+  if [[ -z "$value" ]]; then
+    value="untitled"
+  fi
+  printf '%s' "$value"
+}
+
+build_tags_yaml() {
+  local tags_csv="$1"
+  if [[ -z "$(trim "$tags_csv")" ]]; then
+    printf '[]'
+    return
+  fi
+
+  local tags_yaml="["
+  local index=0
+  local raw_tag
+  IFS=',' read -r -a raw_tags <<<"$tags_csv"
+  for raw_tag in "${raw_tags[@]}"; do
+    local tag
+    tag="$(trim "$raw_tag")"
+    if [[ -z "$tag" ]]; then
+      continue
+    fi
+
+    local escaped_tag
+    escaped_tag="$(yaml_escape "$tag")"
+    if [[ $index -gt 0 ]]; then
+      tags_yaml+=", "
+    fi
+    tags_yaml+="$escaped_tag"
+    index=$((index + 1))
+  done
+  tags_yaml+="]"
+
+  if [[ $index -eq 0 ]]; then
+    printf '[]'
+  else
+    printf '%s' "$tags_yaml"
+  fi
+}
+
+main() {
+  local title=""
+  local tags_csv=""
+  local entry_date
+  entry_date="$(date +%Y-%m-%d)"
+  local open_editor=1
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -t|--tags)
+        if [[ $# -lt 2 ]]; then
+          echo "Missing value for $1" >&2
+          exit 1
+        fi
+        tags_csv="$2"
+        shift 2
+        ;;
+      -d|--date)
+        if [[ $# -lt 2 ]]; then
+          echo "Missing value for $1" >&2
+          exit 1
+        fi
+        entry_date="$2"
+        shift 2
+        ;;
+      -n|--no-open)
+        open_editor=0
+        shift
+        ;;
+      -h|--help)
+        usage
+        exit 0
+        ;;
+      --)
+        shift
+        while [[ $# -gt 0 ]]; do
+          if [[ -n "$title" ]]; then
+            title+=" "
+          fi
+          title+="$1"
+          shift
+        done
+        ;;
+      -*)
+        echo "Unknown option: $1" >&2
+        usage >&2
+        exit 1
+        ;;
+      *)
+        if [[ -n "$title" ]]; then
+          title+=" "
+        fi
+        title+="$1"
+        shift
+        ;;
+    esac
+  done
+
+  if [[ ! "$entry_date" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+    echo "Date must use YYYY-MM-DD format." >&2
+    exit 1
+  fi
+
+  if [[ -z "$(trim "$title")" ]]; then
+    read -r -p "TIL title: " title
+  fi
+
+  title="$(trim "$title")"
+  if [[ -z "$title" ]]; then
+    echo "Title is required." >&2
+    exit 1
+  fi
+
+  local script_dir
+  script_dir="$(resolve_script_dir)"
+
+  local repo_root="${TIL_REPO:-}"
+  if [[ -z "$repo_root" ]]; then
+    repo_root="$(git -C "$script_dir" rev-parse --show-toplevel 2>/dev/null || true)"
+  fi
+  if [[ -z "$repo_root" ]]; then
+    repo_root="$(cd "$script_dir/.." && pwd)"
+  fi
+
+  local til_dir="$repo_root/_til"
+  if [[ ! -d "$til_dir" ]]; then
+    echo "Could not find _til at $til_dir" >&2
+    echo "Set TIL_REPO to your site repo path." >&2
+    exit 1
+  fi
+
+  local slug
+  slug="$(slugify "$title")"
+  local base_name="$entry_date-$slug"
+  local file_path="$til_dir/$base_name.md"
+  local suffix=2
+  while [[ -f "$file_path" ]]; do
+    file_path="$til_dir/$base_name-$suffix.md"
+    suffix=$((suffix + 1))
+  done
+
+  local tags_yaml
+  tags_yaml="$(build_tags_yaml "$tags_csv")"
+
+  cat >"$file_path" <<EOF
+---
+title: $(yaml_escape "$title")
+date: $entry_date
+tags: $tags_yaml
+---
+
+EOF
+
+  echo "Created $file_path"
+
+  if [[ $open_editor -eq 0 ]]; then
+    exit 0
+  fi
+
+  local editor="${VISUAL:-${EDITOR:-vim}}"
+  local editor_bin="${editor%% *}"
+  if ! command -v "$editor_bin" >/dev/null 2>&1; then
+    echo "Editor '$editor_bin' was not found. Set VISUAL or EDITOR." >&2
+    exit 1
+  fi
+
+  "${SHELL:-/bin/sh}" -lc "$editor \"$file_path\""
+}
+
+main "$@"
