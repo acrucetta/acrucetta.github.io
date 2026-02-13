@@ -1,0 +1,11 @@
+I"l<h2 id="coding-with-llms">Coding with LLMs</h2>
+
+<ul>
+  <li>Most of the craft of getting good results out of an LLM comes down to managing its context—the text that is part of your current conversation.</li>
+  <li>Start projects asking for options, is the thing even possbile?</li>
+  <li>LLMs work well with function signatures</li>
+  <li>You need to invest in QA habits, test everything, know how and why it works</li>
+  <li>LLMs are as good as the underlying expertise, you need to learn how to prompt it specifically. If you don’t know the terms, or don’t know why it works, the code will be a mess</li>
+</ul>
+
+:ET

@@ -1,0 +1,49 @@
+I"Ï<p>following the example of https://j3s.sh/ I wanted to write some notes
+on what things I want to drive my design</p>
+
+<p>simplicity</p>
+
+<ul>
+  <li>not too much clutter</li>
+  <li>one use, and do it well</li>
+  <li>uses UNIX commands when possible</li>
+</ul>
+
+<p>maintainable</p>
+
+<ul>
+  <li>i understand how it works</li>
+  <li>i can add new features</li>
+</ul>
+
+<p>fast</p>
+
+<ul>
+  <li>not too many dependencies</li>
+  <li>from the CLi ideally, if not plain text</li>
+</ul>
+
+<p>reliable</p>
+
+<ul>
+  <li>not too many features</li>
+  <li>focused on one task</li>
+</ul>
+
+<p>aesthetic</p>
+
+<ul>
+  <li>plain text or markdown</li>
+  <li>no pictures</li>
+  <li>easy to read and focus</li>
+  <li>as little javascript as possible</li>
+</ul>
+
+<p>some tools Iâ€™ve build based on this philosophy are:</p>
+
+<ul>
+  <li>hmm - capture thoughts from the terminal</li>
+  <li>task - capture tasks from the terminal</li>
+  <li>looker - look for documents in my folders with index</li>
+</ul>
+:ET

@@ -1,0 +1,33 @@
+I"Ÿ<h2 id="open-questions">Open questions</h2>
+<ul>
+  <li>What are daily tasks that take you a minute but would be unlocked if you could do them 100x faster with an agent</li>
+  <li>How does a company run by 100 agents look like?</li>
+  <li>What does a full-stack AI company look like?</li>
+</ul>
+
+<h2 id="examples">Examples</h2>
+<ul>
+  <li>A PR prompts an agent to update your documentation</li>
+</ul>
+
+<h2 id="blogs">Blogs</h2>
+<ul>
+  <li><a href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-1-natural-language-to-tool-calls.md">12 Factors to Build AI Agents</a></li>
+</ul>
+
+<h2 id="multi-agents">Multi-Agents</h2>
+<ul>
+  <li><a href="https://cursor.com/blog/agent-best-practices">https://cursor.com/blog/agent-best-practices</a></li>
+  <li><a href="https://cursor.com/blog/scaling-agents">https://cursor.com/blog/scaling-agents</a></li>
+</ul>
+
+<h2 id="videos">Videos</h2>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=LP5OCa20Zpg">Tips for building AI agents by Anthropic</a></li>
+</ul>
+
+<h2 id="frameworks">Frameworks</h2>
+<ul>
+  <li>BAML: Markdown language for prompt engineering (<a href="https://github.com/boundaryml/baml">link</a>)</li>
+</ul>
+:ET
