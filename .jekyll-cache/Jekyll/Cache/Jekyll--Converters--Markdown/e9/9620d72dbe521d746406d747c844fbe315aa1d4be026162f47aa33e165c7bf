@@ -1,0 +1,8 @@
+I"M<p>In Postgres, you can have a primary read/write instance, and a read only hot-standby to serve requests at a high volume. When you update the primary replica, it sends updates via a stream of logs to the replica.</p>
+
+<p>If the replica has a long-running query, some issues can arise during the replication process. E.g., if the primary deletes a row that is being queried, the replica can fail that process and return a:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ERROR:  canceling statement due to conflict with recovery</code></p>
+
+<p>To fix this, we can adjust <code class="language-plaintext highlighter-rouge">max_standby_streaming_delay</code> and <code class="language-plaintext highlighter-rouge">max_standby_archive_delay</code>. They allow us to wait a bit more before we kill that query and replicate the data.</p>
+:ET
