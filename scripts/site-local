@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd -- "${script_dir}/.." && pwd)"
+
+GEM_HOME_PATH="${GEM_HOME:-/tmp/acrucetta-gems}"
+export GEM_HOME="${GEM_HOME_PATH}"
+export GEM_PATH="${GEM_HOME_PATH}"
+export PATH="${GEM_HOME_PATH}/bin:${PATH}"
+export JEKYLL_NO_BUNDLER_REQUIRE=true
+export BUNDLE_GEMFILE="${repo_root}/Gemfile"
+
+if ! command -v gem >/dev/null 2>&1; then
+  echo "RubyGems is required but not found." >&2
+  exit 1
+fi
+
+mkdir -p "${GEM_HOME_PATH}"
+
+has_gem() {
+  local name="$1"
+  local version="$2"
+  gem list -i "${name}" -v "${version}" >/dev/null 2>&1
+}
+
+install_if_missing() {
+  local name="$1"
+  local version="$2"
+  if ! has_gem "${name}" "${version}"; then
+    gem install "${name}:${version}" --no-document
+  fi
+}
+
+# Pinned for Ruby 2.6 compatibility in this environment.
+install_if_missing bundler 2.4.22
+install_if_missing ffi 1.15.5
+install_if_missing public_suffix 5.1.1
+install_if_missing webrick 1.8.1
+install_if_missing jekyll 4.2.2
+
+cd "${repo_root}"
+
+mode="${1:-serve}"
+case "${mode}" in
+  serve)
+    shift || true
+    "${GEM_HOME_PATH}/bin/jekyll" serve --host 127.0.0.1 --port 4000 "$@"
+    ;;
+  build)
+    shift || true
+    "${GEM_HOME_PATH}/bin/jekyll" build "$@"
+    ;;
+  *)
+    echo "Usage: scripts/site-local [serve|build] [jekyll args...]" >&2
+    exit 1
+    ;;
+esac

@@ -4,6 +4,22 @@ TODO
 - Clean up article titles
 - Keep only blog posts in the website; move references to wiki
 
+## Local Site Development
+
+Use the local helper to install compatible Jekyll dependencies into `/tmp/acrucetta-gems` and run the site:
+
+```bash
+scripts/site-local serve
+```
+
+Build only:
+
+```bash
+scripts/site-local build
+```
+
+The helper is pinned for Ruby 2.6 compatibility in this environment.
+
 ## TIL CLI
 
 Use `scripts/til` to create a new TIL entry from any directory:
