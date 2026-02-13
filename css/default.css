@@ -97,7 +97,7 @@ body {
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.8rem;
   max-width: var(--content-max);
-  margin-inline: auto;
+  margin-inline: 0;
   margin-bottom: 2.25rem;
 }
 
