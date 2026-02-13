@@ -15,6 +15,12 @@
   --color-link: #1f4f95;
   --color-link-hover: #153c72;
   --color-focus: #9b4f18;
+  --motion-bg-top: #eef4ff;
+  --motion-bg-bottom: #dce8ff;
+  --motion-wave-a: rgba(31, 79, 149, 0.3);
+  --motion-wave-b: rgba(21, 60, 114, 0.26);
+  --motion-wave-c: rgba(10, 34, 69, 0.2);
+  --motion-line: rgba(255, 255, 255, 0.45);
 
   --content-max: 72ch;
   --shell-max: 86rem;
@@ -30,6 +36,12 @@
     --color-link: #9dc1ff;
     --color-link-hover: #bad4ff;
     --color-focus: #f2b783;
+    --motion-bg-top: #131e33;
+    --motion-bg-bottom: #1d2d4a;
+    --motion-wave-a: rgba(102, 147, 220, 0.3);
+    --motion-wave-b: rgba(84, 132, 208, 0.26);
+    --motion-wave-c: rgba(62, 102, 172, 0.2);
+    --motion-line: rgba(221, 235, 255, 0.35);
   }
 }
 
@@ -54,6 +66,20 @@ body {
   font-family: var(--font-body);
   font-size: var(--size-base);
   line-height: var(--line-height);
+}
+
+.site-motion-banner {
+  height: clamp(84px, 12vw, 142px);
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(180deg, var(--motion-bg-top) 0%, var(--motion-bg-bottom) 100%);
+}
+
+.site-motion-banner canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .site-shell {
@@ -417,6 +443,10 @@ details > *:last-child {
 }
 
 @media (max-width: 760px) {
+  .site-motion-banner {
+    height: clamp(70px, 20vw, 104px);
+  }
+
   .site-shell {
     width: min(100% - 1.1rem, var(--shell-max));
     padding-top: 0.8rem;
