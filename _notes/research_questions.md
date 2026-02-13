@@ -1,4 +1,3 @@
-
 ---
 title: "Research Questions"
 layout: post
