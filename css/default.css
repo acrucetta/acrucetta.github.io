@@ -69,7 +69,7 @@ body {
 }
 
 .site-motion-banner {
-  height: clamp(84px, 12vw, 142px);
+  height: clamp(72px, 10vw, 122px);
   width: 100%;
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
@@ -85,7 +85,7 @@ body {
 .site-shell {
   width: min(100% - 2.25rem, var(--shell-max));
   margin: 0 auto;
-  padding: 1rem 0 3rem;
+  padding: 0.75rem 0 3rem;
 }
 
 .site-header {
@@ -492,12 +492,12 @@ details > *:last-child {
 
 @media (max-width: 760px) {
   .site-motion-banner {
-    height: clamp(70px, 20vw, 104px);
+    height: clamp(60px, 18vw, 90px);
   }
 
   .site-shell {
     width: min(100% - 1.1rem, var(--shell-max));
-    padding-top: 0.8rem;
+    padding-top: 0.65rem;
   }
 
   .site-header {
