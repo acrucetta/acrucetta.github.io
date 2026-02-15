@@ -14,6 +14,7 @@ category: "reference"
 ### Design inspiration
 
 - [https://beta.vero.site/](https://beta.vero.site/)
+- [https://sometimes.digital/](https://sometimes.digital/)
 - [https://ayazhafiz.com/](https://ayazhafiz.com/)
 - [https://thesephist.com/](https://thesephist.com/)
 - [https://j3s.sh/](https://j3s.sh/)
