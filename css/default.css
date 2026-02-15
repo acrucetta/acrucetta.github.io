@@ -109,9 +109,22 @@ body {
 .site-motion-banner {
   height: clamp(72px, 10vw, 122px);
   width: 100%;
+  position: relative;
   overflow: hidden;
-  border-bottom: 1px solid var(--color-border);
   background: linear-gradient(180deg, var(--motion-bg-top) 0%, var(--motion-bg-bottom) 100%);
+}
+
+.site-motion-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(16px, 2.8vw, 24px);
+  pointer-events: none;
+  background:
+    radial-gradient(40px 12px at 8% 0, transparent 52%, var(--color-bg) 54%) 0 0 / 120px 100% repeat-x,
+    linear-gradient(to bottom, transparent 0%, var(--color-bg) 92%);
 }
 
 .site-motion-banner--blog {
@@ -167,7 +180,7 @@ body {
 .site-shell {
   width: min(100% - 2.25rem, var(--shell-max));
   margin: 0 auto;
-  padding: 0.75rem 0 3rem;
+  padding: 1.15rem 0 3rem;
 }
 
 .site-header {
@@ -560,7 +573,7 @@ details > *:last-child {
 
   .site-shell {
     width: min(100% - 1.1rem, var(--shell-max));
-    padding-top: 0.65rem;
+    padding-top: 0.9rem;
   }
 
   .site-header {
