@@ -13,7 +13,7 @@
 }
 
 .til-page {
-  max-width: 78ch;
+  max-width: 66ch;
 }
 
 .til-page h1 {
@@ -23,7 +23,9 @@
 
 .til-page__intro {
   color: var(--til-muted);
-  max-width: 72ch;
+  max-width: 58ch;
+  font-size: 0.97rem;
+  line-height: 1.56;
 }
 
 .til-filter {
@@ -136,13 +138,15 @@
 
 .til-listing__title {
   margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.45;
+  font-size: clamp(1.02rem, 0.98rem + 0.25vw, 1.12rem);
+  line-height: 1.35;
 }
 
 .til-listing__meta {
   margin-top: 0.5rem;
   color: var(--til-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
@@ -194,6 +198,9 @@
 
 .til-topic-group li time {
   color: var(--til-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 

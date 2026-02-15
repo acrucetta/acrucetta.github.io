@@ -1,10 +1,17 @@
+.listing-page {
+  max-width: 64ch;
+}
+
 .listing-page h1 {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
 }
 
 .listing-page__intro {
   color: var(--color-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.45rem;
+  max-width: 58ch;
+  font-size: 0.97rem;
+  line-height: 1.56;
 }
 
 .listing-page__section {
@@ -15,23 +22,26 @@
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   border-radius: var(--radius);
-  padding: 1rem 1.05rem;
+  padding: 1rem 1.1rem;
 }
 
 .feature-entry__title {
-  margin: 0 0 0.35rem;
-  line-height: 1.25;
+  margin: 0 0 0.32rem;
+  line-height: 1.22;
+  font-size: clamp(1.14rem, 1.08rem + 0.35vw, 1.32rem);
 }
 
 .feature-entry__meta {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.62rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.73rem;
+  letter-spacing: 0.02em;
   color: var(--color-muted);
 }
 
 .feature-entry__excerpt {
   margin-bottom: 0;
+  max-width: 56ch;
 }
 
 .entry-list {
@@ -43,7 +53,7 @@
 .entry-list__item {
   margin: 0;
   border-top: 1px dotted var(--color-border);
-  padding: 0.58rem 0;
+  padding: 0.62rem 0;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
@@ -56,12 +66,14 @@
 
 .entry-list__title {
   margin: 0;
-  line-height: 1.38;
+  line-height: 1.34;
+  font-size: clamp(1.02rem, 0.99rem + 0.2vw, 1.11rem);
 }
 
 .entry-list__date {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.71rem;
+  letter-spacing: 0.02em;
   color: var(--color-muted);
   white-space: nowrap;
 }
