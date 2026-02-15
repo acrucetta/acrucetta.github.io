@@ -3,7 +3,7 @@ title: "How to write effective Anki cards"
 layout: post
 date: 2023-10-24
 tags: ['anki']
-category: 'article'
+category: 'note'
 ---
 
 These are some scattered notes on how to write effective flashcards.

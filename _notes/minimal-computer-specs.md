@@ -3,7 +3,7 @@ title: "Building a minimal computer in the open"
 layout: post
 date: 2023-06-23
 tags: ['low-tech']
-category: "reference"
+category: "note"
 ---
 
 I'm going to be building a computer based on the 50 year old computer
