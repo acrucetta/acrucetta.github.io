@@ -9,13 +9,13 @@
     return;
   }
 
-  const page = document.documentElement;
+  const styleSource = canvas.parentElement || document.documentElement;
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
   const frameIntervalMs = 1000 / 30;
   const startTime = performance.now();
 
-  const waves = [
+  const baseWaves = [
     { baseline: 0.66, amplitude: 14, frequency: 0.0105, speed: 0.23, phase: 0.3, fill: "waveA" },
     { baseline: 0.76, amplitude: 13, frequency: 0.0150, speed: -0.19, phase: 1.9, fill: "waveB" },
     { baseline: 0.86, amplitude: 11, frequency: 0.0195, speed: 0.12, phase: 3.4, fill: "waveC" }
@@ -28,9 +28,10 @@
   let isPageVisible = !document.hidden;
   let isCanvasVisible = true;
   let palette = readPalette();
+  let motionProfile = readMotionProfile();
 
   function readPalette() {
-    const styles = getComputedStyle(page);
+    const styles = getComputedStyle(styleSource);
     const token = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
     return {
       top: token("--motion-bg-top", "#eef4ff"),
@@ -39,6 +40,20 @@
       waveB: token("--motion-wave-b", "rgba(21, 60, 114, 0.26)"),
       waveC: token("--motion-wave-c", "rgba(10, 34, 69, 0.20)"),
       line: token("--motion-line", "rgba(255, 255, 255, 0.45)")
+    };
+  }
+
+  function readMotionProfile() {
+    const styles = getComputedStyle(styleSource);
+    const valueOf = (name, fallback) => {
+      const raw = styles.getPropertyValue(name).trim();
+      const parsed = Number.parseFloat(raw);
+      return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+    };
+
+    return {
+      density: valueOf("--motion-density", 1),
+      speed: valueOf("--motion-speed", 1)
     };
   }
 
@@ -60,9 +75,12 @@
 
   function waveY(wave, x, seconds) {
     const base = height * wave.baseline;
-    const primary = Math.sin((x * wave.frequency) + (seconds * wave.speed * 2.2) + wave.phase) * wave.amplitude;
+    const primary =
+      Math.sin((x * wave.frequency * motionProfile.density) + (seconds * wave.speed * motionProfile.speed * 2.2) + wave.phase) *
+      (wave.amplitude * motionProfile.density);
     const secondary =
-      Math.cos((x * wave.frequency * 0.55) - (seconds * wave.speed * 1.5) + wave.phase) * (wave.amplitude * 0.35);
+      Math.cos((x * wave.frequency * motionProfile.density * 0.55) - (seconds * wave.speed * motionProfile.speed * 1.5) + wave.phase) *
+      (wave.amplitude * motionProfile.density * 0.35);
     return base + primary + secondary;
   }
 
@@ -113,7 +131,7 @@
 
     context.clearRect(0, 0, width, height);
     drawBackdrop();
-    waves.forEach((wave) => drawWave(wave, seconds));
+    baseWaves.forEach((wave) => drawWave(wave, seconds));
   }
 
   function shouldAnimate() {
@@ -151,6 +169,7 @@
 
   function refreshStyle() {
     palette = readPalette();
+    motionProfile = readMotionProfile();
     draw((performance.now() - startTime) / 1000);
   }
 
