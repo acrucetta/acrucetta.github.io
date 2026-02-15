@@ -17,9 +17,9 @@
   --color-focus: #9b4f18;
   --motion-bg-top: #efe7da;
   --motion-bg-bottom: #dcc7a8;
-  --motion-wave-a: rgba(138, 106, 72, 0.34);
-  --motion-wave-b: rgba(112, 83, 53, 0.3);
-  --motion-wave-c: rgba(89, 63, 37, 0.24);
+  --motion-wave-a: #8a6a48;
+  --motion-wave-b: #705335;
+  --motion-wave-c: #593f25;
   --motion-line: rgba(255, 249, 237, 0.46);
   --motion-density: 1;
   --motion-speed: 1;
@@ -40,45 +40,45 @@
     --color-focus: #f2b783;
     --motion-bg-top: #241c14;
     --motion-bg-bottom: #342719;
-    --motion-wave-a: rgba(197, 158, 112, 0.34);
-    --motion-wave-b: rgba(171, 132, 90, 0.3);
-    --motion-wave-c: rgba(139, 103, 66, 0.24);
+    --motion-wave-a: #c59e70;
+    --motion-wave-b: #ab845a;
+    --motion-wave-c: #8b6742;
     --motion-line: rgba(255, 230, 193, 0.36);
   }
 
   .site-motion-banner--blog {
     --motion-bg-top: #251d14;
     --motion-bg-bottom: #3a2d1f;
-    --motion-wave-a: rgba(199, 155, 104, 0.38);
-    --motion-wave-b: rgba(171, 130, 82, 0.32);
-    --motion-wave-c: rgba(144, 106, 64, 0.26);
+    --motion-wave-a: #c79b68;
+    --motion-wave-b: #ab8252;
+    --motion-wave-c: #906a40;
     --motion-line: rgba(255, 226, 189, 0.38);
   }
 
   .site-motion-banner--notes {
     --motion-bg-top: #152127;
     --motion-bg-bottom: #22323a;
-    --motion-wave-a: rgba(128, 170, 180, 0.22);
-    --motion-wave-b: rgba(101, 143, 155, 0.18);
-    --motion-wave-c: rgba(84, 122, 132, 0.15);
+    --motion-wave-a: #80aab4;
+    --motion-wave-b: #658f9b;
+    --motion-wave-c: #547a84;
     --motion-line: rgba(214, 239, 246, 0.34);
   }
 
   .site-motion-banner--til {
     --motion-bg-top: #1d2419;
     --motion-bg-bottom: #2b3526;
-    --motion-wave-a: rgba(152, 174, 130, 0.24);
-    --motion-wave-b: rgba(124, 146, 104, 0.2);
-    --motion-wave-c: rgba(99, 118, 82, 0.16);
+    --motion-wave-a: #98ae82;
+    --motion-wave-b: #7c9268;
+    --motion-wave-c: #637652;
     --motion-line: rgba(226, 238, 211, 0.33);
   }
 
   .site-motion-banner--bookshelf {
     --motion-bg-top: #231a15;
     --motion-bg-bottom: #362922;
-    --motion-wave-a: rgba(192, 151, 122, 0.32);
-    --motion-wave-b: rgba(162, 124, 98, 0.28);
-    --motion-wave-c: rgba(135, 101, 79, 0.24);
+    --motion-wave-a: #c0977a;
+    --motion-wave-b: #a27c62;
+    --motion-wave-c: #87654f;
     --motion-line: rgba(247, 221, 200, 0.35);
   }
 }
@@ -114,25 +114,12 @@ body {
   background: linear-gradient(180deg, var(--motion-bg-top) 0%, var(--motion-bg-bottom) 100%);
 }
 
-.site-motion-banner::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: clamp(16px, 2.8vw, 24px);
-  pointer-events: none;
-  background:
-    radial-gradient(40px 12px at 8% 0, transparent 52%, var(--color-bg) 54%) 0 0 / 120px 100% repeat-x,
-    linear-gradient(to bottom, transparent 0%, var(--color-bg) 92%);
-}
-
 .site-motion-banner--blog {
   --motion-bg-top: #ece3d4;
   --motion-bg-bottom: #d5bf9d;
-  --motion-wave-a: rgba(132, 95, 58, 0.4);
-  --motion-wave-b: rgba(102, 69, 38, 0.35);
-  --motion-wave-c: rgba(78, 50, 26, 0.3);
+  --motion-wave-a: #845f3a;
+  --motion-wave-b: #664526;
+  --motion-wave-c: #4e321a;
   --motion-line: rgba(255, 245, 227, 0.44);
   --motion-density: 1.22;
   --motion-speed: 1.14;
@@ -141,9 +128,9 @@ body {
 .site-motion-banner--notes {
   --motion-bg-top: #e8f0f2;
   --motion-bg-bottom: #ccdfe3;
-  --motion-wave-a: rgba(88, 129, 140, 0.2);
-  --motion-wave-b: rgba(66, 102, 112, 0.17);
-  --motion-wave-c: rgba(52, 81, 92, 0.14);
+  --motion-wave-a: #58818c;
+  --motion-wave-b: #426670;
+  --motion-wave-c: #34515c;
   --motion-line: rgba(245, 252, 255, 0.5);
   --motion-density: 0.82;
   --motion-speed: 0.9;
@@ -152,9 +139,9 @@ body {
 .site-motion-banner--til {
   --motion-bg-top: #e9ede3;
   --motion-bg-bottom: #d5dcc8;
-  --motion-wave-a: rgba(103, 126, 86, 0.26);
-  --motion-wave-b: rgba(80, 101, 66, 0.22);
-  --motion-wave-c: rgba(62, 79, 50, 0.18);
+  --motion-wave-a: #677e56;
+  --motion-wave-b: #506542;
+  --motion-wave-c: #3e4f32;
   --motion-line: rgba(247, 250, 240, 0.45);
   --motion-density: 0.94;
   --motion-speed: 0.98;
@@ -163,9 +150,9 @@ body {
 .site-motion-banner--bookshelf {
   --motion-bg-top: #f0e6dc;
   --motion-bg-bottom: #dfcab4;
-  --motion-wave-a: rgba(145, 100, 74, 0.31);
-  --motion-wave-b: rgba(118, 80, 56, 0.27);
-  --motion-wave-c: rgba(94, 62, 41, 0.23);
+  --motion-wave-a: #91644a;
+  --motion-wave-b: #765038;
+  --motion-wave-c: #5e3e29;
   --motion-line: rgba(255, 243, 232, 0.45);
   --motion-density: 1.04;
   --motion-speed: 1;
