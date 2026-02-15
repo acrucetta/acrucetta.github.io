@@ -3,7 +3,7 @@ title: "Favorite websites"
 layout: post
 date: 2023-01-16
 tags: ['editor']
-category: "reference"
+category: "note"
 ---
 
 ## Websites

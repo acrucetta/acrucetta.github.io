@@ -1,7 +1,8 @@
 ---
 title: "Design philosophy"
 layout: "post"
-category: "reference"
+date: 2023-06-20
+category: "note"
 ---
 
 following the example of https://j3s.sh/ I wanted to write some notes
