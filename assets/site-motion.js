@@ -16,9 +16,10 @@
   const startTime = performance.now();
 
   const baseWaves = [
-    { baseline: 0.66, amplitude: 14, frequency: 0.0105, speed: 0.23, phase: 0.3, fill: "waveA" },
-    { baseline: 0.76, amplitude: 13, frequency: 0.0150, speed: -0.19, phase: 1.9, fill: "waveB" },
-    { baseline: 0.86, amplitude: 11, frequency: 0.0195, speed: 0.12, phase: 3.4, fill: "waveC" }
+    { baseline: 0.18, amplitude: 12, frequency: 0.0105, speed: 0.23, phase: 0.3, fill: "waveA" },
+    { baseline: 0.38, amplitude: 11, frequency: 0.0140, speed: -0.19, phase: 1.4, fill: "waveB" },
+    { baseline: 0.60, amplitude: 10, frequency: 0.0175, speed: 0.12, phase: 2.7, fill: "waveC" },
+    { baseline: 0.82, amplitude: 9, frequency: 0.0200, speed: -0.1, phase: 3.6, fill: "waveB" }
   ];
 
   let width = 0;
@@ -38,8 +39,7 @@
       bottom: token("--motion-bg-bottom", "#dce8ff"),
       waveA: token("--motion-wave-a", "rgba(31, 79, 149, 0.30)"),
       waveB: token("--motion-wave-b", "rgba(21, 60, 114, 0.26)"),
-      waveC: token("--motion-wave-c", "rgba(10, 34, 69, 0.20)"),
-      line: token("--motion-line", "rgba(255, 255, 255, 0.45)")
+      waveC: token("--motion-wave-c", "rgba(10, 34, 69, 0.20)")
     };
   }
 
@@ -92,33 +92,36 @@
     context.fillRect(0, 0, width, height);
   }
 
-  function drawWave(wave, seconds) {
-    const step = Math.max(3, Math.round(width / 260));
+  function sampleWave(wave, seconds, step) {
+    const points = [];
+    for (let x = 0; x <= width + step; x += step) {
+      points.push({ x, y: waveY(wave, x, seconds) });
+    }
+    return points;
+  }
+
+  function sampleFlat(y, step) {
+    const points = [];
+    for (let x = 0; x <= width + step; x += step) {
+      points.push({ x, y });
+    }
+    return points;
+  }
+
+  function drawBand(topPoints, bottomPoints, fillColor) {
+    if (!topPoints.length || !bottomPoints.length) {
+      return;
+    }
 
     context.beginPath();
-    context.moveTo(0, height);
-    for (let x = 0; x <= width + step; x += step) {
-      context.lineTo(x, waveY(wave, x, seconds));
+    context.moveTo(topPoints[0].x, topPoints[0].y);
+    topPoints.forEach((point) => context.lineTo(point.x, point.y));
+    for (let i = bottomPoints.length - 1; i >= 0; i -= 1) {
+      context.lineTo(bottomPoints[i].x, bottomPoints[i].y);
     }
-    context.lineTo(width, height);
     context.closePath();
-    context.fillStyle = palette[wave.fill];
+    context.fillStyle = fillColor;
     context.fill();
-
-    context.beginPath();
-    for (let x = 0; x <= width + step; x += step) {
-      const y = waveY(wave, x, seconds) - 1;
-      if (x === 0) {
-        context.moveTo(x, y);
-      } else {
-        context.lineTo(x, y);
-      }
-    }
-    context.strokeStyle = palette.line;
-    context.lineWidth = 1;
-    context.globalAlpha = 0.42;
-    context.stroke();
-    context.globalAlpha = 1;
   }
 
   function draw(seconds) {
@@ -131,7 +134,17 @@
 
     context.clearRect(0, 0, width, height);
     drawBackdrop();
-    baseWaves.forEach((wave) => drawWave(wave, seconds));
+    const step = Math.max(3, Math.round(width / 260));
+    const wavePoints = baseWaves.map((wave) => sampleWave(wave, seconds, step));
+    const topEdge = sampleFlat(0, step);
+    const bottomEdge = sampleFlat(height, step);
+
+    // Fill contiguous sinusoidal bands only (no blur/highlight overlays).
+    drawBand(topEdge, wavePoints[0], palette.waveA);
+    drawBand(wavePoints[0], wavePoints[1], palette.waveB);
+    drawBand(wavePoints[1], wavePoints[2], palette.waveC);
+    drawBand(wavePoints[2], wavePoints[3], palette.waveB);
+    drawBand(wavePoints[3], bottomEdge, palette.waveC);
   }
 
   function shouldAnimate() {
