@@ -28,14 +28,9 @@
             <canvas id="site-motion-canvas"></canvas>
         </div>
         <div class="site-shell">
-            <header class="site-header{% if page.url == '/' %} site-header--home{% endif %}">
+            <header class="site-header">
                 <p class="site-brand">
-                    {% if page.url == '/' %}
-                        <a class="site-brand__name" href="{{ '/' | relative_url }}">Thoughts and Writings</a>
-                    {% else %}
-                        <a class="site-brand__name" href="{{ '/' | relative_url }}">Andres Crucetta</a>
-                        <span class="site-brand__tagline">Thoughts and Writings</span>
-                    {% endif %}
+                    <a class="site-brand__name" href="{{ '/' | relative_url }}">Thoughts and Writings</a>
                 </p>
                 <nav class="site-nav" aria-label="Primary">
                     <ul class="site-nav__list">
