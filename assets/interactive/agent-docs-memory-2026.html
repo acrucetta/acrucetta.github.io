@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Docs Benchmark Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      margin: 24px;
+      color: #111;
+      line-height: 1.45;
+      max-width: 1100px;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 1.9rem;
+    }
+    .muted {
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .chart {
+      margin: 24px 0;
+    }
+    .foot {
+      margin-top: 18px;
+      color: #666;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Agent Docs Architecture Benchmark</h1>
+  <div class="muted">Strong run (R1): 120 attempts total, 60/model, n=20 per architecture.</div>
+
+  <div id="success" class="chart"></div>
+  <div id="efficiency" class="chart"></div>
+  <div id="heatmap" class="chart"></div>
+
+  <div class="foot">
+    Data source: <code>benchmark-memory/results/summary_*_repo_policy_v2_strong_r1/*.csv</code>
+  </div>
+
+  <script>
+    const architectures = ["control", "mono", "toc"];
+    const models = ["Claude", "Codex"];
+    const colors = { control: "#9AA0A6", mono: "#1B5E20", toc: "#1565C0" };
+
+    const archData = {
+      Claude: {
+        task_success: [0.05, 1.0, 1.0],
+        policy_pass: [0.05, 1.0, 1.0],
+        latency_ms: [58229.7, 72713.5, 71209.5],
+        input_tokens: [58.4, 72.8, 70.0]
+      },
+      Codex: {
+        task_success: [0.25, 1.0, 1.0],
+        policy_pass: [0.25, 1.0, 1.0],
+        latency_ms: [69058.0, 77740.55, 86750.85],
+        input_tokens: [206481.85, 235672.7, 289331.5]
+      }
+    };
+
+    const taskMatrix = {
+      Claude: [
+        [0.0, 0.0, 0.0, 0.0, 0.25], // control
+        [1.0, 1.0, 1.0, 1.0, 1.0],   // mono
+        [1.0, 1.0, 1.0, 1.0, 1.0]    // toc
+      ],
+      Codex: [
+        [0.0, 0.25, 0.0, 0.0, 1.0],  // control
+        [1.0, 1.0, 1.0, 1.0, 1.0],   // mono
+        [1.0, 1.0, 1.0, 1.0, 1.0]    // toc
+      ]
+    };
+
+    const successTraces = [];
+    for (const model of models) {
+      successTraces.push({
+        type: "bar",
+        name: model,
+        x: architectures,
+        y: archData[model].task_success.map(v => v * 100),
+        text: archData[model].task_success.map(v => `${Math.round(v * 100)}%`),
+        textposition: "outside",
+        cliponaxis: false
+      });
+    }
+    Plotly.newPlot("success", successTraces, {
+      title: "Task Success by Architecture",
+      barmode: "group",
+      yaxis: { title: "Success (%)", range: [0, 110] },
+      xaxis: { title: "Architecture" },
+      margin: { t: 60, r: 20, b: 50, l: 60 }
+    }, { responsive: true, displayModeBar: false });
+
+    const effTraces = [
+      {
+        type: "scatter",
+        mode: "markers+text",
+        name: "Claude",
+        x: archData.Claude.input_tokens,
+        y: archData.Claude.latency_ms.map(v => v / 1000),
+        text: architectures,
+        textposition: "top center",
+        marker: { size: 12, color: "#455A64" }
+      },
+      {
+        type: "scatter",
+        mode: "markers+text",
+        name: "Codex",
+        x: archData.Codex.input_tokens,
+        y: archData.Codex.latency_ms.map(v => v / 1000),
+        text: architectures,
+        textposition: "top center",
+        marker: { size: 12, color: "#0D47A1" }
+      }
+    ];
+    Plotly.newPlot("efficiency", effTraces, {
+      title: "Efficiency Frontier (Input Tokens vs Latency)",
+      xaxis: { title: "Mean input tokens" },
+      yaxis: { title: "Mean latency (s)" },
+      margin: { t: 60, r: 20, b: 60, l: 60 }
+    }, { responsive: true, displayModeBar: false });
+
+    const heatmapTraces = [
+      {
+        type: "heatmap",
+        z: taskMatrix.Claude,
+        x: ["T401", "T402", "T403", "T404", "T405"],
+        y: architectures,
+        zmin: 0,
+        zmax: 1,
+        xaxis: "x",
+        yaxis: "y",
+        colorscale: "YlGn",
+        showscale: false,
+        name: "Claude"
+      },
+      {
+        type: "heatmap",
+        z: taskMatrix.Codex,
+        x: ["T401", "T402", "T403", "T404", "T405"],
+        y: architectures,
+        zmin: 0,
+        zmax: 1,
+        xaxis: "x2",
+        yaxis: "y2",
+        colorscale: "YlGn",
+        colorbar: { title: "Success" },
+        name: "Codex"
+      }
+    ];
+    Plotly.newPlot("heatmap", heatmapTraces, {
+      title: "Task-level Success Heatmap",
+      grid: { rows: 1, columns: 2, pattern: "independent" },
+      annotations: [
+        { text: "Claude", x: 0.21, y: 1.13, xref: "paper", yref: "paper", showarrow: false, font: { size: 13 } },
+        { text: "Codex", x: 0.79, y: 1.13, xref: "paper", yref: "paper", showarrow: false, font: { size: 13 } }
+      ],
+      margin: { t: 80, r: 20, b: 60, l: 60 }
+    }, { responsive: true, displayModeBar: false });
+  </script>
+</body>
+</html>
