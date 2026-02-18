@@ -1,204 +1,183 @@
 ---
-title: "What We Actually Learned About Agent Docs: Mono vs TOC, Claude Code vs Codex"
+title: "From Saturation to Signal: Harder Agent-Docs Tasks in Real Code"
 layout: post
 date: 2026-02-17
-tags: ['coding', 'ai']
+updated: 2026-02-17
+tags: ['coding', 'ai', 'benchmarking']
 category: 'article'
+summary: "I reran the agent-docs benchmark with harder policy-conflict tasks. Control failed completely, mono beat toc in both models, and functional checks stayed saturated at 100%."
 ---
 
-I got tired of hearing a familiar sentence: "the model forgot."
+I wanted to answer one practical question for real repos:
 
-Sometimes that is true. Sometimes the benchmark is bad.
+> When tasks are genuinely hard, does docs architecture (`mono` vs `toc`) change policy recall quality, or just cost?
 
-So I rebuilt the experiment from scratch to answer one concrete repo question:
+Earlier versions of this benchmark were too easy. `mono` and `toc` both hit 100%, so we could not separate them.
+This run is the first one that produced a real quality signal.
 
-> If you care about policy recall in real code tasks, is a long single `AGENTS.md`/`CLAUDE.md` worse than a TOC + modular docs architecture?
+## Final question
 
-This post replaces my earlier draft with the stronger run.
-
-## Hook: the practical pain
-
-In production repos, we add instructions like:
-
-- use `testify/require`
-- migrate touched assertions
-- this folder is an exception
-
-Then the agent edits tests in a different folder and drifts toward old local style.
-
-That drift is exactly what this benchmark tries to measure.
-
-## Background context
-
-### Claude Code memory and instruction handling
-
-Claude Code has layered memory and instructions:
-
-- project instructions (for example `CLAUDE.md`, `.claude/rules/*`)
-- optional user/project memory stores
-- runtime context and compaction behavior as conversations grow
-
-This means instruction-following depends on what is active and retrieved at task time, not just what exists somewhere in the repo.
-
-### Codex memory and instruction handling
-
-Codex follows instruction discovery through `AGENTS.md` rules and directory scoping, then uses thread context for tool calls, file reads, and edits.
-
-In practice, this has two implications for benchmarking:
-
-- instruction architecture can change what gets read early
-- context growth and tool behavior can dominate outcomes if isolation is weak
-
-So the experiment must control for both document content and execution isolation.
-
-## Hypothesis
-
-I tested three hypotheses:
-
-1. Any explicit docs architecture (`mono` or `toc`) beats control on policy recall.
-2. `toc` and `mono` may tie on recall, but differ in cost (latency/tokens).
-3. If failures happen, they should concentrate on policy-sensitive tasks, not basic functional correctness.
-
-## Experiment design
-
-### Scenario
-
-I used the `repo_policy_conflict` benchmark scenario in `benchmark-memory` with realistic code-edit tasks in a Go fixture repo.
-
-Task families:
-
-- `T401`: new tests should use `require`/error assertions
-- `T402`: legacy folder exception (`no testify`)
-- `T403`: touched-file migration to `require`
-- `T404`: adapter folder exception (`package http_test` + `require`)
-- `T405`: multi-phase change with conflicting defaults/exceptions
-
-### Architectures compared
+Three setups, same policy facts:
 
 - `control`: no policy docs
-- `mono`: one root doc (`CLAUDE.md` or `AGENTS.md`)
-- `toc`: index file + modular docs (same facts split by topic)
+- `mono`: one long root policy doc
+- `toc`: index + modular docs
 
-Core fairness rule: `mono` and `toc` had equivalent core facts; only structure changed.
+Two models:
 
-### Models and sample size
+- Claude Code (`claude-sonnet-4-5-20250929`)
+- Codex (`gpt-5.3-codex`)
 
-- Claude: `claude-sonnet-4-5-20250929`
-- Codex: `gpt-5.3-codex`
-- Strong run size: **120 attempts total**
-  - 60/model
-  - 20 attempts per architecture per model (`5 tasks x 4 repeats`)
+## Why this version is harder
 
-### Scoring and isolation updates (critical)
+The `repo_policy_conflict_v3` scenario forces policy-local-code conflicts in a small but realistic billing repo:
 
-I fixed several flaws from earlier runs:
+- alias normalization vs legacy naming
+- required validation order in billing flows
+- strict adapter error shape contracts
+- legacy timezone edge cases
+- touched-file migration constraints
+- cross-folder multi-phase changes with competing defaults
 
-- added semantic checks (reduced brittle regex-only grading)
-- repaired task patterns that over-penalized equivalent code forms
-- enforced per-attempt isolated workdirs
-- verified no outside-root reads in this final run
+This moved the benchmark from "can the model code" to "can the model hold and apply policy under interference."
 
-Observed run health:
+## Protocol (full run)
 
-- Claude raw: 60/60 `ok`
-- Codex raw: 60/60 `ok`
-- outside-root reads: **0** in both models
+| Item | Value |
+| --- | --- |
+| Attempts per model | 42 |
+| Attempts per architecture | 14 |
+| Architectures | `control`, `mono`, `toc` |
+| Grading focus | `task_success`, `policy_pass`, `functional_pass` |
+| Isolation | per-attempt workdirs + verification command per task |
 
-## Results
+Run health:
 
-### Figure 1: success by architecture
+- Claude raw attempts: `42/42` status `ok`
+- Codex raw attempts: `42/42` status `ok`
+- Verification exit codes: all zero
+- Outside-root reads: Claude `0`; Codex `3` (all were the same global skill file: `~/.codex/skills/cognitive-guard/SKILL.md`)
 
-![Success by architecture](/assets/images/agent-docs-memory-2026/success-by-architecture-strong-r1.png)
+## Main result
 
-### Main result table (strong run)
+<figure>
+  <img src="/assets/images/agent-docs-memory-2026/success-by-architecture-v3-full42.png" alt="Task success by architecture for Claude and Codex in the v3 full42 run" />
+  <figcaption><strong>Figure 1.</strong> The quality ranking is consistent across models: <code>mono</code> above <code>toc</code>, both above <code>control</code>.</figcaption>
+</figure>
 
-| Model | Architecture | Task success | Policy pass | Mean latency | Mean input tokens |
-| --- | --- | ---: | ---: | ---: | ---: |
-| Claude | control | 5.0% | 5.0% | 58.2s | 58.4 |
-| Claude | mono | 100.0% | 100.0% | 72.7s | 72.8 |
-| Claude | toc | 100.0% | 100.0% | 71.2s | 70.0 |
-| Codex | control | 25.0% | 25.0% | 69.1s | 206,481.9 |
-| Codex | mono | 100.0% | 100.0% | 77.7s | 235,672.7 |
-| Codex | toc | 100.0% | 100.0% | 86.8s | 289,331.5 |
+In both models, the ranking is the same:
 
-### Confidence intervals (Wilson, 95%)
+- `control`: `0/14` (0.0%)
+- `mono`: `5/14` (35.7%)
+- `toc`: `3/14` (21.4%)
 
-| Model | Architecture | Success (k/n) | 95% CI |
-| --- | --- | ---: | ---: |
-| Claude | control | 1/20 | [0.9%, 23.6%] |
-| Claude | mono | 20/20 | [83.9%, 100%] |
-| Claude | toc | 20/20 | [83.9%, 100%] |
-| Codex | control | 5/20 | [11.2%, 46.9%] |
-| Codex | mono | 20/20 | [83.9%, 100%] |
-| Codex | toc | 20/20 | [83.9%, 100%] |
+So the first-order effect is clear: docs beat no docs.
+In this harder setup, `mono` also beats `toc` on quality for both models.
 
-### Figure 2: efficiency tradeoff
+### Full table
 
-![Efficiency tradeoff](/assets/images/agent-docs-memory-2026/efficiency-strong-r1.png)
+| Model | Architecture | Task success (k/n) | 95% CI | Policy pass | Functional pass | Mean latency | Mean input tokens | Mean docs read |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Claude | control | 0/14 (0.0%) | [0.0%, 21.5%] | 0.0% | 100.0% | 92.7s | 108.6 | 1.57 |
+| Claude | mono | 5/14 (35.7%) | [16.3%, 61.2%] | 35.7% | 100.0% | 100.5s | 76.7 | 1.00 |
+| Claude | toc | 3/14 (21.4%) | [7.6%, 47.6%] | 21.4% | 100.0% | 93.5s | 76.7 | 4.50 |
+| Codex | control | 0/14 (0.0%) | [0.0%, 21.5%] | 0.0% | 100.0% | 70.3s | 208,104.6 | 1.93 |
+| Codex | mono | 5/14 (35.7%) | [16.3%, 61.2%] | 35.7% | 100.0% | 74.9s | 233,364.3 | 1.36 |
+| Codex | toc | 3/14 (21.4%) | [7.6%, 47.6%] | 21.4% | 100.0% | 80.7s | 291,197.9 | 5.86 |
 
-Takeaway: on this task set, `mono` and `toc` tie on recall, but `toc` is costlier for Codex.
+Two immediate implications:
 
-### Figure 3: task-level heatmap
+- failures are policy-adherence failures, not basic code-execution failures (`functional_pass` is saturated at 100%)
+- the `mono - toc` gap is identical in both models: `+14.3` points
 
-![Task-level heatmap](/assets/images/agent-docs-memory-2026/task-heatmap-strong-r1.png)
+## Cost and retrieval behavior
 
-Control failures cluster where policy conflicts are explicit (framework choice, folder exceptions, touched-file migration). Functional checks still passed.
+<figure>
+  <img src="/assets/images/agent-docs-memory-2026/efficiency-v3-full42.png" alt="Latency and token cost by architecture for Claude and Codex in the v3 full42 run" />
+  <figcaption><strong>Figure 2.</strong> Cost diverges most for Codex, where <code>toc</code> is slower and more token-expensive than <code>mono</code>.</figcaption>
+</figure>
 
-### Optional interactive view
+Codex shows the strongest economic spread:
 
-For hover details and cross-plot exploration:
+- `toc` vs `mono` input tokens: `+24.8%` (`291,197.9` vs `233,364.3`)
+- `toc` vs `mono` latency: `+5.9s` (`80.7s` vs `74.9s`)
 
-- [Interactive dashboard](/assets/interactive/agent-docs-memory-2026.html)
+Retrieval volume also diverges:
 
-## Discussion
+- Claude docs read: `mono 1.00` vs `toc 4.50`
+- Codex docs read: `mono 1.36` vs `toc 5.86`
 
-### What this supports strongly
+`toc` can increase lookup activity without improving pass rate in this task set.
 
-- Documented policy architecture matters. `control` underperformed sharply in both models.
-- In this scenario, both `mono` and `toc` are highly effective for recall/adherence.
-- For Codex, `mono` appears more efficient than `toc` at equal quality.
+## Task-level signal
 
-### What this does **not** prove yet
+<figure>
+  <img src="/assets/images/agent-docs-memory-2026/task-heatmap-v3-full42.png" alt="Task-level success heatmap by architecture for Claude and Codex in v3 full42" />
+  <figcaption><strong>Figure 3.</strong> Hard tasks separate architectures and expose where policy recall still fails.</figcaption>
+</figure>
 
-- That `toc` is universally better or worse than `mono` for recall.
-- That long docs always create harmful noise.
+Across both models (excluding control), hardest task classes were:
 
-Current interpretation: with a clean policy set and this task complexity, both structured approaches saturate quality. Differences become mostly economic (latency/tokens), especially for Codex.
+- `T504 legacy_timezone_boundary`: 0%
+- `T506 round_touched_file_migration`: 0%
+- `T501 currency_alias_normalization`: 12.5%
 
-### Remaining validity limits
+The easiest were:
 
-- still one repo fixture (Go testing policy domain)
-- all runs are single-turn tasks, even for the multi-phase prompt
-- perfect recall in `mono`/`toc` suggests we now need harder discrimination tasks, not only larger N
+- `T502 billing_validation_order`: 75%
+- `T507 cross_folder_multi_phase`: 62.5% overall, with a large architecture split (`mono 100%`, `toc 25%`)
 
-## Next steps
+This is exactly the kind of discrimination we were missing in earlier saturated runs.
 
-1. Add longer multi-turn task chains with delayed policy recall.
-2. Add contradictory local-code priors (legacy style nearby) to increase interference pressure.
-3. Include mixed-language repos to test portability.
-4. Add ablations for file naming/discovery (`CLAUDE.md`, `AGENTS.md`, both, nested overrides).
-5. Publish preregistered rubric + holdout tasks before next run.
+## What this supports vs what it does not
+
+What this supports:
+
+- explicit docs architecture is necessary in this scenario (`control` collapses)
+- with these harder tasks, `mono` outperforms `toc` on policy recall for both models
+- the bottleneck here is instruction application under interference, not code generation
+
+What this does not prove:
+
+- that `mono` is universally better than `toc`
+- that long docs are always better
+- that these effect sizes transfer unchanged to other languages/repos
+
+## Other trials (what we tried, what we learned)
+
+<figure>
+  <img src="/assets/images/agent-docs-memory-2026/trial-progression-v2-to-v3.png" alt="Progression chart from v2 to v3 showing architecture success trends over trial stages" />
+  <figcaption><strong>Figure 4.</strong> Earlier trials saturated; the harder v3 setup created the separation signal needed to compare architectures.</figcaption>
+</figure>
+
+I kept the old trials for methodology, but they are no longer the headline result.
+
+- `v2_small_r2_regrade` (early check): docs helped, but results were unstable with small `n`
+- `v2_strong_r1` (60 attempts/model): `mono` and `toc` both saturated at 100%, so quality differences were not measurable
+- `v3_smoke` (tiny dry run): validated pipeline wiring, not inference
+- `v3_prefull18_clean` (clean pre-full): first consistent sign that `mono > toc`
+- `v3_full42_clean` (final): confirmed the same ranking with larger `n`
+
+The key lesson from the trial stack: benchmark hardness matters more than benchmark size if your goal is to compare docs architectures.
 
 ## Reproducibility
 
-Primary artifacts for this post:
+Primary artifacts:
 
-- `benchmark-memory/results/run_plan_claude_repo_policy_v2_strong_r1.jsonl`
-- `benchmark-memory/results/run_plan_codex_repo_policy_v2_strong_r1.jsonl`
-- `benchmark-memory/results/raw_results_claude_repo_policy_v2_strong_r1.jsonl`
-- `benchmark-memory/results/raw_results_codex_repo_policy_v2_strong_r1.jsonl`
-- `benchmark-memory/results/graded_results_claude_repo_policy_v2_strong_r1.jsonl`
-- `benchmark-memory/results/graded_results_codex_repo_policy_v2_strong_r1.jsonl`
-- `benchmark-memory/results/summary_claude_repo_policy_v2_strong_r1/summary_by_architecture.csv`
-- `benchmark-memory/results/summary_codex_repo_policy_v2_strong_r1/summary_by_architecture.csv`
-- `benchmark-memory/results/summary_claude_repo_policy_v2_strong_r1/summary_by_task.csv`
-- `benchmark-memory/results/summary_codex_repo_policy_v2_strong_r1/summary_by_task.csv`
+- `benchmark-memory/results/raw_results_claude_repo_policy_v3_full42_clean.jsonl`
+- `benchmark-memory/results/raw_results_codex_repo_policy_v3_full42_clean.jsonl`
+- `benchmark-memory/results/graded_results_claude_repo_policy_v3_full42_clean.jsonl`
+- `benchmark-memory/results/graded_results_codex_repo_policy_v3_full42_clean.jsonl`
+- `benchmark-memory/results/summary_claude_repo_policy_v3_full42_clean/summary_by_architecture.csv`
+- `benchmark-memory/results/summary_codex_repo_policy_v3_full42_clean/summary_by_architecture.csv`
+- `benchmark-memory/results/summary_claude_repo_policy_v3_full42_clean/summary_by_task.csv`
+- `benchmark-memory/results/summary_codex_repo_policy_v3_full42_clean/summary_by_task.csv`
 
-Figure generation command:
+Figure generation:
 
 ```bash
 cd benchmark-memory
-python3 scripts/plot_repo_policy_strong_results.py
+python3 scripts/plot_repo_policy_v3_full42_results.py
 ```
 
 ## Sources

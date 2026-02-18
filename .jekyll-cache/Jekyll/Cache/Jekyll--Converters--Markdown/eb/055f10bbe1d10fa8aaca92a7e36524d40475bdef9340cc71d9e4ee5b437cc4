@@ -1,9 +1,0 @@
-I"O<p>Postgres will not run any CTEs not referenced in the main query. It’s a form of optimization in newer versions.</p>
-
-<p>E.g.,</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WITH will_not_run AS (SELECT 1/0), ok AS (SELECT 1)
-SELECT * FROM ok;
-</code></pre></div></div>
-
-:ET
