@@ -1,23 +1,32 @@
 ---
-title: "Writing a research paper using LLMs"
+title: "How I Used LLMs to Write a Research-Style Paper"
 layout: post
 date: 2026-02-17
-updated: 2026-02-17
+updated: 2026-02-19
 tags: ['coding', 'ai', 'benchmarking']
 category: 'article'
-summary: "I reran the agent-docs benchmark with harder policy-conflict tasks. Control failed completely, mono beat toc in both models, and functional checks stayed saturated at 100%."
+summary: "A practical walkthrough of how I used LLMs to design, evolve, benchmark, and write up a real experiment on agent-doc architecture."
 ---
 
-I wanted to answer one practical question for real repos:
+I wanted to answer one practical question:
 
-> When tasks are genuinely hard, does docs architecture (`mono` vs `toc`) change policy recall quality, or just cost?
+> Can documentation architecture change coding-agent quality on hard tasks, or does it mostly change cost?
 
-Earlier versions of this benchmark were too easy. `mono` and `toc` both hit 100%, so we could not separate them.
-This run is the first one that produced a real quality signal.
+But I also wanted to run the process in a way other people can copy.
+So instead of treating an LLM like a one-shot writer, I used it as a research copilot across the full loop:
 
-## Final question
+- define a testable question
+- generate and harden tasks
+- run controlled benchmarks
+- review failures
+- iterate the experiment
+- publish a paper from artifacts
 
-Three setups, same policy facts:
+This post is that workflow.
+
+## The setup I tested
+
+Three architectures, same policy facts:
 
 - `control`: no policy docs
 - `mono`: one long root policy doc
@@ -28,137 +37,145 @@ Two models:
 - Claude Code (`claude-sonnet-4-5-20250929`)
 - Codex (`gpt-5.3-codex`)
 
-## Why this version is harder
+Final run size:
 
-The `repo_policy_conflict_v3` scenario forces policy-local-code conflicts in a small but realistic billing repo:
+- `42` attempts per model
+- `14` attempts per architecture
+- per-attempt isolation with deterministic grading
 
-- alias normalization vs legacy naming
-- required validation order in billing flows
-- strict adapter error shape contracts
-- legacy timezone edge cases
-- touched-file migration constraints
-- cross-folder multi-phase changes with competing defaults
+## How the experiment evolved (the part that mattered)
 
-This moved the benchmark from "can the model code" to "can the model hold and apply policy under interference."
+The important part was not the first run. It was the iteration.
 
-## Protocol (full run)
+### Phase 1: benchmark looked "fine" but was too easy
 
-| Item | Value |
-| --- | --- |
-| Attempts per model | 42 |
-| Attempts per architecture | 14 |
-| Architectures | `control`, `mono`, `toc` |
-| Grading focus | `task_success`, `policy_pass`, `functional_pass` |
-| Isolation | per-attempt workdirs + verification command per task |
+Early versions gave high scores for both `mono` and `toc`.
+That looked good, but it was not useful because there was no separation signal.
 
-Run health:
+### Phase 2: we reviewed failures and tightened tests
 
-- Claude raw attempts: `42/42` status `ok`
-- Codex raw attempts: `42/42` status `ok`
-- Verification exit codes: all zero
-- Outside-root reads: Claude `0`; Codex `3` (all were the same global skill file: `~/.codex/skills/cognitive-guard/SKILL.md`)
+I used LLMs to inspect graded artifacts and find what was actually failing:
 
-## Main result
+- not basic execution
+- mostly policy-binding details (error shape, call order, folder-specific conventions)
+
+So I made the scenario harder (`repo_policy_conflict_v3`):
+
+- more multi-file, multi-phase tasks
+- more conflicting distractor policy under `high` load
+- stricter checks on validation order, wrapping, and exception rules
+
+This changed the benchmark from:
+
+- "can the model write Go code?"
+
+into:
+
+- "can the model retrieve and correctly apply policy under interference?"
+
+### Phase 3: rerun clean, balanced, and isolated
+
+Then I reran with balanced sampling and strict isolation, and only used that run for headline claims.
+
+That was the first version that produced a robust quality ranking.
+
+## Final result (v3 full42 clean)
 
 <figure>
   <img src="/assets/images/agent-docs-memory-2026/success-by-architecture-v3-full42.png" alt="Task success by architecture for Claude and Codex in the v3 full42 run" />
-  <figcaption><strong>Figure 1.</strong> The quality ranking is consistent across models: <code>mono</code> above <code>toc</code>, both above <code>control</code>.</figcaption>
+  <figcaption><strong>Figure 1.</strong> In both models, <code>mono</code> outperformed <code>toc</code>, and both beat <code>control</code>.</figcaption>
 </figure>
 
-In both models, the ranking is the same:
+Per model, same ranking:
 
 - `control`: `0/14` (0.0%)
 - `mono`: `5/14` (35.7%)
 - `toc`: `3/14` (21.4%)
 
-So the first-order effect is clear: docs beat no docs.
-In this harder setup, `mono` also beats `toc` on quality for both models.
-
-### Full table
-
-| Model | Architecture | Task success (k/n) | 95% CI | Policy pass | Functional pass | Mean latency | Mean input tokens | Mean docs read |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Claude | control | 0/14 (0.0%) | [0.0%, 21.5%] | 0.0% | 100.0% | 92.7s | 108.6 | 1.57 |
-| Claude | mono | 5/14 (35.7%) | [16.3%, 61.2%] | 35.7% | 100.0% | 100.5s | 76.7 | 1.00 |
-| Claude | toc | 3/14 (21.4%) | [7.6%, 47.6%] | 21.4% | 100.0% | 93.5s | 76.7 | 4.50 |
-| Codex | control | 0/14 (0.0%) | [0.0%, 21.5%] | 0.0% | 100.0% | 70.3s | 208,104.6 | 1.93 |
-| Codex | mono | 5/14 (35.7%) | [16.3%, 61.2%] | 35.7% | 100.0% | 74.9s | 233,364.3 | 1.36 |
-| Codex | toc | 3/14 (21.4%) | [7.6%, 47.6%] | 21.4% | 100.0% | 80.7s | 291,197.9 | 5.86 |
-
-Two immediate implications:
-
-- failures are policy-adherence failures, not basic code-execution failures (`functional_pass` is saturated at 100%)
-- the `mono - toc` gap is identical in both models: `+14.3` points
+A key detail: `functional_pass` stayed at `100%`.
+So misses were mostly policy-adherence misses, not coding-execution misses.
 
 ## Cost and retrieval behavior
 
 <figure>
   <img src="/assets/images/agent-docs-memory-2026/efficiency-v3-full42.png" alt="Latency and token cost by architecture for Claude and Codex in the v3 full42 run" />
-  <figcaption><strong>Figure 2.</strong> Cost diverges most for Codex, where <code>toc</code> is slower and more token-expensive than <code>mono</code>.</figcaption>
+  <figcaption><strong>Figure 2.</strong> <code>toc</code> increased retrieval and cost, especially for Codex.</figcaption>
 </figure>
 
-Codex shows the strongest economic spread:
+Codex in this run:
 
-- `toc` vs `mono` input tokens: `+24.8%` (`291,197.9` vs `233,364.3`)
-- `toc` vs `mono` latency: `+5.9s` (`80.7s` vs `74.9s`)
+- `toc` input tokens vs `mono`: `+24.8%`
+- `toc` latency vs `mono`: `+5.9s`
 
-Retrieval volume also diverges:
+Docs read means:
 
-- Claude docs read: `mono 1.00` vs `toc 4.50`
-- Codex docs read: `mono 1.36` vs `toc 5.86`
+- Claude: `mono 1.00` vs `toc 4.50`
+- Codex: `mono 1.36` vs `toc 5.86`
 
-`toc` can increase lookup activity without improving pass rate in this task set.
+So more document retrieval did not automatically produce better policy success in this task set.
 
-## Task-level signal
+## Task-level discrimination (why this benchmark is useful)
 
 <figure>
   <img src="/assets/images/agent-docs-memory-2026/task-heatmap-v3-full42.png" alt="Task-level success heatmap by architecture for Claude and Codex in v3 full42" />
-  <figcaption><strong>Figure 3.</strong> Hard tasks separate architectures and expose where policy recall still fails.</figcaption>
+  <figcaption><strong>Figure 3.</strong> Hard tasks reveal where architecture helps and where both still fail.</figcaption>
 </figure>
 
-Across both models (excluding control), hardest task classes were:
+Hardest classes:
 
 - `T504 legacy_timezone_boundary`: 0%
 - `T506 round_touched_file_migration`: 0%
-- `T501 currency_alias_normalization`: 12.5%
+- `T501 currency_alias_normalization`: low success
 
-The easiest were:
+Highest-signal split:
 
-- `T502 billing_validation_order`: 75%
-- `T507 cross_folder_multi_phase`: 62.5% overall, with a large architecture split (`mono 100%`, `toc 25%`)
+- `T507 cross_folder_multi_phase`: `mono 100%` vs `toc 25%` (pooled)
 
-This is exactly the kind of discrimination we were missing in earlier saturated runs.
+This is exactly the kind of separation I could not get in earlier saturated runs.
 
-## What this supports vs what it does not
+## What I learned about using LLMs for research
 
-What this supports:
+Using an LLM for research worked best when I split responsibilities:
 
-- explicit docs architecture is necessary in this scenario (`control` collapses)
-- with these harder tasks, `mono` outperforms `toc` on policy recall for both models
-- the bottleneck here is instruction application under interference, not code generation
+- **LLM for generation**: draft tasks, checks, protocol language, paper structure
+- **Code/tests for truth**: execution + grading scripts decide outcomes
+- **LLM for iteration**: summarize misses, suggest next trial changes
+- **Artifacts for writing**: all paper tables/figures generated from saved results
 
-What this does not prove:
+The failure mode is obvious in hindsight: if you only ask an LLM to "write a paper," it can sound convincing without being grounded.
+The fix is simple: force everything through runnable checks and machine-readable artifacts.
 
-- that `mono` is universally better than `toc`
-- that long docs are always better
-- that these effect sizes transfer unchanged to other languages/repos
+## Quick playbook (copy this)
 
-## Other trials (what we tried, what we learned)
+If you want to do your own benchmark and write-up quickly:
+
+1. Start with one causal question.
+2. Build a runnable fixture repo with realistic conflicts.
+3. Encode policy facts and distractors in structured files.
+4. Generate variant architectures automatically.
+5. Run isolated attempts with balanced sampling.
+6. Grade function and policy separately.
+7. Review misses and harden tasks.
+8. Only then publish, using generated tables/figures.
+
+That is the shortest path I know from "idea" to "credible research-style result" using LLMs.
+
+## Trial progression (why iteration mattered)
 
 <figure>
   <img src="/assets/images/agent-docs-memory-2026/trial-progression-v2-to-v3.png" alt="Progression chart from v2 to v3 showing architecture success trends over trial stages" />
-  <figcaption><strong>Figure 4.</strong> Earlier trials saturated; the harder v3 setup created the separation signal needed to compare architectures.</figcaption>
+  <figcaption><strong>Figure 4.</strong> Earlier runs saturated; harder v3 tasks created measurable architecture signal.</figcaption>
 </figure>
 
-I kept the old trials for methodology, but they are no longer the headline result.
+The stack looked like this:
 
-- `v2_small_r2_regrade` (early check): docs helped, but results were unstable with small `n`
-- `v2_strong_r1` (60 attempts/model): `mono` and `toc` both saturated at 100%, so quality differences were not measurable
-- `v3_smoke` (tiny dry run): validated pipeline wiring, not inference
-- `v3_prefull18_clean` (clean pre-full): first consistent sign that `mono > toc`
-- `v3_full42_clean` (final): confirmed the same ranking with larger `n`
+- `v2_small_r2_regrade`: early signal, unstable
+- `v2_strong_r1`: quality saturation (`mono`/`toc` both near ceiling)
+- `v3_smoke`: wiring check
+- `v3_prefull18_clean`: first consistent `mono > toc` direction
+- `v3_full42_clean`: larger balanced confirmation
 
-The key lesson from the trial stack: benchmark hardness matters more than benchmark size if your goal is to compare docs architectures.
+The practical lesson: benchmark hardness usually matters more than sample size when your benchmark is saturating.
 
 ## Reproducibility
 
