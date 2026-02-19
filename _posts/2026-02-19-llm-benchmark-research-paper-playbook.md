@@ -1,8 +1,9 @@
 ---
-title: "How I Used LLMs to Write a Research-Style Paper"
+title: "How I Used LLMs to Run a Benchmark and Write a Paper"
 layout: post
-date: 2026-02-17
+date: 2026-02-19
 updated: 2026-02-19
+permalink: /blog/llm-benchmark-paper-playbook/
 tags: ['coding', 'ai', 'benchmarking']
 category: 'article'
 summary: "A practical walkthrough of how I used LLMs to design, evolve, benchmark, and write up a real experiment on agent-doc architecture."
