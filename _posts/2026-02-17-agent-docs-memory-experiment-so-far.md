@@ -1,5 +1,5 @@
 ---
-title: "From Saturation to Signal: Harder Agent-Docs Tasks in Real Code"
+title: "Writing a research paper using LLMs"
 layout: post
 date: 2026-02-17
 updated: 2026-02-17
