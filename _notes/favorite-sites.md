@@ -47,5 +47,5 @@ category: "note"
 
 **Web Development / Architecture**
 - [Component Gallery](https://component.gallery/) — Curated collection of UI components for inspiration
-- [Yes, and... — HTMX Essay](https://htmx.org/essays/yes-and/) — On additive design patterns in web development
+- [Yes, and... — HTMX Essay](https://htmx.org/essays/yes-and/) — On AI, programming, and learning (advice to CS students in the AI era)
 - [AI Agent Guidelines for Class](https://gist.github.com/1cg/a6c6f2276a1fe5ee172282580a44a7ac) — How AI assistants should help students (explain, don't solve)
