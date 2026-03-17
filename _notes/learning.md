@@ -10,6 +10,10 @@ category: 'note'
 
 [add notes on skiing practice...]
 
+### Spaced Repetition
+
+- [An Opinionated Guide to Using Anki Correctly](https://www.lesswrong.com/posts/7Q7DPSk4iGFJd8DRk/an-opinionated-guide-to-using-anki-correctly) - Guide on best practices for using Anki and spaced repetition to maximize retention.
+
 ### Learning with LLMs
 
 - Disabling the autocomplete/copilot allows you to remember the syntax, which is faster than looking it up each time.

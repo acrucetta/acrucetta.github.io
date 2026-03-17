@@ -10,7 +10,13 @@
       "Bash(git push:*)",
       "WebFetch(domain:jvns.ca)",
       "Bash(curl:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "WebFetch(domain:www.lesswrong.com)",
+      "Bash(npm:*)",
+      "Bash(grep:*)",
+      "Bash(gh api:*)",
+      "Bash(gh repo:*)",
+      "mcp__puppeteer__puppeteer_navigate"
     ],
     "deny": []
   },

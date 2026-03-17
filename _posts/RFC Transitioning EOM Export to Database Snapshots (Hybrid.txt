@@ -1,0 +1,506 @@
+# RFC: Transitioning EOM Export to Database Snapshots
+
+> **Status**: Draft
+> **Author**: Andres Crucetta Nieto
+> **Reviewers**: Meghan Palmer, Phil Bennett, Kenji Bierig, Jonah Paasche-Orlow
+> **Epic**: [CLDBIL-1210](https://coreweave.atlassian.net/browse/CLDBIL-1210)
+> **Original RFC**: [Confluence — Transitioning to Database Snapshots for EOM Export and Validation Process](https://coreweave.atlassian.net/wiki/spaces/CLOUDPLAT/pages/857899025)
+> **Date**: 2026-03-05
+
+---
+
+## 1. Overview
+
+Replace the current file-based CSV EOM export system with a database snapshot system.
+
+This RFC builds on the original proposal by Meghan Palmer and incorporates learnings from
+real EOM cycles (Nov 2025 – Feb 2026) and discussions with the data-engineering team.
+
+The design follows a **two-track approach**:
+- **Track 1 (billing-eng, self-contained)**: Snapshot computation, validation, per-org
+  adjustments, and CSV generation — all within TimescaleDB. Zero external dependencies.
+- **Track 2 (with data-eng, when ready)**: Archival to Apache Iceberg and Tableau
+  self-service via StarRocks. Added when Track 1 is proven, not before.
+
+### Goals
+
+- **Transactional snapshots**: Full and per-org, atomically committed
+- **Fast per-org re-runs**: Fix one org without recomputing the entire month
+- **Read consistency**: Solve the CLDBIL-1175 bug where summary and timeseries diverge
+- **Clear audit trail**: Every re-run linked to its triggering ticket and approved by a second person
+- **Predictable storage costs**: Retention policies, with future archival to Iceberg
+
+### Anti-Goals
+
+- Altering the billing aggregation pipeline (m0 → m4)
+- Building Tableau integration in Track 1 (that's Track 2)
+- Replacing the existing EOM validator — we extend it
+
+---
+
+## 2. Context & Current State
+
+### Current EOM Flow
+
+```
+Engineer triggers eom CLI (manually or via cron)
+  │
+  ├── preflight: validates billing period boundaries, DB connectivity
+  ├── export:    queries m4 + m2_by_cluster via psql, generates per-org CSVs
+  ├── validate:  cross-checks summary vs timeseries CSVs (Go validator)
+  └── upload:    zips artifacts + manifest, uploads to Google Drive
+```
+
+**Pain points identified** (from CLDBIL-755, CLDBIL-1175, CLDBIL-1364):
+- No read consistency — timeseries and summary CSVs query m4 at different times
+- Export takes 20–40 min, sensitive to DB load and parallelism limits
+- No resume on failure — partial runs must restart from scratch
+- Implicit output schema — no integration tests caught CLDBIL-1363 (broken crosstab SQL)
+- Manual upload to Google Drive; audit trail is spread across logs
+- Per-org re-runs require re-running the entire export script for one org
+
+### Original RFC Approach (CLDBIL-1210)
+
+The original RFC proposed everything within TimescaleDB:
+
+```
+reporting schema
+  ├── reporting.metadata              (snapshot registry)
+  ├── reporting.granular_YYYY_MM      (one table per month, hourly)
+  └── reporting.summary_YYYY_MM       (one table per month, aggregated)
+```
+
+Plus a Go orchestrator, Soda CLI validation, Admin App UI, K8s CronJob,
+and a custom retrieval function for Tableau.
+
+### What This RFC Changes
+
+| Original RFC | This RFC |
+|---|---|
+| Per-month physical tables | Single partitioned table with `snapshot_id` |
+| Custom Tableau retrieval function | Deferred to Track 2 (StarRocks View via DE) |
+| Per-org fix: underspecified | 5-step workflow based on real ticket analysis |
+| Metadata: basic fields | Rich metadata: adjustment type, upstream ref, sign-off |
+| Iceberg: not considered | Track 2: archival + Tableau, async, non-blocking |
+
+---
+
+## 3. Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ TRACK 1: SELF-CONTAINED (billing-eng owns, no external dependencies)   │
+│                                                                         │
+│  TimescaleDB                                                            │
+│  ├── m4_by_hour, m2_by_cluster      (source — unchanged)               │
+│  │                                                                      │
+│  ├── reporting.metadata              (snapshot registry)                │
+│  ├── reporting.eom_granular          (single table, snapshot_id FK)     │
+│  └── reporting.eom_summary           (single table, snapshot_id FK)     │
+│                                                                         │
+│  Triggered by: K8s CronJob (monthly) or Admin App (manual)             │
+│  Validated by: Existing Go validator + Soda CLI checks                  │
+│  Output: CSV from snapshot (same format as today, read-consistent)      │
+│                                                                         │
+│  ┌─────────────────────────────────────────────────────────┐           │
+│  │ create_monthly_snapshot(year, month)                     │           │
+│  │  1. INSERT INTO reporting.eom_granular SELECT ...        │           │
+│  │  2. INSERT INTO reporting.eom_summary  SELECT ...        │           │
+│  │  3. Run validation (Soda + Go checks)                    │           │
+│  │  4. UPDATE reporting.metadata SET status = pass/fail     │           │
+│  │  5. Generate CSVs from snapshot (read-consistent)        │           │
+│  │  6. Upload to Google Drive                               │           │
+│  └─────────────────────────────────────────────────────────┘           │
+│                                                                         │
+│  This is the complete EOM close. No external dependencies.              │
+│                                                                         │
+├─────────────────────────────────────────────────────────────────────────┤
+│ TRACK 2: ARCHIVAL & SERVING (with data-eng, added later)               │
+│                                                                         │
+│  Airflow DAG (DE-owned) reads from reporting.eom_* in TimescaleDB      │
+│  ├── Writes to Iceberg table in CAIOS (archival)                       │
+│  ├── Creates Nessie tag: "eom-2026-02" (immutable audit reference)     │
+│  └── StarRocks View for Tableau self-service (serving)                  │
+│                                                                         │
+│  Added when: Track 1 is proven over 2+ EOM cycles.                     │
+│  If this fails: EOM close is unaffected. CSVs still generated.         │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 4. Schema Design
+
+### 4.1 reporting.metadata
+
+```sql
+CREATE TABLE reporting.metadata (
+    snapshot_id         UUID          PRIMARY KEY DEFAULT gen_random_uuid(),
+    snapshot_name       TEXT          NOT NULL,
+    billing_year        INT           NOT NULL,
+    billing_month       INT           NOT NULL,
+    scope_type          TEXT          NOT NULL DEFAULT 'full',  -- 'full' or 'org'
+    scope_org           TEXT,         -- NULL for full, org_id for per-org re-run
+    status              TEXT          NOT NULL DEFAULT 'pending',
+    adjustment_type     TEXT,         -- NULL for initial; see Taxonomy below
+    upstream_ref        TEXT,         -- JIRA/Asana ticket that triggered re-run
+    parent_snapshot     UUID,         -- points to the full snapshot this modifies
+    version             INT           NOT NULL DEFAULT 1,
+    created_at          TIMESTAMPTZ   NOT NULL DEFAULT now(),
+    completed_at        TIMESTAMPTZ,
+    created_by          TEXT          NOT NULL,  -- pg role or 'cronjob'
+    approved_by         TEXT,         -- second person sign-off (SOX)
+    nessie_tag          TEXT,         -- NULL until Track 2 publish
+    validation_log      JSONB,
+    row_count_granular  INT,
+    row_count_summary   INT
+);
+
+CREATE INDEX idx_metadata_billing_period ON reporting.metadata (billing_year, billing_month);
+CREATE INDEX idx_metadata_status ON reporting.metadata (status);
+CREATE INDEX idx_metadata_parent ON reporting.metadata (parent_snapshot);
+```
+
+**Note**: The `nessie_tag` column is included now but populated only when Track 2 is active.
+No schema change needed when DE integration begins.
+
+### 4.2 reporting.eom_granular
+
+```sql
+CREATE TABLE reporting.eom_granular (
+    snapshot_id     UUID          NOT NULL REFERENCES reporting.metadata(snapshot_id),
+    time            TIMESTAMPTZ   NOT NULL,
+    org             TEXT          NOT NULL,
+    sku             TEXT          NOT NULL,
+    compute_class   TEXT,
+    cluster         TEXT,
+    usage           NUMERIC       NOT NULL DEFAULT 0,
+    reserved        NUMERIC       NOT NULL DEFAULT 0,
+    overage         NUMERIC       NOT NULL DEFAULT 0
+);
+
+CREATE INDEX idx_eom_granular_snapshot ON reporting.eom_granular (snapshot_id);
+CREATE INDEX idx_eom_granular_org ON reporting.eom_granular (snapshot_id, org);
+```
+
+### 4.3 reporting.eom_summary
+
+```sql
+CREATE TABLE reporting.eom_summary (
+    snapshot_id     UUID          NOT NULL REFERENCES reporting.metadata(snapshot_id),
+    org             TEXT          NOT NULL,
+    sku             TEXT          NOT NULL,
+    compute_class   TEXT,
+    total_usage     NUMERIC       NOT NULL DEFAULT 0,
+    total_reserved  NUMERIC       NOT NULL DEFAULT 0,
+    total_overage   NUMERIC       NOT NULL DEFAULT 0,
+    unit            TEXT          NOT NULL  -- e.g. 'GPU-hours', 'vCPU-hours'
+);
+
+CREATE INDEX idx_eom_summary_snapshot ON reporting.eom_summary (snapshot_id);
+CREATE INDEX idx_eom_summary_org ON reporting.eom_summary (snapshot_id, org);
+```
+
+### 4.4 Track 2: Iceberg Schema Contract (future)
+
+When Track 2 is activated, the publish Airflow DAG reads from `reporting.eom_*`
+and writes to Iceberg tables with the same column schema. The contract:
+
+- **Tables**: `model_eom.eom_granular`, `model_eom.eom_summary`
+- **Partitioning**: `billing_month`
+- **Tag convention**: `eom-YYYY-MM` for full, `eom-YYYY-MM-vN` for re-runs
+- **Format**: Parquet
+
+No billing-eng schema changes required. The TSDB tables are already
+Iceberg-compatible (NUMERIC, TEXT, TIMESTAMPTZ all map to native Parquet types).
+
+---
+
+## 5. Workflows
+
+### 5.1 Happy Path: Monthly EOM Close
+
+```
+Day 1 of new month (e.g. Mar 1):
+
+1. K8s CronJob triggers Go orchestrator
+   └── calls: create_snapshot(year=2026, month=2)
+
+2. Orchestrator creates reporting.metadata row (status=pending)
+
+3. Orchestrator runs snapshot SQL:
+   INSERT INTO reporting.eom_granular
+     SELECT ... FROM m4_by_hour WHERE time IN billing_period
+   INSERT INTO reporting.eom_summary
+     SELECT ... FROM eom_granular WHERE snapshot_id = $1
+
+4. Orchestrator runs validation:
+   a. Soda CLI checks (row counts, null checks, boundary coverage)
+   b. Go validator (summary vs granular cross-check — same as today)
+
+5. If validation passes:
+   └── UPDATE reporting.metadata SET status='passed'
+   └── Generate CSVs from snapshot (read-consistent)
+   └── Upload to Google Drive
+
+6. If validation fails:
+   └── UPDATE reporting.metadata SET status='failed', validation_log=...
+   └── Alert on-call via PagerDuty
+
+7. (Track 2 only, async, non-blocking):
+   └── Trigger Iceberg publish
+   └── Tableau users see new snapshot
+```
+
+### 5.2 Per-Org Adjustments
+
+In practice, the initial full export is just the beginning. Every EOM cycle generates
+multiple per-org adjustment requests (Jan 2026 had 5+ recalcs; Nov 2025 had 6+).
+These come in via an Asana form ("EOM CKS Billing Ops Requests") from RevOps/Accounting.
+
+**The key insight: a per-org fix is NOT just "re-snapshot from m4."**
+It is a multi-step process with an upstream dependency:
+
+```
+1. UPSTREAM FIX (billing-eng or RevOps — happens BEFORE re-snapshot)
+   │
+   │  RevOps submits Asana form: "Please update Medal.tv exclusion and re-run"
+   │  Billing-eng adjusts upstream data in Admin App:
+   │    - Add/update exclusion in m2_to_m3
+   │    - Update reservation_spans
+   │    - Fix org mapping in m1e
+   │    - Remove billing exclusion
+   │
+   ▼
+2. PIPELINE RECALCULATION (automatic, must complete before re-snapshot)
+   │
+   │  Exclusion change → enqueues in calculation_queue
+   │  Pipeline recalculates: m2 → m3 → m4 (10-minute chunks)
+   │  Orchestrator polls calculation_queue until org's recalc is complete
+   │
+   ▼
+3. RE-SNAPSHOT (billing-eng triggers via Admin App)
+   │
+   │  create_snapshot(year=2026, month=2, org='acme',
+   │                  adjustment_type='exclusion_change',
+   │                  upstream_ref='CLDBIL-999')
+   │
+   │  SQL:
+   │    DELETE FROM reporting.eom_granular
+   │      WHERE snapshot_id = $parent AND org = 'acme'
+   │    INSERT INTO reporting.eom_granular
+   │      SELECT ... FROM m4_by_hour
+   │      WHERE org = 'acme' AND time IN billing_period
+   │    (same for summary)
+   │
+   ▼
+4. VALIDATION (automated, scoped to this org)
+   │
+   ▼
+5. SIGN-OFF + DELIVERY
+   │  Second person approves (approved_by — SOX requirement)
+   │  Generate CSV: eom export --from-snapshot --org acme
+   │  Upload to Google Drive
+```
+
+#### Taxonomy of Adjustment Types
+
+Based on analysis of EOM cycles from Nov 2025 through Feb 2026:
+
+| Type | `adjustment_type` | Freq | Scope | Example |
+|---|---|---|---|---|
+| **Exclusion change** | `exclusion_change` | ~60% | Single org | Medal.tv: adjust exclusion timespan ([CLDBIL-999](https://coreweave.atlassian.net/browse/CLDBIL-999)). Yutori: add GPU overage exclusions ([CLDBIL-1001](https://coreweave.atlassian.net/browse/CLDBIL-1001)). TwelveLabs: pre-RI delivery exclusion ([CLDBIL-1003](https://coreweave.atlassian.net/browse/CLDBIL-1003)). |
+| **Billing model change** | `billing_model_change` | ~15% | Single org | Replicate: UBB→IBB mid-month, 2 separate CSVs ([CLDBIL-924](https://coreweave.atlassian.net/browse/CLDBIL-924)). |
+| **Reservation/OrgID fix** | `reservation_fix` | ~10% | Single org | Andromeda: reservations on wrong orgID ([CLDBIL-1405](https://coreweave.atlassian.net/browse/CLDBIL-1405)). |
+| **Data re-inclusion** | `data_reinclusion` | ~10% | Single org | Fireworks: billing exclusion removed ([CLDBIL-996](https://coreweave.atlassian.net/browse/CLDBIL-996)). |
+| **Pipeline/SQL bug** | `bugfix` | ~5% | ALL orgs | ord1-tenant filter missing ([CLDBIL-1363](https://coreweave.atlassian.net/browse/CLDBIL-1363)). |
+
+#### Bugfix (Type 5): Requires Full Re-snapshot
+
+```
+1. Merge bugfix PR (or apply m1_to_m2 rule)
+2. Wait for full pipeline recalculation (all orgs)
+3. create_snapshot(year=2026, month=2, adjustment_type='bugfix',
+                   upstream_ref='CLDBIL-1363')
+4. scope_type='full', version=2
+5. Full validation
+6. Previous snapshot preserved in metadata (audit trail)
+```
+
+#### Billing Model Change (Type 2): May Need Custom SQL
+
+The Replicate case (CLDBIL-924) required two separate CSV reports for one org —
+UBB (Nov 1–13) and IBB (Nov 14–30). The orchestrator supports a `custom_sql`
+escape hatch for these, stored in `validation_log` for audit and requiring
+explicit second-engineer approval.
+
+#### Typical Monthly Timeline
+
+```
+Day 1-2:  Full export + validation
+Day 2-3:  RevOps reviews, submits Asana adjustment requests
+Day 3-5:  Billing-eng processes 3-6 per-org adjustments
+            Each: upstream fix → recalc wait → re-snapshot → validate → upload
+Day 5:    Final sign-off from accounting
+```
+
+### 5.3 Legacy CSV Generation (Transition Period)
+
+During Track 1, the existing `eom export` CLI reads from `reporting.eom_granular`
+instead of querying m4 directly. This solves the read-consistency bug (CLDBIL-1175):
+both timeseries and summary CSVs read from the same immutable snapshot.
+
+```
+eom export --from-snapshot eom-2026-02 --year 2026 --month 2
+eom export --from-snapshot eom-2026-02 --org acme   # per-org re-run
+```
+
+---
+
+## 6. Phased Rollout
+
+### Track 1: Self-Contained EOM Snapshots (billing-eng only)
+
+All phases below ship with zero data-eng coordination.
+
+#### Phase 1: Database Foundation (Sprint N)
+- Create `reporting` schema
+- Create `reporting.metadata` table ([CLDBIL-1211](https://coreweave.atlassian.net/browse/CLDBIL-1211))
+- Create `reporting.eom_granular` and `reporting.eom_summary`
+- Write migration + integration tests
+- **Milestone**: Can manually `INSERT INTO reporting.eom_granular SELECT ... FROM m4_by_hour`
+  and query back a consistent snapshot via psql.
+
+#### Phase 2: Go Orchestrator + Validation (Sprint N+1, N+2)
+- Go orchestrator: snapshot SQL execution, status tracking in metadata
+- Soda CLI integration ([CLDBIL-1218](https://coreweave.atlassian.net/browse/CLDBIL-1218))
+- Port existing Go validator checks to run against snapshot tables
+- Recalculation wait: poll `calculation_queue` before re-snapshot
+- **Milestone**: `create_snapshot(2026, 3)` produces a validated snapshot in the DB.
+
+#### Phase 3: CSV from Snapshot + Admin App (Sprint N+2, N+3)
+- `eom export --from-snapshot` reads from snapshot tables (not m4 directly)
+- Admin App API endpoints: trigger full snapshot, trigger per-org re-run, view status
+- Per-org adjustment workflow (section 5.2) fully functional
+- Upload to Google Drive from snapshot
+- **Milestone**: Full EOM cycle runs end-to-end using snapshots.
+  Parallel run: compare snapshot-based export vs. legacy export for 1 cycle.
+
+#### Phase 4: CronJob + Cutover (Sprint N+3, N+4)
+- K8s CronJob replaces manual triggering for the initial full export
+- Admin App UI for snapshot management (trigger, status, per-org re-run)
+- Remove direct m4 queries from `eom_handoff_zip.sh`
+- **Milestone**: EOM close no longer uses the legacy bash script.
+
+### Track 2: Archival & Tableau Serving (with data-eng, when ready)
+
+Added when Track 1 has been proven over 2+ EOM cycles. All work is async
+and non-blocking — if Track 2 is down, EOM close is unaffected.
+
+**Prerequisite**: Track 1 Phase 3 complete (snapshots exist in TSDB).
+
+#### Phase 5: Iceberg Publish (Sprint N+5 or later)
+- Define Iceberg schema contract with DE (the TSDB schema is already Iceberg-compatible)
+- DE creates Airflow DAG: reads `reporting.eom_*` → writes to Iceberg → tags Nessie
+- Test: full snapshot → publish → query via StarRocks round-trip
+- Populate `nessie_tag` in `reporting.metadata` after successful publish
+- **Milestone**: EOM snapshots archived to Iceberg after each cycle.
+
+#### Phase 6: Tableau Self-Service (Sprint N+6 or later)
+- DE creates StarRocks Views over `model_eom.*`
+- Tableau dashboard: snapshot selector → org-scoped data
+- RevOps/Accounting can browse EOM data without requesting CSVs
+- **Milestone**: Accounting can self-serve data for any historical EOM snapshot.
+
+#### Phase 7: Retention + Decommission (Sprint N+7 or later)
+- Retention policy: keep N months in TimescaleDB, all history in Iceberg
+- Google Drive upload deprecated (Tableau replaces it)
+- Legacy CSV generation kept as a fallback but no longer default
+- **Milestone**: TSDB storage costs stabilize; Iceberg is the long-term archive.
+
+---
+
+## 7. Ownership & SLA Boundaries
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    RESPONSIBILITY MATRIX                        │
+├─────────────────────────────┬───────────────┬──────────────────┤
+│ Capability                  │ Owner         │ Track            │
+├─────────────────────────────┼───────────────┼──────────────────┤
+│ Snapshot computation (SQL)  │ Billing-eng   │ Track 1          │
+│ Validation (Soda + Go)      │ Billing-eng   │ Track 1          │
+│ Per-org adjustment workflow  │ Billing-eng   │ Track 1          │
+│ CSV generation from snapshot │ Billing-eng   │ Track 1          │
+│ Admin App trigger UI        │ Billing-eng   │ Track 1          │
+│ K8s CronJob                 │ Billing-eng   │ Track 1          │
+│ Google Drive upload          │ Billing-eng   │ Track 1          │
+├─────────────────────────────┼───────────────┼──────────────────┤
+│ Iceberg publish DAG          │ Data-eng      │ Track 2          │
+│ StarRocks View maintenance   │ Data-eng      │ Track 2          │
+│ Tableau integration          │ Data-eng      │ Track 2          │
+│ Iceberg schema contract      │ Both (PR)     │ Track 2          │
+├─────────────────────────────┼───────────────┼──────────────────┤
+│ EOM close (critical path)   │ Billing-eng   │ Always Track 1   │
+│ Tableau availability        │ Data-eng      │ Track 2 only     │
+└─────────────────────────────┴───────────────┴──────────────────┘
+```
+
+### Key Guarantee
+
+**EOM close never depends on data-eng infrastructure.**
+
+Track 2 is additive. If Iceberg, StarRocks, or Airflow is unavailable at month-end:
+1. EOM still closes — data exists in TimescaleDB, validated and approved
+2. CSVs still generated from snapshot tables
+3. Google Drive upload still works
+4. Iceberg publish catches up when DE infra recovers
+
+---
+
+## 8. What We're NOT Building (and Why)
+
+| Item | Decision | Reason |
+|---|---|---|
+| Per-month physical tables | Cut | Single table + `snapshot_id` avoids DDL at runtime |
+| Custom Tableau retrieval function | Deferred to Track 2 | DE already has StarRocks → Tableau |
+| Full dbt transformation pipeline | Cut | Compute stays in TSDB SQL; dbt adds complexity without benefit here |
+| Iceberg in Track 1 | Deferred to Track 2 | No critical path needs it; archival can wait until Track 1 is proven |
+
+---
+
+## 9. Open Questions
+
+1. **Recalculation wait mechanism**: When billing-eng applies an upstream fix (exclusion,
+   reservation), how does the orchestrator know m4 finished recalculating?
+   Options: (a) poll `calculation_queue` until empty for that org, (b) completion event,
+   (c) manual "recalc complete" confirmation in Admin App. Today this is eyeballed.
+2. **Closed month protection**: Current system has ~5-day grace period for exclusion edits
+   (CLDBIL-881, CLDBIL-1102). Should the snapshot system enforce the same cutoff?
+   After cutoff, only `bugfix` type adjustments allowed?
+3. **Custom SQL for Type 2 adjustments**: How do we handle billing model changes that need
+   non-standard SQL (e.g. Replicate UBB→IBB split)? Stored query in metadata sufficient
+   for audit, or do we need a more formal approval workflow?
+4. **Parallel per-org re-runs**: Nov 2025 had 6+ re-runs in 2 days. Can the orchestrator
+   process multiple per-org adjustments concurrently, or must they be sequential?
+5. **Track 2 trigger**: What's the signal to begin Track 2? Options: (a) after N successful
+   Track 1 EOM cycles, (b) when TSDB storage exceeds threshold, (c) when Tableau
+   self-service is explicitly prioritized by product.
+6. **Nessie tag naming convention** (Track 2): `eom-YYYY-MM` vs `eom/YYYY/MM` — need DE input.
+7. **SOX auditor access** (Track 2): Can EY query StarRocks directly, or do they still need CSVs?
+8. **Retention policy** (Track 2): How many months in TSDB before archiving to Iceberg-only?
+
+---
+
+## 10. References
+
+- [Original RFC — Confluence](https://coreweave.atlassian.net/wiki/spaces/CLOUDPLAT/pages/857899025)
+- [Epic — CLDBIL-1210](https://coreweave.atlassian.net/browse/CLDBIL-1210)
+- [Ticket — CLDBIL-1269 (EOM in DB RFC)](https://coreweave.atlassian.net/browse/CLDBIL-1269)
+- [Apache Iceberg + Nessie at CoreWeave](https://coreweave.atlassian.net/wiki/spaces/DATAENG/pages/490799997)
+- [billing-eng <> data-eng sync notes](https://docs.google.com/document/d/1Kilan9T6OuSHb1JSpfA296pnq_SKYR4EWbto83bRYRQ)
+- [EOM validation large diffs (CLDBIL-1175)](https://coreweave.atlassian.net/browse/CLDBIL-1175)
+- [CSV exporter enhancement RFC (CLDBIL-755)](https://coreweave.atlassian.net/browse/CLDBIL-755)
+- [EOM export SQL lacks test coverage (CLDBIL-1364)](https://coreweave.atlassian.net/browse/CLDBIL-1364)
+- [PIR — Sept billing data issues (inci-1071)](https://docs.google.com/document/d/1nTR4CCQo9gsczIeiYCdhj4MyqMPPhzcw5zEgaSWrYvA)
