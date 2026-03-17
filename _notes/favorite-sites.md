@@ -42,5 +42,10 @@ category: "note"
 **Web Design**
 - [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
 - [https://gwern.net/about](https://gwern.net/about)
-- [https://practicaltypography.com/](https://practicaltypography.com/) 
+- [https://practicaltypography.com/](https://practicaltypography.com/)
 - [https://edwardtufte.github.io/tufte-css/](https://edwardtufte.github.io/tufte-css/)
+
+**Web Development / Architecture**
+- [Component Gallery](https://component.gallery/) — Curated collection of UI components for inspiration
+- [Yes, and... — HTMX Essay](https://htmx.org/essays/yes-and/) — On AI, programming, and learning (advice to CS students in the AI era)
+- [AI Agent Guidelines for Class](https://gist.github.com/1cg/a6c6f2276a1fe5ee172282580a44a7ac) — How AI assistants should help students (explain, don't solve)
