@@ -13,20 +13,7 @@
         {% endif %}
     </head>
     <body>
-        {% assign page_section = 'home' %}
-        {% if page.collection == 'posts' or page.url == '/blog.html' %}
-            {% assign page_section = 'blog' %}
-        {% elsif page.collection == 'notes' or page.url == '/notes.html' %}
-            {% assign page_section = 'notes' %}
-        {% elsif page.collection == 'til' or page.url == '/til.html' %}
-            {% assign page_section = 'til' %}
-        {% elsif page.url == '/bookshelf.html' %}
-            {% assign page_section = 'bookshelf' %}
-        {% endif %}
         <a class="skip-link" href="#main-content">Skip to content</a>
-        <div class="site-motion-banner site-motion-banner--{{ page_section }}" aria-hidden="true">
-            <canvas id="site-motion-canvas"></canvas>
-        </div>
         <div class="site-shell">
             <header class="site-header">
                 <p class="site-brand">
@@ -64,6 +51,5 @@
             </header>
             <main class="site-main" id="main-content">{{ content }}</main>
         </div>
-        <script src="{{ '/assets/site-motion.js' | relative_url }}" defer></script>
     </body>
 </html>
