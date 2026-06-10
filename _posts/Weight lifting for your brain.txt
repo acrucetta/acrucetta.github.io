@@ -1,0 +1,40 @@
+# Weight lifting for your brain
+
+I just read Derek Sivers article on [being offline](https://sive.rs/off23), and this part shook me.
+
+> Last month, I moved into my new home in the woods. There’s no internet and no phone service here. It’s so productive.
+
+> At first I thought I couldn’t move in without internet. But now I prefer it this way.
+
+> Problems I used to punt, I now solve on my own. It’s voluntary, like weightlifting. My brain feels stronger because I work through the problem instead of prompting it away.
+
+I wondered how many times since ChatGPT came out have I taken the easy way out, instead of exercising my brain like Derek Sivers recommends. 
+
+I was particularly impressed how he said he downloaded Wikipedia and used e-books (!!) to code. How many times have I not thought of the problem when I just passed it to an LLM. 
+
+It feels easy, and I convince myself by saying this is where things are headed. The problem is, to know what good looks like, you need to have struggled through the problems. I have built a few APIs, when I build one with an LLM, I know what goods look like, or when code is too complicated. But I learned that from making many mistakes.
+
+Every mistake is a weight rep. For every time we stretch our brains and feel that tension and release, our brain rewires, we get smarter. Every flash card that we struggle to recall, is easier the next time.
+
+It’s almost said one too many times that struggle = growth. The problem has been, for me at least, the easy path is too easy. It doesn’t feel like a conviction problem, it feels like a behavioral problem. I try to stop using the LLMs, then things get a bit harder, and I go and use them again, and I’m back on the loop.
+
+I’m not against them, I just think they’re so widespread, in every surface, particularly coding, that it’s almost too easy to use them, to not have to struggle and learn how to use the tools.
+
+I don’t have a good answer, except that I recognize:
+- the problem is behavioral, I just keep taking the easy choice, the snack is way too easy to reach, maybe I need to put it higher in the kitchen counter
+- I go back and forth on where things are going, so I just hop on the agentic train, many people like Mitchell Hashimoto and DHH have adopted it already (yet they already built their own expertise)
+- struggle = growth, so I can’t be reflexively using them if I want long-term learning
+
+Things are uncertain as Kevin Kelly wrote in his [blog post: Our Uncertain Uncertainties](https://kevinkelly.substack.com/p/our-uncertain-uncertainties).
+
+Some steps I’m thinking of taking are:
+- more Anki cards to memorize things and train my brain
+- force myself to not use LLMs impulsively, use them like any other tool, not as a knee-jerk reaction to problems
+- write more, reflect, use writing as a tool to generate ideas
+- teach others, I’ve memorized *most* things I’ve taught
+
+Some references:
+- https://sive.rs/off23
+- https://pcalv.es/offline-only/
+- https://www.ncregister.com/commentaries/schnell-repairing-the-ruins?amp=&utm_source=substack&utm_medium=email
+- https://kevinkelly.substack.com/p/our-uncertain-uncertainties
