@@ -11,3 +11,5 @@ category: 'note'
 > LLM output harvests the generosity and credulousness of this social contract — inviting readers to fill in its gaps and ignore its flaws. Through consistent exploitation, the social contract is gradually eroded, like so many other tragedies of the commons. This problem is not entirely novel, but LLMs have made Gish-galloping with nonsense orders of magnitude cheaper and easier than ever before, and scale can give old problems new venom.
 >
 > I would argue that sharing slop is worse than simply rude; it's profoundly antisocial, and an attack on the idea of written communication.
+
+— [Internet_Janitor on Lobsters](https://lobste.rs/s/mlnvoy/it_s_rude_show_ai_output_people#c_wyknju)
