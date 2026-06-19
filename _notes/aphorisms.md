@@ -6,5 +6,6 @@ tags: ['practices']
 category: 'note'
 ---
 
-- SQL: Normalize until it hurts, denormalize until it works.
-- Regular code: Pure until it hurts, impure until it works.
+> SQL: Normalize until it hurts, denormalize until it works.
+
+> Regular code: Pure until it hurts, impure until it works.
