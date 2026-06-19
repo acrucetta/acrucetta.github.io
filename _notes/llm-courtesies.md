@@ -13,3 +13,5 @@ category: 'note'
 > I would argue that sharing slop is worse than simply rude; it's profoundly antisocial, and an attack on the idea of written communication.
 
 — [Internet_Janitor on Lobsters](https://lobste.rs/s/mlnvoy/it_s_rude_show_ai_output_people#c_wyknju)
+
+See also: [It's Rude to Show AI Output to People](https://distantprovince.by/posts/its-rude-to-show-ai-output-to-people/)
