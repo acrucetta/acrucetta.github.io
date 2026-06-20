@@ -150,8 +150,8 @@
   text-decoration-thickness: 0.07em;
 }
 
-/* Rating chips as soft, low-chroma tints (no hard fills or borders).
-   A gentle warm-to-cool gradient: gold S, sage A, slate B, clay C. */
+/* Rating chips as a soft medal system: gold S, silver A, bronze B.
+   Everything else (C, unrated, pending) recedes as faint gray. */
 .bookshelf-rating {
   display: inline-block;
   min-width: 1.6rem;
@@ -168,26 +168,22 @@
 }
 
 .bookshelf-rating[data-rating="s"] {
-  --rating-bg: oklch(0.94 0.05 82);
-  --rating-fg: oklch(0.47 0.085 58);
+  --rating-bg: oklch(0.92 0.065 88);
+  --rating-fg: oklch(0.47 0.09 72);
 }
 
 .bookshelf-rating[data-rating="a"] {
-  --rating-bg: oklch(0.93 0.038 152);
-  --rating-fg: oklch(0.45 0.07 155);
+  --rating-bg: oklch(0.91 0.008 250);
+  --rating-fg: oklch(0.46 0.012 250);
 }
 
 .bookshelf-rating[data-rating="b"] {
-  --rating-bg: oklch(0.93 0.03 242);
-  --rating-fg: oklch(0.47 0.055 252);
+  --rating-bg: oklch(0.89 0.055 56);
+  --rating-fg: oklch(0.45 0.08 48);
 }
 
-.bookshelf-rating[data-rating="c"] {
-  --rating-bg: oklch(0.93 0.04 32);
-  --rating-fg: oklch(0.5 0.08 30);
-}
-
-/* Unrated / pending states recede instead of competing. */
+/* C and unrated / pending states recede instead of competing. */
+.bookshelf-rating[data-rating="c"],
 .bookshelf-rating[data-rating="n/a"],
 .bookshelf-rating[data-rating="tbd"],
 .bookshelf-rating[data-rating="in progress"] {
@@ -201,23 +197,18 @@
 
 @media (prefers-color-scheme: dark) {
   .bookshelf-rating[data-rating="s"] {
-    --rating-bg: oklch(0.33 0.045 82);
-    --rating-fg: oklch(0.87 0.08 84);
+    --rating-bg: oklch(0.34 0.05 88);
+    --rating-fg: oklch(0.86 0.09 88);
   }
 
   .bookshelf-rating[data-rating="a"] {
-    --rating-bg: oklch(0.33 0.038 152);
-    --rating-fg: oklch(0.85 0.07 155);
+    --rating-bg: oklch(0.38 0.007 250);
+    --rating-fg: oklch(0.86 0.012 250);
   }
 
   .bookshelf-rating[data-rating="b"] {
-    --rating-bg: oklch(0.33 0.03 245);
-    --rating-fg: oklch(0.84 0.06 252);
-  }
-
-  .bookshelf-rating[data-rating="c"] {
-    --rating-bg: oklch(0.33 0.045 32);
-    --rating-fg: oklch(0.85 0.08 32);
+    --rating-bg: oklch(0.33 0.05 56);
+    --rating-fg: oklch(0.83 0.08 52);
   }
 }
 
