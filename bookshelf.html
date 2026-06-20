@@ -683,6 +683,7 @@ styles:
         const yearSections = Array.from(document.querySelectorAll(".bookshelf-year"));
         const tableRows = [];
         const ratings = new Set();
+        const indexEntries = [];
 
         const normalize = (value) => value.trim().toLowerCase();
 
@@ -708,12 +709,6 @@ styles:
             const heading = section.querySelector(".bookshelf-year__heading");
             if (heading && heading.id === "") {
                 heading.id = section.id ? `${section.id}-heading` : "";
-            }
-            if (yearIndex && year) {
-                const link = document.createElement("a");
-                link.href = `#${section.id}`;
-                link.textContent = year;
-                yearIndex.appendChild(link);
             }
 
             const table = section.querySelector("table");
@@ -778,13 +773,66 @@ styles:
                     bookCell.appendChild(link);
                 }
 
+                if (!ratingCell.querySelector(".bookshelf-rating")) {
+                    const chip = document.createElement("span");
+                    chip.className = "bookshelf-rating";
+                    chip.dataset.rating = normalizedRating;
+                    chip.textContent = ratingText;
+                    ratingCell.textContent = "";
+                    ratingCell.appendChild(chip);
+                }
+
                 tableRows.push(row);
             });
+
+            const bookCount = table.tBodies[0].rows.length;
+            if (heading && bookCount > 0) {
+                const count = document.createElement("span");
+                count.className = "bookshelf-year__count";
+                count.textContent = `${bookCount} book${bookCount === 1 ? "" : "s"}`;
+                heading.append(" ", count);
+            }
+            if (yearIndex && year) {
+                const link = document.createElement("a");
+                link.href = `#${section.id}`;
+                link.className = "bookshelf-index__link";
+                const label = document.createElement("span");
+                label.textContent = year;
+                const bar = document.createElement("span");
+                bar.className = "bookshelf-index__bar";
+                bar.setAttribute("aria-hidden", "true");
+                link.append(label, bar);
+                yearIndex.appendChild(link);
+                indexEntries.push({ bar, count: bookCount });
+            }
+        });
+
+        const maxCount = indexEntries.reduce((max, entry) => Math.max(max, entry.count), 0);
+        indexEntries.forEach((entry) => {
+            const fill = maxCount > 0 ? Math.max(entry.count / maxCount, 0.12) : 0;
+            entry.bar.style.setProperty("--fill", fill.toFixed(3));
         });
 
         Array.from(ratings)
             .sort((a, b) => a.localeCompare(b))
             .forEach((rating) => upsertOption(ratingFilter, normalize(rating), rating));
+
+        document.querySelectorAll(".bookshelf-legend li > strong:first-child").forEach((mark) => {
+            const letter = mark.textContent.trim();
+            if (letter.length === 1) {
+                mark.classList.add("bookshelf-rating");
+                mark.dataset.rating = normalize(letter);
+            }
+        });
+
+        const emptyState = document.createElement("p");
+        emptyState.className = "bookshelf-empty";
+        emptyState.hidden = true;
+        emptyState.textContent = "No books match those filters. Try clearing them.";
+        const bookshelfPage = document.querySelector(".bookshelf-page");
+        if (bookshelfPage) {
+            bookshelfPage.appendChild(emptyState);
+        }
 
         const applyFilters = () => {
             const selectedYear = yearFilter.value;
@@ -811,6 +859,8 @@ styles:
             if (summary) {
                 summary.textContent = `${visibleRows} book${visibleRows === 1 ? "" : "s"} shown`;
             }
+
+            emptyState.hidden = visibleRows !== 0;
         };
 
         [yearFilter, ratingFilter].forEach((element) => {

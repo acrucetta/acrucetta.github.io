@@ -77,12 +77,59 @@
   font-size: 0.82rem;
 }
 
+/* Jump-nav doubles as an ambient bar chart of books per year. */
+.bookshelf-index__link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 2.6rem;
+  text-decoration: none;
+}
+
+.bookshelf-index__link:hover .bookshelf-index__bar {
+  background: var(--color-link);
+}
+
+.bookshelf-index__bar {
+  height: 3px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-link) 35%, var(--color-border));
+  transform: scaleX(var(--fill, 0.12));
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.18s ease-out;
+}
+
 .bookshelf-year__heading {
   scroll-margin-top: 1rem;
 }
 
+.bookshelf-year__count {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+}
+
 .bookshelf-table {
   margin-top: 0.45rem;
+}
+
+/* Lighten the default full-grid table into an editorial list:
+   no internal borders, just a hairline rule between rows. */
+.bookshelf-table,
+.bookshelf-table td {
+  border: 0;
+}
+
+.bookshelf-table thead th {
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+}
+
+.bookshelf-table tbody tr {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
 }
 
 .bookshelf-table td {
@@ -90,8 +137,100 @@
   padding-bottom: 0.5rem;
 }
 
+/* Rating becomes a narrow, right-aligned column so the grades
+   stack into a scannable vertical strip. */
+.bookshelf-table th:last-child,
+.bookshelf-table td:last-child {
+  width: 5rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .bookshelf-book-link {
   text-decoration-thickness: 0.07em;
+}
+
+/* Rating chips as soft, low-chroma tints (no hard fills or borders).
+   A gentle warm-to-cool gradient: gold S, sage A, slate B, clay C. */
+.bookshelf-rating {
+  display: inline-block;
+  min-width: 1.6rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--rating-bg, transparent);
+  color: var(--rating-fg, var(--color-muted));
+}
+
+.bookshelf-rating[data-rating="s"] {
+  --rating-bg: oklch(0.94 0.05 82);
+  --rating-fg: oklch(0.47 0.085 58);
+}
+
+.bookshelf-rating[data-rating="a"] {
+  --rating-bg: oklch(0.93 0.038 152);
+  --rating-fg: oklch(0.45 0.07 155);
+}
+
+.bookshelf-rating[data-rating="b"] {
+  --rating-bg: oklch(0.93 0.03 242);
+  --rating-fg: oklch(0.47 0.055 252);
+}
+
+.bookshelf-rating[data-rating="c"] {
+  --rating-bg: oklch(0.93 0.04 32);
+  --rating-fg: oklch(0.5 0.08 30);
+}
+
+/* Unrated / pending states recede instead of competing. */
+.bookshelf-rating[data-rating="n/a"],
+.bookshelf-rating[data-rating="tbd"],
+.bookshelf-rating[data-rating="in progress"] {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--color-muted) 62%, transparent);
+}
+
+.bookshelf-rating[data-rating="in progress"] {
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bookshelf-rating[data-rating="s"] {
+    --rating-bg: oklch(0.33 0.045 82);
+    --rating-fg: oklch(0.87 0.08 84);
+  }
+
+  .bookshelf-rating[data-rating="a"] {
+    --rating-bg: oklch(0.33 0.038 152);
+    --rating-fg: oklch(0.85 0.07 155);
+  }
+
+  .bookshelf-rating[data-rating="b"] {
+    --rating-bg: oklch(0.33 0.03 245);
+    --rating-fg: oklch(0.84 0.06 252);
+  }
+
+  .bookshelf-rating[data-rating="c"] {
+    --rating-bg: oklch(0.33 0.045 32);
+    --rating-fg: oklch(0.85 0.08 32);
+  }
+}
+
+.bookshelf-empty {
+  margin-top: 1.7rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bookshelf-index__bar {
+    transition: none;
+  }
 }
 
 @media (max-width: 700px) {
