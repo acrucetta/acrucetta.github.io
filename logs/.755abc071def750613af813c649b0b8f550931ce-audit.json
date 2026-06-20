@@ -6,9 +6,14 @@
     "auditLog": "/Users/acrucettanieto/Documents/Git/acrucetta.github.io/logs/.755abc071def750613af813c649b0b8f550931ce-audit.json",
     "files": [
         {
-            "date": 1778373030080,
-            "name": "/Users/acrucettanieto/Documents/Git/acrucetta.github.io/logs/mcp-puppeteer-2026-05-10.log",
-            "hash": "5a8c622f5df20ec8d7b2e8391cb435d390ebbbcfb2c05f101b04401761d0317a"
+            "date": 1781921299054,
+            "name": "/Users/acrucettanieto/Documents/Git/acrucetta.github.io/logs/mcp-puppeteer-2026-06-19.log",
+            "hash": "6914aee9a7e16ee9ebefbf50bac64a0a9fd544b509cc8fcd1fdf764768d21235"
+        },
+        {
+            "date": 1781975440592,
+            "name": "/Users/acrucettanieto/Documents/Git/acrucetta.github.io/logs/mcp-puppeteer-2026-06-20.log",
+            "hash": "669be9dfea4237a699efe90435c369c038de31c58337b802d3f2cf4032e877f7"
         }
     ],
     "hashType": "sha256"
